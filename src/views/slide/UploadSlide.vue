@@ -29,12 +29,11 @@ export default {
       const form = new FormData();
       form.append('nameSlide', this.nameslide);
       form.append('fileSlide', this.file_img);
-      const result = await axios.post(`${RESOURCE_SLIDE}`, {
+      const result = await axios.post(`${RESOURCE_SLIDE}`, form, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: this.$cookies.get('token'),
         },
-        data: form,
       });
       return result.data;
     },

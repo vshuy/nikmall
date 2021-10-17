@@ -12,7 +12,7 @@ loadScript({
   currency: 'USD',
 });
 export default {
-  name: 'paypal',
+  name: 'Paypal',
   data() {
     return {
       email: 'vshbmt@gmail.com',

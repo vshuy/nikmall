@@ -91,13 +91,19 @@ export default {
         };
         return tmp;
       });
-      const result = await axios.post(`${RESOURCE_BILL}`, {
-        data: {
+      const result = await axios.post(
+        `${RESOURCE_BILL}`,
+        {
           user_id: this.$cookies.get('user_id'),
           total: this.sum,
           id_products: list_id_products,
         },
-      });
+        {
+          headers: {
+            Authorization: this.$cookies.get('token'),
+          },
+        },
+      );
       return result.data;
     },
     async payNow() {

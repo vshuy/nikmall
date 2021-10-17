@@ -69,17 +69,11 @@ export default {
       return result.data;
     },
     async deleteOrderById(id) {
-      const result = await axios.delete(
-        `${RESOURCE_BILL}`,
-        {
-          id: id,
+      const result = await axios.delete(`${RESOURCE_BILL}/${id}`, {
+        headers: {
+          Authorization: this.$cookies.get('token'),
         },
-        {
-          headers: {
-            Authorization: this.$cookies.get('token'),
-          },
-        },
-      );
+      });
       this.bills = this.bills.filter((item) => item.id !== id);
       return result.data;
     },
