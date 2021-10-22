@@ -15,7 +15,7 @@ import DashboardBill from '../views/bill/DashboardBill.vue';
 import DetailBill from '../views/bill/DetailBill.vue';
 import UpdateProduct from '../views/product/UpdateProduct.vue';
 import ListOrdered from '../views/historyOrder/ListOrdered.vue'
-import paypal from '../views/paypal.vue'
+import paypal from '../views/Paypal.vue'
 Vue.use(VueRouter);
 export default new VueRouter({
   routes: [

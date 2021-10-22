@@ -4,7 +4,11 @@
     <div class="row">
       <Header></Header>
       <Slide></Slide>
-      <div v-for="(item, index) in products" :key="index" class="col-sm-3 mt-3">
+      <div
+        v-for="(item, index) in products.data"
+        :key="index"
+        class="col-sm-3 mt-3"
+      >
         <router-link :to="{ name: 'detailproduct', params: { id: item.id } }">
           <img
             style="border-radius: 12px"
@@ -32,6 +36,14 @@
           </div>
         </div>
       </div>
+      <Pagination
+        :data="products"
+        @pagination-change-page="getData"
+        align="center"
+      >
+        <span slot="prev-nav">&lt; Previous</span>
+        <span slot="next-nav">Next &gt;</span>
+      </Pagination>
     </div>
     <Footer></Footer>
   </div>
@@ -42,7 +54,7 @@ import Header from '../components/Header.vue';
 import Footer from '../components/Footer.vue';
 import Slide from '../components/Slide.vue';
 import { RESOURCE_PRODUCT } from './../api/api.js';
-
+const Pagination = require('laravel-vue-pagination');
 const axios = require('axios');
 
 export default {
@@ -52,20 +64,30 @@ export default {
   },
   data() {
     return {
-      products: [],
+      products: {},
     };
   },
   methods: {
-    async getListImg() {
-      const result = await axios.get(`${RESOURCE_PRODUCT}`, {
-        headers: {
-          Authorization: this.$cookies.get('token'),
+    async getListImg(page) {
+      const result = await axios.get(
+        `${RESOURCE_PRODUCT}/pg?page=${page}`,
+        // {
+        //   page: page,
+        // },
+        {
+          headers: {
+            Authorization: this.$cookies.get('token'),
+          },
         },
-      });
+      );
       return result.data;
     },
-    async getData() {
-      this.products = await this.getListImg();
+    async getData(page) {
+      if (typeof page === 'undefined') {
+        page = 1;
+      }
+      this.products = await this.getListImg(page);
+      console.log('Info log: ~ this.products', this.products);
     },
     addAnItemToCart(item) {
       if (this.$store.state.carts.includes(item) === false) {
@@ -84,6 +106,7 @@ export default {
     Header,
     Slide,
     Footer,
+    Pagination,
   },
   computed: mapState(['count']),
 };

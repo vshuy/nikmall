@@ -108,7 +108,7 @@ export default {
     },
     async payNow() {
       const result = await this.uploadCartBill();
-      console.log('Info log: ~ result', result);
+      console.log('Info log bill: ~ result', result);
       this.$router.push('listorder');
     },
   },
