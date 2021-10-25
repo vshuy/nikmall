@@ -1,7 +1,6 @@
 /* eslint-disable */
 <template lang="">
   <div class="text-center">
-    <!-- <div class="testtext"> test what is going on</div> -->
     <main class="form-signin">
       <form @submit.prevent="handleLogin()">
         <img class="mb-4" src="../assets/js.png" alt="" height="auto" width="100px">
@@ -25,7 +24,7 @@
 </template>
 <script>
 const axios = require('axios');
-import { BASE_URL } from './../api/api.js';
+import { BASE_URL } from '../../api/api.js';
 
 export default {
   name: 'Login',
