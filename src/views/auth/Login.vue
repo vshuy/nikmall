@@ -3,7 +3,7 @@
   <div class="text-center">
     <main class="form-signin">
       <form @submit.prevent="handleLogin()">
-        <img class="mb-4" src="../assets/js.png" alt="" height="auto" width="100px">
+        <img class="mb-4" src="../../assets/js.png" alt="" height="auto" width="100px">
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
         <div class="form-floating">
           <input type="email" v-model="email" class="form-control"  placeholder="name@ex.com">
@@ -24,7 +24,7 @@
 </template>
 <script>
 const axios = require('axios');
-import { BASE_URL } from '../../api/api.js';
+import {RESOURCE_USER} from '../../api/api';
 
 export default {
   name: 'Login',
@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     async getApiLogin() {
-      const result = await axios.post(`${BASE_URL}/api/login`, {
+      const result = await axios.post(`${RESOURCE_USER}/login`, {
         email: this.email,
         password: this.password,
       });
@@ -69,7 +69,7 @@ export default {
   },
 };
 </script>
-<style scoped src="../assets/css/signin.css"></style>
+<style scoped src="../../assets/css/signin.css"></style>
 <style scoped>
 .testtext {
   color: red;

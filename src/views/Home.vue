@@ -36,6 +36,8 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="mx-auto">
       <Pagination
         :data="products"
         @pagination-change-page="getData"
@@ -69,17 +71,11 @@ export default {
   },
   methods: {
     async getListImg(page) {
-      const result = await axios.get(
-        `${RESOURCE_PRODUCT}/pg?page=${page}`,
-        // {
-        //   page: page,
-        // },
-        {
-          headers: {
-            Authorization: this.$cookies.get('token'),
-          },
+      const result = await axios.get(`${RESOURCE_PRODUCT}/pg?page=${page}`, {
+        headers: {
+          Authorization: this.$cookies.get('token'),
         },
-      );
+      });
       return result.data;
     },
     async getData(page) {

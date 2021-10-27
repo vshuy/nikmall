@@ -2,6 +2,7 @@ import VueRouter from 'vue-router';
 import Vue from 'vue';
 import Home from '../views/Home.vue';
 import Login from '../views/auth/Login.vue';
+import Register from '../views/auth/Register.vue';
 import UploadProduct from '../views/product/UploadProduct.vue';
 import ProductDetail from '../views/product/ProductDetail.vue';
 import UploadCategory from '../views/category/UploadCategory.vue';
@@ -14,7 +15,7 @@ import CartDetail from '../views/CartDetail.vue';
 import DashboardBill from '../views/bill/DashboardBill.vue';
 import DetailBill from '../views/bill/DetailBill.vue';
 import UpdateProduct from '../views/product/UpdateProduct.vue';
-import ListOrdered from '../views/historyorder/ListOrdered.vue'
+import ListOrdered from '../views/historyorder/ListOrdered.vue';
 import paypal from '../views/Paypal.vue'
 Vue.use(VueRouter);
 export default new VueRouter({
@@ -28,6 +29,11 @@ export default new VueRouter({
       path: '/login',
       name: 'login',
       component: Login,
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: Register,
     },
     {
       path: '/uploadproduct',

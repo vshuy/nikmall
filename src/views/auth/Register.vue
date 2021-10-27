@@ -14,11 +14,11 @@
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"
-                        ><i class="fa fa-user fa" aria-hidden="true"></i
+                        ><i class="fa fa-user fa mt-2" aria-hidden="true"></i
                       ></span>
                       <input
                         type="text"
-                        class="form-control"
+                        class="form-control ml-3"
                         name="name"
                         id="name"
                         placeholder="Enter your Name"
@@ -33,11 +33,11 @@
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"
-                        ><i class="fa fa-envelope fa" aria-hidden="true"></i
+                        ><i class="fa fa-envelope fa mt-2" aria-hidden="true"></i
                       ></span>
                       <input
                         type="text"
-                        class="form-control"
+                        class="form-control ml-3"
                         name="email"
                         id="email"
                         placeholder="Enter your Email"
@@ -52,11 +52,11 @@
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"
-                        ><i class="fa fa-users fa" aria-hidden="true"></i
+                        ><i class="fa fa-users fa mt-2" aria-hidden="true"></i
                       ></span>
                       <input
                         type="text"
-                        class="form-control"
+                        class="form-control ml-3"
                         name="username"
                         id="username"
                         placeholder="Enter your Username"
@@ -71,11 +71,11 @@
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"
-                        ><i class="fa fa-lock fa-lg" aria-hidden="true"></i
+                        ><i class="fa fa-lock fa-lg mt-2" aria-hidden="true"></i
                       ></span>
                       <input
                         type="password"
-                        class="form-control"
+                        class="form-control ml-3"
                         name="password"
                         id="password"
                         placeholder="Enter your Password"
@@ -90,11 +90,11 @@
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"
-                        ><i class="fa fa-lock fa-lg" aria-hidden="true"></i
+                        ><i class="fa fa-lock fa-lg mt-2" aria-hidden="true"></i
                       ></span>
                       <input
                         type="password"
-                        class="form-control"
+                        class="form-control ml-3"
                         name="confirm"
                         id="confirm"
                         placeholder="Confirm your Password"

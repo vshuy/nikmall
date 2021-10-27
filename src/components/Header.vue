@@ -43,14 +43,38 @@
           </li>
         </ul>
       </div>
-      <form class="form-inline my-2 my-lg-0 mr-5 collapse navbar-collapse">
+      <form
+        class="
+          form-inline
+          my-2 my-lg-0
+          mr-5
+          collapse
+          navbar-collapse
+          search-form
+        "
+      >
         <input
           class="form-control mr-sm-2"
           type="search"
           placeholder="Search"
           aria-label="Search"
+          v-model="search_input_value"
+          v-on:input="searchItems(search_input_value)"
         />
         <i class="fas fa-search"></i>
+        <dl class="list-suggestion-items" style="top: 38px; z-index: 6000">
+          <dt
+            v-for="(item, index) in suggestions"
+            :key="index"
+            class="item-suggestion"
+          >
+            <router-link
+              :to="{ name: 'detailproduct', params: { id: item.id } }"
+            >
+              {{ item.name }}
+            </router-link>
+          </dt>
+        </dl>
       </form>
       <div
         class="cart_icon mr-1"
@@ -108,6 +132,8 @@ import { mapState } from 'vuex';
 import Cart from './Cart.vue';
 const axios = require('axios');
 import { BASE_URL } from './../api/api';
+import { RESOURCE_PRODUCT } from './../api/api';
+import { RESOURCE_USER } from './../api/api';
 export default {
   name: 'Header',
   data() {
@@ -115,6 +141,8 @@ export default {
       status_login: this.$cookies.get('status_login'),
       user_name: this.$cookies.get('user_name'),
       url_register: `${BASE_URL}/register`,
+      suggestions: [],
+      search_input_value: '',
     };
   },
   components: {
@@ -123,7 +151,7 @@ export default {
   methods: {
     async logOut() {
       const result = await axios.post(
-        `${BASE_URL}/api/logout`,
+        `${RESOURCE_USER}/logout`,
         {},
         {
           headers: {
@@ -136,6 +164,19 @@ export default {
       this.status_login = false;
       console.log(result.data);
       return result.data;
+    },
+    async getSuggestionItemByText(text) {
+      const result = await axios.post(`${RESOURCE_PRODUCT}/search`, {
+        text: text,
+      });
+      return result.data;
+    },
+    async searchItems(text) {
+      if (text !== '') {
+        this.suggestions = await this.getSuggestionItemByText(text);
+      } else {
+        this.suggestions = [];
+      }
     },
   },
   computed: mapState(['carts', 'cart_status']),
@@ -153,5 +194,17 @@ export default {
 }
 .nav_icon {
   font-size: 30px;
+}
+.search-form {
+  position: relative;
+}
+.list-suggestion-items {
+  position: absolute;
+}
+.item-suggestion {
+  background-color: rgb(255, 255, 255);
+}
+dt:hover {
+  background-color: rgb(58, 150, 180);
 }
 </style>
