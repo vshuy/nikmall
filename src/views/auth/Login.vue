@@ -24,7 +24,7 @@
 </template>
 <script>
 const axios = require('axios');
-import {RESOURCE_USER} from '../../api/api';
+import { RESOURCE_USER } from '../../api/api';
 
 export default {
   name: 'Login',
@@ -55,6 +55,7 @@ export default {
         this.$cookies.set('token', 'Bearer ' + token.token, '720h');
         this.$cookies.set('user_id', token.user_if.id, '720h');
         this.$cookies.set('user_name', token.user_if.name, '720h');
+        this.$route.meta.requiresAuth = true;
         this.user_id = token.user_if.id;
         this.statuslg = 'Login success';
         if (token.user_if.id === 1) {
