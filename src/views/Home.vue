@@ -28,7 +28,7 @@
               <button
                 type="button"
                 class="btn btn-primary mr-3"
-                v-on:click="addAnItemToCart(item)"
+                v-on:click="addToCart(item)"
               >
                 Add to cart <i class="fas fa-shopping-cart"></i>
               </button>
@@ -51,7 +51,7 @@
   </div>
 </template>
 <script>
-import { mapState } from 'vuex';
+import { mapMutations } from 'vuex';
 import Header from '../components/Header.vue';
 import Footer from '../components/Footer.vue';
 import Slide from '../components/Slide.vue';
@@ -85,11 +85,9 @@ export default {
       this.products = await this.getListImg(page);
       console.log('Info log: ~ this.products', this.products);
     },
-    addAnItemToCart(item) {
-      if (this.$store.state.carts.includes(item) === false) {
-        this.$store.commit('addToCart', item);
-      }
-    },
+    ...mapMutations('cart', {
+      addToCart: 'addToCart',
+    }),
   },
   setup() {
     console.log('runnning in setup method');
@@ -104,7 +102,7 @@ export default {
     Footer,
     Pagination,
   },
-  computed: mapState(['count']),
+  // computed: mapState(['count']),
 };
 </script>
 <style>

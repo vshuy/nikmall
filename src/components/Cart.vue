@@ -1,8 +1,8 @@
 <template>
   <div
     style="position: relative"
-    @mouseover="$store.commit('setStatus', true)"
-    @mouseleave="$store.commit('setStatus', false)"
+    @mouseover="setStatus(true)"
+    @mouseleave="setStatus(false)"
   >
     <div
       class="bg-light pb-4"
@@ -35,8 +35,8 @@
               <div class="col-sm-9" style="position: relative">
                 <i
                   class="fas fa-times"
-                  style="color: red; position: absolute;right: 20px;top: 2px;"
-                  v-on:click="deleteItemByItem(item)"
+                  style="color: red; position: absolute; right: 20px; top: 2px"
+                  v-on:click="removeFromCart(item)"
                 ></i>
                 <div style="display: inline-block; font-weight: 900">
                   {{ item.name }}
@@ -47,7 +47,7 @@
           </div>
           <div class="col-md-6 mt-4 text-center">
             <span calss="text-center" style="color: blue"
-              >{{ carts.length }} Item, $ {{ sum }}
+              >{{ carts.length }} Item, $ {{ total_state }}
             </span>
           </div>
           <div class="col-md-6 text-center mt-3">
@@ -65,20 +65,31 @@
   </div>
 </template>
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapGetters, mapMutations } from 'vuex';
 export default {
   name: 'Cart',
   methods: {
-    deleteItemByItem(item) {
-      this.$store.commit('removeAnItemFromCart', item);
-    },
     async gotToDetailPayPage() {
       const parsed = await JSON.stringify(this.carts);
       await localStorage.setItem('carts', parsed);
       this.$router.push('detailcart');
     },
+    ...mapMutations('cart', {
+      removeFromCart: 'removeAnItemFromCart',
+      setStatus: 'setStatus',
+    }),
   },
-  computed: mapState(['carts', 'cart_status', 'sum']),
+  // computed: mapState(['carts', 'cart_status', 'sum']),
+  computed: {
+    ...mapState({
+      carts: (state) => state.cart.carts,
+      cart_status: (state) => state.cart.cart_status,
+      sum: (state) => state.cart.sum,
+    }),
+    ...mapGetters('cart', {
+      total_state: 'total_state',
+    }),
+  },
 };
 </script>
 <style>

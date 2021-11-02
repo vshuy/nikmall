@@ -78,8 +78,8 @@
       </form>
       <div
         class="cart_icon mr-1"
-        @mouseover="$store.commit('setStatus', true)"
-        @mouseleave="$store.commit('setStatus', false)"
+        @mouseover="setStatus(true)"
+        @mouseleave="setStatus(false)"
       >
         <i class="fas fa-shopping-cart nav_icon"></i>
         <span class="badge bg-danger badge-pill cart_number">{{
@@ -128,7 +128,7 @@
   </div>
 </template>
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapMutations, mapGetters } from 'vuex';
 import Cart from './Cart.vue';
 const axios = require('axios');
 import { BASE_URL } from './../api/api';
@@ -178,8 +178,20 @@ export default {
         this.suggestions = [];
       }
     },
+    ...mapMutations('cart', {
+      setStatus: 'setStatus',
+    }),
   },
-  computed: mapState(['carts', 'cart_status']),
+  // computed: mapState(['carts', 'cart_status']),
+  computed: {
+    ...mapState({
+      carts: (state) => state.cart.carts,
+      cart_status: (state) => state.cart.cart_status,
+    }),
+    ...mapGetters('cart', {
+      count_state: 'count_state',
+    }),
+  },
 };
 </script>
 <style>
