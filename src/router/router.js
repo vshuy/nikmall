@@ -11,7 +11,7 @@ import { slideRouter } from './slideRouter.js';
 import { billRouter } from './billRouter';
 Vue.use(VueRouter);
 export default new VueRouter({
-  mode: 'history',
+  // mode: 'history',
   routes: [
     ...productRouter,
     ...authRouter,

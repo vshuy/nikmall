@@ -86,7 +86,6 @@
           carts.length
         }}</span>
       </div>
-      {{status_login}}
       <div v-if="status_login === 'true'" class="dropdown navbar">
         <button
           class="btn btn-secondary dropdown-toggle"
