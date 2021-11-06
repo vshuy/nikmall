@@ -40,7 +40,7 @@
     <div class="mx-auto">
       <Pagination
         :data="products"
-        @pagination-change-page="getData"
+        @pagination-change-page="index"
         align="center"
       >
         <span slot="prev-nav">&lt; Previous</span>
@@ -51,50 +51,29 @@
   </div>
 </template>
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, mapActions, mapState } from 'vuex';
 import Header from '../components/Header.vue';
 import Footer from '../components/Footer.vue';
 import Slide from '../components/Slide.vue';
-import { RESOURCE_PRODUCT } from './../api/api.js';
 const Pagination = require('laravel-vue-pagination');
-const axios = require('axios');
 
 export default {
   name: 'Home',
-  props: {
-    title: String,
-  },
-  data() {
-    return {
-      products: {},
-    };
-  },
   methods: {
-    async getListImg(page) {
-      const result = await axios.get(`${RESOURCE_PRODUCT}/pg?page=${page}`, {
-        headers: {
-          Authorization: this.$cookies.get('token'),
-        },
-      });
-      return result.data;
-    },
-    async getData(page) {
-      if (typeof page === 'undefined') {
-        page = 1;
-      }
-      this.products = await this.getListImg(page);
-      console.log('Info log: ~ this.products', this.products);
-    },
     ...mapMutations('cart', {
       addToCart: 'addToCart',
     }),
+    ...mapActions('product', {
+      index: 'index',
+    }),
   },
-  setup() {
-    console.log('runnning in setup method');
+  computed: {
+    ...mapState('product', {
+      products: (state) => state.products,
+    }),
   },
   mounted() {
-    console.log('running in mounted method');
-    this.getData();
+    this.index();
   },
   components: {
     Header,
@@ -102,7 +81,6 @@ export default {
     Footer,
     Pagination,
   },
-  // computed: mapState(['count']),
 };
 </script>
 <style>

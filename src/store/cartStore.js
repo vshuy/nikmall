@@ -2,7 +2,7 @@ const cartStore = {
   namespaced: true,
   state: {
     carts: [],
-    sum: 1.0,
+    sum: 0.0,
     cart_status: false,
   },
   getters: {

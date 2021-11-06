@@ -86,6 +86,7 @@
           carts.length
         }}</span>
       </div>
+      {{status_login}}
       <div v-if="status_login === 'true'" class="dropdown navbar">
         <button
           class="btn btn-secondary dropdown-toggle"
@@ -104,7 +105,7 @@
             to="/dashboardproduct"
             >Dashboard</router-link
           >
-          <a class="dropdown-item" v-on:click="logOut()">Logout</a>
+          <a class="dropdown-item" v-on:click="logout">Logout</a>
         </div>
       </div>
       <div v-else class="dropdown navbar">
@@ -128,17 +129,15 @@
   </div>
 </template>
 <script>
-import { mapState, mapMutations, mapGetters } from 'vuex';
+import { mapState, mapMutations, mapGetters, mapActions } from 'vuex';
 import Cart from './Cart.vue';
 const axios = require('axios');
 import { BASE_URL } from './../api/api';
 import { RESOURCE_PRODUCT } from './../api/api';
-import { RESOURCE_USER } from './../api/api';
 export default {
   name: 'Header',
   data() {
     return {
-      status_login: this.$cookies.get('status_login'),
       user_name: this.$cookies.get('user_name'),
       url_register: `${BASE_URL}/register`,
       suggestions: [],
@@ -149,22 +148,9 @@ export default {
     Cart,
   },
   methods: {
-    async logOut() {
-      const result = await axios.post(
-        `${RESOURCE_USER}/logout`,
-        {},
-        {
-          headers: {
-            Authorization: this.$cookies.get('token'),
-          },
-        },
-      );
-      this.$cookies.set('status_login', false, '720h');
-      this.$cookies.set('user_id', null, '720h');
-      this.status_login = false;
-      console.log(result.data);
-      return result.data;
-    },
+    ...mapActions('user', {
+      logout: 'logout',
+    }),
     async getSuggestionItemByText(text) {
       const result = await axios.post(`${RESOURCE_PRODUCT}/search`, {
         text: text,
@@ -181,16 +167,24 @@ export default {
     ...mapMutations('cart', {
       setStatus: 'setStatus',
     }),
+    ...mapMutations('user', {
+      initStatusLogin: 'initStatusLogin',
+    })
   },
-  // computed: mapState(['carts', 'cart_status']),
   computed: {
-    ...mapState({
-      carts: (state) => state.cart.carts,
-      cart_status: (state) => state.cart.cart_status,
+    ...mapState('cart', {
+      carts: (state) => state.carts,
+      cart_status: (state) => state.cart_status,
+    }),
+    ...mapState('user', {
+      status_login: (state) => state.status_login,
     }),
     ...mapGetters('cart', {
       count_state: 'count_state',
     }),
+  },
+   mounted() {
+    this.initStatusLogin();
   },
 };
 </script>

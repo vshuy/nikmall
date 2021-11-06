@@ -18,12 +18,11 @@ export const authRouter = [
     component: Profile,
     meta: {
       resource: 'User',
-      requiresAuth: {},
     },
     beforeEnter: (to, from, next) => {
-      if (to.meta.requiresAuth) {
+      const isLogin = localStorage.status_login;
+      if (isLogin === 'true') {
         next();
-        console.log();
       } else {
         next({ name: 'login' });
       }
