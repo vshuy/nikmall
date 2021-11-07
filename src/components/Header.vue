@@ -104,6 +104,9 @@
             to="/dashboardproduct"
             >Dashboard</router-link
           >
+          <router-link class="dropdown-item" to="/profile"
+            >Profile</router-link
+          >
           <a class="dropdown-item" v-on:click="logout">Logout</a>
         </div>
       </div>
@@ -168,7 +171,7 @@ export default {
     }),
     ...mapMutations('user', {
       initStatusLogin: 'initStatusLogin',
-    })
+    }),
   },
   computed: {
     ...mapState('cart', {
@@ -182,7 +185,7 @@ export default {
       count_state: 'count_state',
     }),
   },
-   mounted() {
+  mounted() {
     this.initStatusLogin();
   },
 };
