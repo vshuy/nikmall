@@ -33,6 +33,14 @@ export default new VueRouter({
       path: '/listorder',
       name: 'listorder',
       component: ListOrdered,
+      beforeEnter: (to, from, next) => {
+        const isLogin = localStorage.status_login;
+        if (isLogin === 'true') {
+          next();
+        } else {
+          next({ name: 'login' });
+        }
+      },
     },
     {
       path: '/paypal',
