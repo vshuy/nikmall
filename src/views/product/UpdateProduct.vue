@@ -53,15 +53,15 @@ export default {
       const result = await axios.put(
         `${RESOURCE_PRODUCT}/${this.$route.params.id}`,
         {
+          id_product: this.$route.params.id,
+          nameProduct: this.nameproduct,
+          id_category: this.id_category,
+          cost: this.cost,
+          post_data: this.editorData,
+        },
+        {
           headers: {
             Authorization: this.$cookies.get('token'),
-          },
-          data: {
-            id_product: this.$route.params.id,
-            nameProduct: this.nameproduct,
-            id_category: this.id_category,
-            cost: this.cost,
-            post_data: this.editorData,
           },
         },
       );

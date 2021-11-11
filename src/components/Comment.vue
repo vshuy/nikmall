@@ -102,7 +102,6 @@ export default {
       const result = await axios.post(
         `${RESOURCE_COMMENT}`,
         {
-          user_id: this.$cookies.get('user_id'),
           product_id: this.product_id,
           data_comment: this.comment_data,
         },
