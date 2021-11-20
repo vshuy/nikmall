@@ -123,7 +123,8 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <router-link class="dropdown-item" to="/login">Login</router-link>
-          <a class="dropdown-item" v-bind:href="url_register"> Register </a>
+          <router-link class="dropdown-item" to="/register">Register</router-link>
+          <!-- <a class="dropdown-item" v-bind:href="url_register"> Register </a> -->
         </div>
       </div>
     </nav>
