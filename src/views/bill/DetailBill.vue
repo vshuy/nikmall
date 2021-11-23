@@ -1,15 +1,9 @@
 <template>
   <div class="container w-50">
     <h2>DETAIL THIS BILL</h2>
-<<<<<<< HEAD
     <h3>Customer name: {{ bill_data.userInfor[0].name }}</h3>
     <h4>Email address: {{ bill_data.userInfor[0].email }}</h4>
     <h5>Total cost $: {{ total }} {{ countItem }} items</h5>
-=======
-    <!-- <h3>Customer name: {{ bill_data.userInfor[0].name }}</h3>
-    <h4>Email address: {{ bill_data.userInfor[0].email }}</h4>
-    <h5>Total cost $: {{ total }} {{ countItem }} items</h5> -->
->>>>>>> refs/remotes/origin/main
     <div class="row">
       <div
         v-for="(item, index) in bill_data.listBill"
@@ -40,11 +34,7 @@ export default {
   name: 'DetailBill',
   data() {
     return {
-<<<<<<< HEAD
       bill_data: {},
-=======
-      bill_data: null,
->>>>>>> refs/remotes/origin/main
       sum: 0.0,
     };
   },
@@ -56,11 +46,7 @@ export default {
       const result = await axios.get(
         `${RESOURCE_BILL}/${this.$route.params.id}`,
         {
-<<<<<<< HEAD
           user_id: localStorage.user_id,
-=======
-          user_id: this.$cookies.get('user_id'),
->>>>>>> refs/remotes/origin/main
         },
         {
           headers: {

@@ -1,10 +1,6 @@
 import UpdateProduct from '../views/product/UpdateProduct.vue';
 import ProductDetail from '../views/product/ProductDetail.vue';
 import UploadProduct from '../views/product/UploadProduct.vue';
-<<<<<<< HEAD
-=======
-import DashboardProduct from '../views/product/DashboardProduct.vue';
->>>>>>> refs/remotes/origin/main
 
 export const productRouter = [
   {
@@ -22,12 +18,4 @@ export const productRouter = [
     name: 'updateproduct',
     component: UpdateProduct,
   },
-<<<<<<< HEAD
-=======
-  {
-    path: '/dashboardproduct',
-    name: 'dashboardproduct',
-    component: DashboardProduct,
-  },
->>>>>>> refs/remotes/origin/main
 ];
