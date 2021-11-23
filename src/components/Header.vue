@@ -101,7 +101,11 @@
           <router-link
             v-if="user_name === 'admin'"
             class="dropdown-item"
+<<<<<<< HEAD
             to="/dashboard"
+=======
+            to="/dashboardproduct"
+>>>>>>> refs/remotes/origin/main
             >Dashboard</router-link
           >
           <router-link class="dropdown-item" to="/profile"
@@ -123,8 +127,12 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <router-link class="dropdown-item" to="/login">Login</router-link>
+<<<<<<< HEAD
           <router-link class="dropdown-item" to="/register">Register</router-link>
           <!-- <a class="dropdown-item" v-bind:href="url_register"> Register </a> -->
+=======
+          <a class="dropdown-item" v-bind:href="url_register"> Register </a>
+>>>>>>> refs/remotes/origin/main
         </div>
       </div>
     </nav>

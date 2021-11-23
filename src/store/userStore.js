@@ -10,7 +10,10 @@ const userStore = {
     email: '',
     password: '',
     user_id: '',
+<<<<<<< HEAD
     errors: [],
+=======
+>>>>>>> refs/remotes/origin/main
     information_process: '',
     status_login: '',
   },

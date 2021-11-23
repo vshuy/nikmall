@@ -3,7 +3,10 @@ import Vue from 'vue';
 import Home from '../views/Home.vue';
 import CartDetail from '../views/CartDetail.vue';
 import ListOrdered from '../views/historyorder/ListOrdered.vue';
+<<<<<<< HEAD
 import Dashboard from '../components/Dashboard.vue'
+=======
+>>>>>>> refs/remotes/origin/main
 import paypal from '../views/Paypal.vue';
 import { productRouter } from './productRouter.js';
 import { authRouter } from './authRouter.js';
@@ -29,11 +32,15 @@ export default new VueRouter({
       name: 'detailcart',
       component: CartDetail,
     },
+<<<<<<< HEAD
     {
       path: '/dashboard',
       name: 'dashboard',
       component: Dashboard,
     },
+=======
+
+>>>>>>> refs/remotes/origin/main
     {
       path: '/listorder',
       name: 'listorder',
