@@ -83,7 +83,7 @@ export default {
     async HandleUpdateProduct() {
       const tmpvl = await this.updateProduct();
       console.log('Info log: ~ tmpvl', tmpvl);
-      this.$router.push('dashboardproduct');
+      this.$router.push('dashboard');
     },
   },
   mounted() {

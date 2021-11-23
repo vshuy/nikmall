@@ -10,6 +10,7 @@ const userStore = {
     email: '',
     password: '',
     user_id: '',
+    errors: [],
     information_process: '',
     status_login: '',
   },
@@ -26,6 +27,13 @@ const userStore = {
     setName(state, e) {
       state.name = e.target.value;
     },
+    reFreshStatus(state) {
+      state.errors = [];
+      state.information_process = '';
+      state.name = '';
+      state.email = '';
+      state.password = '';
+    },
   },
   actions: {
     async login({ state }) {
@@ -34,15 +42,16 @@ const userStore = {
         password: state.password,
       });
       if (result.data.status === true) {
-        AppCookie.setLoginCookie(result.data);
+        AppCookie.setLoginCookie(result.data, state.email);
         state.information_process = 'Login success';
         if (result.data.user_if.id === 1) {
-          router.push('/dashboardproduct');
+          router.push('/dashboard');
         } else {
           router.push('/');
         }
       } else {
         state.information_process = 'Login failse';
+        state.errors = result.data.error;
         AppCookie.destroyCookie();
       }
     },
@@ -53,13 +62,12 @@ const userStore = {
         password: state.password,
       });
       console.log('Log ~ register ~ result.data', result.data);
-      if (result.data.success === true) {     
+      if (result.data.success === true) {
         state.information_process = 'Register success';
         router.push('/login');
       } else {
-        // state.information_process = result.data.error[0];
-        // console.log('Log ~ register ~ result.data.error', result.data.error['email']);
-        state.information_process = `${result.data.error['email']} ${result.data.error['name']}`;
+        state.information_process = 'Register failse';
+        state.errors = result.data.error;
       }
     },
     async logout({ state }) {

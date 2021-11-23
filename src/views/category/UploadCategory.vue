@@ -1,4 +1,4 @@
-<template lang="">
+<template>
   <div class="container">
     <h1>Upload category page</h1>
     <input type="text" v-model="name_category" class="form-control form"  placeholder="Enter category name here">

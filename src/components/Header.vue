@@ -101,7 +101,7 @@
           <router-link
             v-if="user_name === 'admin'"
             class="dropdown-item"
-            to="/dashboardproduct"
+            to="/dashboard"
             >Dashboard</router-link
           >
           <router-link class="dropdown-item" to="/profile"

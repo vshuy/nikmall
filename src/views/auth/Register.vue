@@ -6,7 +6,7 @@
           <div class="card">
             <div class="card-header">Register</div>
             <div class="card-body">
-              <form class="form-horizontal" @submit.prevent="register()">
+              <form class="form-horizontal">
                 <div class="form-group">
                   <label for="name" class="cols-sm-2 control-label"
                     >Your Name</label
@@ -39,7 +39,7 @@
                         ></i
                       ></span>
                       <input
-                        type="text"
+                        type="email"
                         :value="email"
                         @input="setEmail"
                         class="form-control ml-3"
@@ -67,7 +67,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label for="confirm" class="cols-sm-2 control-label"
                     >Confirm Password</label
                   >
@@ -85,7 +85,7 @@
                       />
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <div class="form-group">
                   <button
                     type="button"
@@ -95,10 +95,13 @@
                     Register
                   </button>
                 </div>
+                <span v-for="(value, name) in errors" :key="name">
+                  {{ value[0] }}
+                </span>
                 <div class="login-register">
                   <router-link to="/login">Login</router-link>
                 </div>
-                <span style="color:red;">{{information_process}}</span>
+                <span style="color: red">{{ information_process }}</span>
               </form>
             </div>
           </div>
@@ -123,6 +126,7 @@ export default {
       setEmail: 'setEmail',
       setPassword: 'setPassword',
       setName: 'setName',
+      reFreshStatus: 'reFreshStatus',
     }),
   },
   computed: {
@@ -130,8 +134,12 @@ export default {
       name: (state) => state.name,
       email: (state) => state.email,
       password: (state) => state.password,
+      errors: (state) => state.errors,
       information_process: (state) => state.information_process,
     }),
+  },
+  mounted() {
+    this.reFreshStatus();
   },
 };
 </script>

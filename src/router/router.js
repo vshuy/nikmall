@@ -3,6 +3,7 @@ import Vue from 'vue';
 import Home from '../views/Home.vue';
 import CartDetail from '../views/CartDetail.vue';
 import ListOrdered from '../views/historyorder/ListOrdered.vue';
+import Dashboard from '../components/Dashboard.vue'
 import paypal from '../views/Paypal.vue';
 import { productRouter } from './productRouter.js';
 import { authRouter } from './authRouter.js';
@@ -28,7 +29,11 @@ export default new VueRouter({
       name: 'detailcart',
       component: CartDetail,
     },
-
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: Dashboard,
+    },
     {
       path: '/listorder',
       name: 'listorder',

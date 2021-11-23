@@ -1,9 +1,9 @@
 <template>
   <div class="container w-50">
     <h2>DETAIL THIS BILL</h2>
-    <!-- <h3>Customer name: {{ bill_data.userInfor[0].name }}</h3>
+    <h3>Customer name: {{ bill_data.userInfor[0].name }}</h3>
     <h4>Email address: {{ bill_data.userInfor[0].email }}</h4>
-    <h5>Total cost $: {{ total }} {{ countItem }} items</h5> -->
+    <h5>Total cost $: {{ total }} {{ countItem }} items</h5>
     <div class="row">
       <div
         v-for="(item, index) in bill_data.listBill"
@@ -34,7 +34,7 @@ export default {
   name: 'DetailBill',
   data() {
     return {
-      bill_data: null,
+      bill_data: {},
       sum: 0.0,
     };
   },
@@ -46,7 +46,7 @@ export default {
       const result = await axios.get(
         `${RESOURCE_BILL}/${this.$route.params.id}`,
         {
-          user_id: this.$cookies.get('user_id'),
+          user_id: localStorage.user_id,
         },
         {
           headers: {

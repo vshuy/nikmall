@@ -1,10 +1,14 @@
 import VueCookies from 'vue-cookies';
 class AppCookie {
-  setLoginCookie(token) {
+  setLoginCookie(token, email) {
     localStorage.status_login = true;
+    localStorage.user_name = token.user_if.name;
+    localStorage.email = email;
+    localStorage.user_id = token.user_if.id;
     VueCookies.set('token', 'Bearer ' + token.token, '720h');
     VueCookies.set('user_id', token.user_if.id, '720h');
     VueCookies.set('user_name', token.user_if.name, '720h');
+    VueCookies.set('status_login', true, '720h');
   }
   destroyCookie() {
     localStorage.status_login = false;

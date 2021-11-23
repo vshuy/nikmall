@@ -19,9 +19,12 @@
         <button class="w-100 btn btn-lg btn-primary">Sign in</button>       
          <div class="login-register"> 
             <router-link to="/register">create an account</router-link>
-         </div>
+         </div>         
         <span style="color:red;">{{information_process}}</span>
       </form>
+      <span v-for="(value, name) in errors" :key="name" style="color: red;">
+        {{ value[0] }}
+      </span>
     </main>
   </div>
 </template>
@@ -40,6 +43,7 @@ export default {
     ...mapMutations('user', {
       setEmail: 'setEmail',
       setPassword: 'setPassword',
+      reFreshStatus: 'reFreshStatus',
     }),
   },
   computed: {
@@ -47,7 +51,11 @@ export default {
       email: (state) => state.email,
       password: (state) => state.password,
       information_process: (state) => state.information_process,
+      errors: (state) => state.errors,
     }),
+  },
+  mounted() {
+   this.reFreshStatus();
   },
 };
 </script>

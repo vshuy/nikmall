@@ -1,5 +1,4 @@
 import UploadCategory from '../views/category/UploadCategory.vue';
-import DashboardCategory from '../views/category/DashboardCategory.vue';
 import EditCategory from '../views/category/EditCategory.vue';
 export const categoryRouter = [
   {
@@ -11,10 +10,5 @@ export const categoryRouter = [
     path: '/updatecategory',
     name: 'updatecategory',
     component: EditCategory,
-  },
-  {
-    path: '/dashboardcategory',
-    name: 'dashboardcategory',
-    component: DashboardCategory,
   },
 ];

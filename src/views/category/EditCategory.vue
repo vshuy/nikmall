@@ -50,7 +50,7 @@ export default {
     async HandleUploadCategory() {
       const tmpvl = await this.updateCategory();
       console.log('Info log: ~ tmpvl', tmpvl);
-      this.$router.push('dashboardcategory');
+      this.$router.push('dashboard');
     },
     async getData() {
       // eslint-disable-next-line prefer-const
