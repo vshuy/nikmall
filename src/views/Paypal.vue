@@ -1,6 +1,5 @@
 <template>
   <div>
-    <span>Hello paypall</span>
     <div id="idpay"></div>
   </div>
 </template>

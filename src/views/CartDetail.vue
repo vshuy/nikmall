@@ -47,6 +47,7 @@
         </button>
       </div>
     </div>
+    <Paypal></Paypal>
     <Footer></Footer>
   </div>
 </template>
@@ -54,6 +55,7 @@
 const axios = require('axios');
 import Footer from '../components/Footer.vue';
 import Header from '../components/Header.vue';
+import Paypal from './Paypal.vue';
 import { RESOURCE_BILL } from './../api/api';
 export default {
   name: 'CartDetail',
@@ -66,6 +68,7 @@ export default {
   components: {
     Header,
     Footer,
+    Paypal,
   },
   mounted() {
     this.carts = JSON.parse(localStorage.getItem('carts'));

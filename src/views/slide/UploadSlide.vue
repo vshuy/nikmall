@@ -40,7 +40,7 @@ export default {
     async HandleUploadSlide() {
       const tmpvl = await this.uploadProduct();
       console.log('Info log: ~ tmpvl', tmpvl);
-      this.$router.push('dashboardslide');
+      this.$router.push('dashboard');
     },
   },
   mounted() {

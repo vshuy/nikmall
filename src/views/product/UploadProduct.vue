@@ -70,7 +70,7 @@ export default {
     async HandleUploadProduct() {
       const tmpvl = await this.uploadProduct();
       console.log('Info log: ~ tmpvl', tmpvl);
-      this.$router.push('dashboardproduct');
+      this.$router.push('dashboard');
     },
   },
   mounted() {

@@ -38,7 +38,7 @@ export default {
     async HandleUploadCategory() {
       const tmpvl = await this.uploadCategory();
       console.log('Info log: ~ tmpvl', tmpvl);
-      this.$router.push('dashboardcategory');
+      this.$router.push('dashboard');
     },
   },
   mounted() {
