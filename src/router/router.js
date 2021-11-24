@@ -28,6 +28,14 @@ export default new VueRouter({
       path: '/detailcart',
       name: 'detailcart',
       component: CartDetail,
+      beforeEnter: (to, from, next) => {
+        const isLogin = localStorage.status_login;
+        if (isLogin === 'true') {
+          next();
+        } else {
+          next({ name: 'login' });
+        }
+      },
     },
     {
       path: '/dashboard',
