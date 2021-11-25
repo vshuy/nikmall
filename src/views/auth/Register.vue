@@ -67,25 +67,6 @@
                     </div>
                   </div>
                 </div>
-                <!-- <div class="form-group">
-                  <label for="confirm" class="cols-sm-2 control-label"
-                    >Confirm Password</label
-                  >
-                  <div class="cols-sm-10">
-                    <div class="input-group">
-                      <span class="input-group-addon"
-                        ><i class="fa fa-lock fa-lg mt-2" aria-hidden="true"></i
-                      ></span>
-                      <input
-                        type="password"
-                        class="form-control ml-3"
-                        name="confirm"
-                        id="confirm"
-                        placeholder="Confirm your Password"
-                      />
-                    </div>
-                  </div>
-                </div> -->
                 <div class="form-group">
                   <button
                     type="button"
