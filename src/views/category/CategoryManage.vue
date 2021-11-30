@@ -25,7 +25,7 @@
               >
             </td>
             <td>
-              <u v-on:click="deleteCategoryById(item.id)">Xóa danh mục này</u>
+              <u v-on:click="destroy(item.id)">Xóa danh mục này</u>
             </td>
           </tr>
         </tbody>
@@ -34,49 +34,28 @@
   </main>
 </template>
 <script>
-const axios = require('axios');
-import { RESOURCE_CATEGORY } from '../../api/api';
+import { mapActions, mapState } from 'vuex';
 export default {
   name: 'CategoryManage',
-  data() {
-    return {
-      categories: [],
-    };
-  },
   metaInfo: {
     title: 'Categories overview',
     script: [],
   },
   methods: {
-    async getListImg() {
-      const result = await axios.get(`${RESOURCE_CATEGORY}`, {
-        headers: {
-          Authorization: this.$cookies.get('token'),
-        },
-      });
-      return result.data;
-    },
-    async deleteCategoryById(id) {
-      const result = await axios.delete(`${RESOURCE_CATEGORY}/${id}`, {
-        headers: {
-          Authorization: this.$cookies.get('token'),
-        },
-      });
-      this.categories = this.categories.filter((item) => item.id !== id);
-      return result.data;
-    },
-    async getData() {
-      this.categories = await this.getListImg();
-    },
+    ...mapActions('category', {
+      index: 'index',
+      destroy: 'destroy',
+    }),
   },
-  setup() {
-    console.log('runnning in setup method');
+  computed: {
+    ...mapState('category', {
+      categories: (state) => state.categories,
+    }),
   },
   mounted() {
-    this.getData();
+    this.index();
   },
 };
 </script>
 <style>
-/* @import './../assets/css/dashboard.css'; */
 </style>

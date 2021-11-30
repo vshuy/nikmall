@@ -15,7 +15,7 @@
             <td>{{ item.id }}</td>
             <td>{{ item.title }}</td>
             <td>
-              <u v-on:click="deleteSlideById(item.id)">Xóa danh mục này</u>
+              <u v-on:click="destroy(item.id)">Xóa danh mục này</u>
             </td>
           </tr>
         </tbody>
@@ -24,55 +24,29 @@
   </main>
 </template>
 <script>
-import { RESOURCE_SLIDE } from './../../api/api';
-
-const axios = require('axios');
+import { mapActions, mapState } from 'vuex';
 
 export default {
   name: 'SlideManage',
-  props: {
-    title: String,
-  },
-  data() {
-    return {
-      slides: [],
-    };
-  },
   metaInfo: {
     title: 'Slide overview',
     script: [],
   },
   methods: {
-    async getListImg() {
-      const result = await axios.get(`${RESOURCE_SLIDE}`, {
-        headers: {
-          Authorization: this.$cookies.get('token'),
-        },
-      });
-      return result.data;
-    },
-    async deleteSlideById(id) {
-      console.log('Info log: ~ id', id);
-      const result = await axios.delete(`${RESOURCE_SLIDE}/${id}`, {
-        headers: {
-          Authorization: this.$cookies.get('token'),
-        },
-      });
-      this.slides = this.slides.filter((item) => item.id !== id);
-      return result.data;
-    },
-    async getData() {
-      this.slides = await this.getListImg();
-    },
+    ...mapActions('slide', {
+      index: 'index',
+      destroy: 'destroy',
+    }),
   },
-  setup() {
-    console.log('runnning in setup method');
+  computed: {
+    ...mapState('slide', {
+      slides: (state) => state.slides,
+    }),
   },
   mounted() {
-    this.getData();
+    this.index();
   },
 };
 </script>
 <style>
-/* @import './../assets/css/dashboard.css'; */
 </style>
