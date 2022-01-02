@@ -36,6 +36,9 @@
             >
           </li>
           <li class="nav-item">
+            <router-link to="/post" class="nav-link active">Post</router-link>
+          </li>
+          <li class="nav-item">
             <router-link to="/" class="nav-link active">About us</router-link>
           </li>
           <li class="nav-item">

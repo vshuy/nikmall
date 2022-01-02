@@ -10,7 +10,7 @@
         position: absolute;
         z-index: 999999;
         right: 0px;
-        top: -25px;
+        top: -27px;
         padding: 0px;
         border-radius: 12px;
       "
@@ -21,7 +21,7 @@
           <div
             v-for="(item, index) in carts"
             :key="index"
-            class="col-sm-12 border-bottom mt-1"
+            class="col-sm-12 border-bottom p-1"
           >
             <div class="row">
               <div class="col-sm-3">
@@ -41,7 +41,20 @@
                 <div style="display: inline-block; font-weight: 900">
                   {{ item.name }}
                 </div>
-                <p>{{ item.cost }}$</p>
+                <div>{{ item.cost }}$</div>
+                <div>
+                  <i
+                    class="fas fa-plus"
+                    v-on:click="plusItem(item)"
+                    style="background-color: white; font-size: 25px"
+                  ></i>
+                  <span style="font-size: 17px;padding: 7px;">{{ item.quantity }}</span>
+                  <i
+                    class="fas fa-minus"
+                    v-on:click="minusItem(item)"
+                    style="background-color: white; font-size: 25px"
+                  ></i>
+                </div>
               </div>
             </div>
           </div>
@@ -77,6 +90,8 @@ export default {
     ...mapMutations('cart', {
       removeFromCart: 'removeAnItemFromCart',
       setStatus: 'setStatus',
+      plusItem: 'plusItem',
+      minusItem: 'minusItem',
     }),
   },
   // computed: mapState(['carts', 'cart_status', 'sum']),
