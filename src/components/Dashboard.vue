@@ -39,6 +39,9 @@
                               <li class="nav-item">
                                   <a class="nav-link active" v-on:click="change('UploadCategory')">Upload category</a>
                               </li>
+                               <li class="nav-item">
+                                  <a class="nav-link active" v-on:click="change('UploadPostCategory')">Upload post category</a>
+                              </li>
                           </ul>
                       </div>
                   </nav>
@@ -52,6 +55,8 @@ import ProductManage from '../views/product/ProductManage.vue';
 import SlideManage from '../views/slide/SlideMange.vue';
 import BillManage from '../views/bill/BillManage.vue';
 import CategoryManage from '../views/category/CategoryManage.vue';
+import PostCategoryManage from '../views/postcategory/CategoryManage.vue';
+import UploadPostCategory from '../views/postcategory/UploadCategory.vue';
 import UploadCategory from '../views/category/UploadCategory.vue';
 import UploadSlide from '../views/slide/UploadSlide.vue';
 export default {
@@ -71,7 +76,9 @@ export default {
     SlideManage,
     BillManage,
     CategoryManage,
+    PostCategoryManage,
     UploadCategory,
+    UploadPostCategory,
     UploadSlide,
   },
 };

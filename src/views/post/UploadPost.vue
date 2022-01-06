@@ -1,12 +1,12 @@
 <template lang="">
   <div class="container">
     <input type="email" v-model="namepost" class="form-control"  placeholder="Enter post name here">
-<select v-model="id_category">
-  <option disabled value="">Please select one</option>
-  <option v-for="(option, index) in listcategory" v-bind:value="option.id" :key="index">
+    <select v-model="id_category">
+    <option disabled value="">Please select one</option>
+    <option v-for="(option, index) in listcategory" v-bind:value="option.id" :key="index">
     {{ option.name_category_post }}
-  </option>
-</select>
+    </option>
+    </select>
       <ckeditor v-model="editorData" :config="editorConfig"></ckeditor>
       <button  v-on:click="HandleUploadPost" class="w-20 btn btn-lg btn-primary">Upload post</button>
   </div>
@@ -23,7 +23,7 @@ export default {
       listcategory: [],
       editorData: '',
       editorConfig: {
-        // The configuration of the editor.
+        height: 600,
       },
     };
   },
@@ -59,11 +59,9 @@ export default {
   },
   mounted() {
     console.log('running in mounted method');
-    // this.token = this.$cookies.get('token');
-    // alert('runing in mounter');
     this.getData();
   },
 };
 </script>
-<style lang="">
+<style>
 </style>

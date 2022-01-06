@@ -7,7 +7,7 @@
           <tr>
             <th>Id</th>
             <th>Name</th>
-            <th>Describe</th>
+            <th>Descripe</th>
             <th>Edit</th>
             <th>Xóa danh mục</th>
           </tr>
@@ -19,7 +19,7 @@
             <td>{{ item.descripe }}</td>
             <td>
               <router-link
-                :to="{ name: 'updatecategory', params: { id: item.id } }"
+                :to="{ name: 'update_post_category', params: { id: item.id } }"
               >
                 Edit this category</router-link
               >
@@ -42,13 +42,13 @@ export default {
     script: [],
   },
   methods: {
-    ...mapActions('category', {
+    ...mapActions('postCategory', {
       index: 'index',
       destroy: 'destroy',
     }),
   },
   computed: {
-    ...mapState('category', {
+    ...mapState('postCategory', {
       categories: (state) => state.categories,
     }),
   },

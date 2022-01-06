@@ -31,7 +31,6 @@ export default {
       file_img: '',
       editorData: '',
       editorConfig: {
-        // The configuration of the editor.
         height: 600,
       },
     };
