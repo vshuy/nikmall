@@ -1,6 +1,6 @@
 import UploadCategory from '../views/postcategory/UploadCategory.vue';
 import EditCategory from '../views/postcategory/EditCategory.vue';
-export const categoryRouter = [
+export const postCategoryRouter = [
   {
     path: '/upload_post_category',
     name: 'upload_post_category',

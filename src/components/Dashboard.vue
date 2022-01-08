@@ -30,6 +30,9 @@
                               <li class="nav-item">
                                   <a class="nav-link active" v-on:click="change('CategoryManage')">Dashboard Category</a>
                               </li>
+                               <li class="nav-item">
+                                  <a class="nav-link active" v-on:click="change('PostCategoryManage')">Dashboard Post Category</a>
+                              </li>
                               <li class="nav-item">
                                   <a class="nav-link active" v-on:click="change('UploadSlide')">Upload slide</a>
                               </li>

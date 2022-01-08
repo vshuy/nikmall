@@ -8,6 +8,7 @@ import paypal from '../views/Paypal.vue';
 import { productRouter } from './productRouter.js';
 import { authRouter } from './authRouter.js';
 import { categoryRouter } from './categoryRouter.js';
+import { postCategoryRouter } from './postCategoryRouter.js';
 import { slideRouter } from './slideRouter.js';
 import { billRouter } from './billRouter';
 import { postRouter } from './postRouter';
@@ -18,6 +19,7 @@ export default new VueRouter({
     ...productRouter,
     ...authRouter,
     ...categoryRouter,
+    ...postCategoryRouter,
     ...slideRouter,
     ...billRouter,
     ...postRouter,

@@ -7,7 +7,7 @@ const postCategoryStore = {
   state: {
     category: {
       id: '',
-      type_product: '',
+      name: '',
       describe: '',
     },
     categories: [],
@@ -20,7 +20,7 @@ const postCategoryStore = {
       state.categories = categories;
     },
     setName(state, e) {
-      state.category.type_product = e.target.value;
+      state.category.name = e.target.value;
     },
     setDescribe(state, e) {
       state.category.describe = e.target.value;
@@ -44,7 +44,7 @@ const postCategoryStore = {
           Authorization: VueCookies.get('token'),
         },
       });
-      commit('setCategory', result.data[0]);
+      commit('setCategory', result.data);
     },
     async update({ state }, id) {
       const result = await axios.put(

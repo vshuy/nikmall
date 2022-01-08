@@ -3,7 +3,7 @@
     <h1>Upload post category page</h1>
     <input
       type="text"
-      :value="category.type_product"
+      :value="category.name"
       @input="setName"
       class="form-control form"
       placeholder="Enter category name here"

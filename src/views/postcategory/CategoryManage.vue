@@ -15,8 +15,8 @@
         <tbody>
           <tr v-for="(item, index) in categories" :key="index">
             <td>{{ item.id }}</td>
-            <td>{{ item.type_product }}</td>
-            <td>{{ item.descripe }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.describe }}</td>
             <td>
               <router-link
                 :to="{ name: 'update_post_category', params: { id: item.id } }"
