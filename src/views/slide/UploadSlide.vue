@@ -3,7 +3,7 @@
     <h1>Upload slide page</h1>
     <input type="text" :value="slide.nameslide"
       @input="setName" class="form-control form"  placeholder="Enter slide name here">
-    <input type="file" id="file" ref="file" v-on:change="setFileImg"/>
+    <input type="file" @change="setFileImg($event)"/>
      <pre></pre>
       <button  v-on:click="store" class="w-20 btn btn-lg btn-primary">Upload slide</button>
   </div>

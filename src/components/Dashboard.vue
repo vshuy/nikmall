@@ -39,6 +39,9 @@
                                <li class="nav-item">                                  
                                   <router-link class="nav-link active" to="/uploadproduct">Upload product</router-link>
                               </li>
+                               <li class="nav-item">                                  
+                                  <router-link class="nav-link active" to="/uploadpost">Upload post</router-link>
+                              </li>
                               <li class="nav-item">
                                   <a class="nav-link active" v-on:click="change('UploadCategory')">Upload category</a>
                               </li>

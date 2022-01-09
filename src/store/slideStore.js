@@ -22,8 +22,8 @@ const slideStore = {
     setName(state, e) {
       state.slide.nameslide = e.target.value;
     },
-    setFileImg(state) {
-      state.slide.file_img = this.$refs.file.files[0];
+    setFileImg(state, event) {
+      state.slide.file_img = event.target.files[0];
     },
     removeAnItem(state, id) {
       state.slides = state.slides.filter(item => item.id !== id);

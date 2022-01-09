@@ -1,65 +1,69 @@
 <template lang="">
   <div class="container">
-    <input type="email" v-model="namepost" class="form-control"  placeholder="Enter post name here">
-    <select v-model="id_category">
-    <option disabled value="">Please select one</option>
-    <option v-for="(option, index) in listcategory" v-bind:value="option.id" :key="index">
-    {{ option.name_category_post }}
+    <h1>Upload post page</h1>
+    <input
+      type="text"
+      :value="post.name"
+      @input="setName"
+      class="form-control form"
+      placeholder="Enter post name here"
+    />
+    <select 
+      :value="post.category_id"
+      @input="setCategoryId">
+    <option disabled value="">Please select a category</option>
+    <option v-for="(option, index) in categories" v-bind:value="option.id" :key="index">
+    {{ option.name }}
     </option>
     </select>
-      <ckeditor v-model="editorData" :config="editorConfig"></ckeditor>
-      <button  v-on:click="HandleUploadPost" class="w-20 btn btn-lg btn-primary">Upload post</button>
+    <pre></pre>
+    <label for="avatar">Choose a thumbnail img</label>
+    <input type="file" @change="setFileImg($event)"/>
+      <ckeditor 
+      :value="post.content_post"
+      @input="setContentPost" 
+      :config="editorConfig"></ckeditor>
+      <button  v-on:click="store()" class="w-20 btn btn-lg btn-primary">Upload post</button>
   </div>
 </template>
 <script>
-// import router from '../router';
-const axios = require('axios');
+// const axios = require('axios');
+import { mapMutations, mapActions, mapState } from 'vuex';
 
 export default {
+  name: 'UploadPost',
+  metaInfo: {
+    title: 'UploadPost Page',
+    script: [],
+  },
   data() {
     return {
-      namepost: '',
-      id_category: '',
-      listcategory: [],
-      editorData: '',
       editorConfig: {
         height: 600,
       },
     };
   },
+  computed: {
+    ...mapState('post', {
+      post: (state) => state.post,
+      categories: (state) => state.categories,
+      file_img_to_upload: (state) => state.file_img_to_upload,
+    }),
+  },
   methods: {
-    async uploadPost() {
-      const result = await axios({
-        method: 'post',
-        url: 'http://127.0.0.1:8000/api/uploadpost/',
-        data: {
-          postname: this.namepost,
-          id_category: this.id_category,
-          content: this.editorData,
-        },
-      });
-      return result.data;
-    },
-    async getCategoryPost() {
-      const result = await axios({
-        method: 'get',
-        url: 'http://127.0.0.1:8000/api/getlistpostcategoty/',
-      });
-      return result.data;
-    },
-    async getData() {
-      this.listcategory = await this.getCategoryPost();
-      console.log('Info log: ~ listcategory', this.listcategory);
-    },
-    async HandleUploadPost() {
-      let tmpvl = await this.uploadPost();
-      console.log('Info log: ~ tmpvl', tmpvl);
-      this.$router.push('listpost');
-    },
+    ...mapMutations('post', {
+      setName: 'setName',
+      setCategoryId: 'setCategoryId',
+      setContentPost: 'setContentPost',
+      setFileImg: 'setFileImg',
+    }),
+    ...mapActions('post', {
+      store: 'store',
+      initStore: 'initStore',
+    }),
   },
   mounted() {
-    console.log('running in mounted method');
-    this.getData();
+    this.initStore();
   },
 };
 </script>

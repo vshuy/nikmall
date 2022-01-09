@@ -1,5 +1,6 @@
 import UploadPost from '../views/post/UploadPost.vue';
 import PostDetail from '../views/post/PostDetail.vue';
+import ListPost from '../views/post/ListPost.vue';
 
 export const postRouter = [
     {
@@ -10,7 +11,7 @@ export const postRouter = [
       {
         path: '/listpost',
         name: 'listpost',
-        component: UploadPost,
+        component: ListPost,
       },
       {
         path: '/detailpost/:id',

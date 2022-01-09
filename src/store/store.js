@@ -5,6 +5,7 @@ import productStore from './productStore';
 import userStore from './userStore';
 import categoryStore from './categoryStore';
 import postCategoryStore from './postCategoryStore';
+import postStore from './postStore';
 import slideStore from './slideStore';
 
 Vue.use(Vuex);
@@ -16,6 +17,7 @@ const store = new Vuex.Store({
     product: productStore,
     category: categoryStore,
     postCategory: postCategoryStore,
+    post: postStore,
     slide: slideStore,
   },
 });

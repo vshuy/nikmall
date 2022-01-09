@@ -42,6 +42,7 @@ export default {
   methods: {
     handleFileUpload() {
       this.file_img = this.$refs.file.files[0];
+      console.log('Log ~ handleFileUpload ~ this.$refs.file.files[0]', this.$refs.file.files[0]);
     },
     async uploadProduct() {
       const form = new FormData();
