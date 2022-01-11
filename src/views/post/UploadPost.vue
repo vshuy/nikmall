@@ -8,22 +8,27 @@
       class="form-control form"
       placeholder="Enter post name here"
     />
-    <select 
-      :value="post.category_id"
-      @input="setCategoryId">
-    <option disabled value="">Please select a category</option>
-    <option v-for="(option, index) in categories" v-bind:value="option.id" :key="index">
-    {{ option.name }}
-    </option>
+    <select :value="post.category_id" @input="setCategoryId">
+      <option disabled value="">Please select a category</option>
+      <option
+        v-for="(option, index) in categories"
+        v-bind:value="option.id"
+        :key="index"
+      >
+        {{ option.name }}
+      </option>
     </select>
     <pre></pre>
     <label for="avatar">Choose a thumbnail img</label>
-    <input type="file" @change="setFileImg($event)"/>
-      <ckeditor 
+    <input type="file" @change="setFileImg($event)" />
+    <ckeditor
       :value="post.content_post"
-      @input="setContentPost" 
-      :config="editorConfig"></ckeditor>
-      <button  v-on:click="store()" class="w-20 btn btn-lg btn-primary">Upload post</button>
+      @input="setContentPost"
+      :config="editorConfig"
+    ></ckeditor>
+    <button v-on:click="store()" class="w-20 btn btn-lg btn-primary">
+      Upload post
+    </button>
   </div>
 </template>
 <script>
@@ -45,9 +50,9 @@ export default {
   },
   computed: {
     ...mapState('post', {
-      post: (state) => state.post,
-      categories: (state) => state.categories,
-      file_img_to_upload: (state) => state.file_img_to_upload,
+      post: state => state.post,
+      categories: state => state.categories,
+      file_img_to_upload: state => state.file_img_to_upload,
     }),
   },
   methods: {
@@ -67,5 +72,4 @@ export default {
   },
 };
 </script>
-<style>
-</style>
+<style></style>

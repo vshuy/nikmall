@@ -26,7 +26,7 @@
             <div class="row">
               <div class="col-sm-3">
                 <img
-                  v-bind:src="item.urlimg"
+                  v-bind:src="item.link_thumbnail"
                   alt="n"
                   width="80px"
                   height="80px"

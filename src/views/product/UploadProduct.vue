@@ -1,35 +1,57 @@
 <template lang="">
   <div class="container">
     <h1>Upload product page</h1>
-    <input type="text" v-model="nameproduct" class="form-control name-form"  placeholder="Enter product name here">
-    <input type="number" v-model="cost" class="form-control cost-form"  placeholder="Enter cost product">
-    <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
-    <select v-model="id_category">
-     <option disabled value="">Please select one</option>
-     <option v-for="(option, index) in listcategory" v-bind:value="option.id" :key="index">
-     {{ option.type_product }}
-     </option>
+    <input
+      type="text"
+      :value="product.name"
+      @input="setName"
+      class="form-control name-form"
+      placeholder="Enter product name here"
+    />
+    <input
+      type="number"
+      :value="product.cost"
+      @input="setCost"
+      class="form-control cost-form"
+      placeholder="Enter cost product"
+    />
+    <input type="file" @change="setFileImg($event)" />
+    <select :value="product.category_id" @input="setCategoryId">
+      <option disabled value="">Please select one</option>
+      <option
+        v-for="(option, index) in categories"
+        v-bind:value="option.id"
+        :key="index"
+      >
+        {{ option.type_product }}
+      </option>
     </select>
-     <pre></pre>
-     <ckeditor v-model="editorData" :config="editorConfig"></ckeditor>
-      <button  v-on:click="HandleUploadProduct" class="w-20 btn btn-lg btn-primary">Upload product</button>
+    <pre></pre>
+    <img
+      style="border-radius: 12px"
+      v-bind:src="product.link_thumbnail"
+      alt="n"
+      width="auto"
+      height="250px"
+    />
+    <pre></pre>
+    <ckeditor
+      :value="product.content_post"
+      @input="setContentPost"
+      :config="editorConfig"
+    ></ckeditor>
+    <button v-on:click="store()" class="w-20 btn btn-lg btn-primary">
+      Upload product
+    </button>
   </div>
 </template>
 <script>
-import { RESOURCE_PRODUCT, RESOURCE_CATEGORY } from './../../api/api';
-const axios = require('axios');
-const FormData = require('form-data');
+import { mapActions, mapMutations, mapState } from 'vuex';
 
 export default {
   name: 'UploadProduct',
   data() {
     return {
-      nameproduct: '',
-      cost: '',
-      id_category: '',
-      listcategory: [],
-      file_img: '',
-      editorData: '',
       editorConfig: {
         height: 600,
       },
@@ -39,43 +61,28 @@ export default {
     title: 'products upload page',
     script: [],
   },
+  computed: {
+    ...mapState('product', {
+      product: state => state.product,
+      categories: state => state.categories,
+      file_img_to_upload: state => state.file_img_to_upload,
+    }),
+  },
   methods: {
-    handleFileUpload() {
-      this.file_img = this.$refs.file.files[0];
-      console.log('Log ~ handleFileUpload ~ this.$refs.file.files[0]', this.$refs.file.files[0]);
-    },
-    async uploadProduct() {
-      const form = new FormData();
-      form.append('nameProduct', this.nameproduct);
-      form.append('id_category', this.id_category);
-      form.append('cost', this.cost);
-      form.append('file_img_product', this.file_img);
-      form.append('post_data', this.editorData);
-      const result = await axios.post(`${RESOURCE_PRODUCT}`, form, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: this.$cookies.get('token'),
-        },
-      });
-      return result.data;
-    },
-    async getCategoryProduct() {
-      const result = await axios.get(`${RESOURCE_CATEGORY}`);
-      return result.data;
-    },
-    async getData() {
-      this.listcategory = await this.getCategoryProduct();
-      console.log('Info log: ~ listcategory', this.listcategory);
-    },
-    async HandleUploadProduct() {
-      const tmpvl = await this.uploadProduct();
-      console.log('Info log: ~ tmpvl', tmpvl);
-      this.$router.push('dashboard');
-    },
+    ...mapMutations('product', {
+      setName: 'setName',
+      setCategoryId: 'setCategoryId',
+      setContentPost: 'setContentPost',
+      setFileImg: 'setFileImg',
+      setCost: 'setCost',
+    }),
+    ...mapActions('product', {
+      store: 'store',
+      initStore: 'initStore',
+    }),
   },
   mounted() {
-    console.log('running in mounted method');
-    this.getData();
+    this.initStore();
   },
 };
 </script>

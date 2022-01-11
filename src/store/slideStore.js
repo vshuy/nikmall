@@ -1,7 +1,6 @@
-const axios = require('axios');
-import VueCookies from 'vue-cookies';
 import router from './../router/router';
 const FormData = require('form-data');
+import { normalApi, formDataApi } from '../api/apiService';
 import { RESOURCE_SLIDE } from './../api/api.js';
 const slideStore = {
   namespaced: true,
@@ -31,19 +30,11 @@ const slideStore = {
   },
   actions: {
     async index({ commit }) {
-      const result = await axios.get(`${RESOURCE_SLIDE}`, {
-        headers: {
-          Authorization: VueCookies.get('token'),
-        },
-      });
+      const result = await normalApi.get(`${RESOURCE_SLIDE}`);
       commit('setSlides', result.data);
     },
     async destroy({ commit }, id) {
-      const result = await axios.delete(`${RESOURCE_SLIDE}/${id}`, {
-        headers: {
-          Authorization: VueCookies.get('token'),
-        },
-      });
+      const result = await normalApi.delete(`${RESOURCE_SLIDE}/${id}`);
       commit('removeAnItem', id);
       return result.data;
     },
@@ -51,12 +42,7 @@ const slideStore = {
       const form = new FormData();
       form.append('nameSlide', state.slide.nameslide);
       form.append('fileSlide', state.slide.file_img);
-      const result = await axios.post(`${RESOURCE_SLIDE}`, form, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: VueCookies.get('token'),
-        },
-      });
+      const result = await formDataApi.post(`${RESOURCE_SLIDE}`, form);
       router.go();
       return result.data;
     },

@@ -1,7 +1,7 @@
 <template>
   <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div class="table-responsive">
-      <h2>Quản lý product</h2>
+      <h2>Product Manage</h2>
       <table class="table table-striped table-sm">
         <thead>
           <tr>

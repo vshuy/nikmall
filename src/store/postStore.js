@@ -1,5 +1,4 @@
-import VueCookies from 'vue-cookies';
-const axios = require('axios');
+import { formDataApi, normalApi } from '../api/apiService';
 const FormData = require('form-data');
 import router from './../router/router';
 import { RESOURCE_POST } from './../api/api.js';
@@ -48,24 +47,20 @@ const postStore = {
   },
   actions: {
     async index({ commit }) {
-      const result = await axios.get(`${RESOURCE_POST}`, {
-        headers: {
-          Authorization: VueCookies.get('token'),
-        },
-      });
+      const result = await normalApi.get(`${RESOURCE_POST}`);
       commit('setPosts', result.data);
     },
     async show({ commit }, id) {
-      const result = await axios.get(`${RESOURCE_POST}/${id}`);
+      const result = await normalApi.get(`${RESOURCE_POST}/${id}`);
       commit('setPost', result.data);
     },
     async update({ state }, id) {
-      const result = await axios.put(`${RESOURCE_POST}/${id}`, state.category);
+      const result = await normalApi.put(`${RESOURCE_POST}/${id}`, state.category);
       router.go();
       return result.data;
     },
     async destroy({ commit }, id) {
-      const result = await axios.delete(`${RESOURCE_POST}/${id}`);
+      const result = await normalApi.delete(`${RESOURCE_POST}/${id}`);
       commit('removeAnItem', id);
       return result.data;
     },
@@ -73,21 +68,11 @@ const postStore = {
       const form = new FormData();
       form.append('file_img_post', state.file_img_to_upload);
       form.append('post_data', JSON.stringify(state.post));
-      const result = await axios.post(`${RESOURCE_POST}`, form, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: VueCookies.get('token'),
-        },
-      });
-      // return result.data;
-      console.log('Log ~ store ~ result.data', result.data);
+      const result = await formDataApi.post(`${RESOURCE_POST}`, form);
+      return result.data;
     },
     async initStore({ commit }) {
-      const result = await axios.get(`${RESOURCE_POST_CATEGORY}`, {
-        headers: {
-          Authorization: VueCookies.get('token'),
-        },
-      });
+      const result = await normalApi.get(`${RESOURCE_POST_CATEGORY}`);
       commit('setCategories', result.data);
     },
   },

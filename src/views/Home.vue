@@ -12,7 +12,7 @@
         <router-link :to="{ name: 'detailproduct', params: { id: item.id } }">
           <img
             style="border-radius: 12px"
-            v-bind:src="item.urlimg"
+            v-bind:src="item.link_thumbnail"
             alt="n"
             width="100%"
             height="250px"
@@ -40,7 +40,7 @@
     <div class="mx-auto">
       <Pagination
         :data="products"
-        @pagination-change-page="index"
+        @pagination-change-page="indexPage"
         align="center"
       >
         <span slot="prev-nav">&lt; Previous</span>
@@ -64,7 +64,7 @@ export default {
       addToCart: 'addToCart',
     }),
     ...mapActions('product', {
-      index: 'index',
+      indexPage: 'indexPage',
     }),
   },
   computed: {
@@ -73,7 +73,7 @@ export default {
     }),
   },
   mounted() {
-    this.index();
+    this.indexPage();
   },
   components: {
     Header,

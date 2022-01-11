@@ -1,6 +1,6 @@
 // import VueCookies from 'vue-cookies';
 // import axios from 'axios';
-import { categoryApi } from '../api/apiService.js';
+import { normalApi } from '../api/apiService.js';
 import router from './../router/router';
 import { RESOURCE_CATEGORY } from './../api/api.js';
 const categoryStore = {
@@ -32,15 +32,15 @@ const categoryStore = {
   },
   actions: {
     async index({ commit }) {
-      const result = await categoryApi.get(`${RESOURCE_CATEGORY}`);
+      const result = await normalApi.get(`${RESOURCE_CATEGORY}`);
       commit('setCategories', result.data);
     },
     async show({ commit }, id) {
-      const result = await categoryApi.get(`${RESOURCE_CATEGORY}/${id}`);
+      const result = await normalApi.get(`${RESOURCE_CATEGORY}/${id}`);
       commit('setCategory', result.data[0]);
     },
     async update({ state }, id) {
-      const result = await categoryApi.put(
+      const result = await normalApi.put(
         `${RESOURCE_CATEGORY}/${id}`,
         state.category,
       );
@@ -48,12 +48,12 @@ const categoryStore = {
       return result.data;
     },
     async destroy({ commit }, id) {
-      const result = await categoryApi.delete(`${RESOURCE_CATEGORY}/${id}`);
+      const result = await normalApi.delete(`${RESOURCE_CATEGORY}/${id}`);
       commit('removeAnItem', id);
       return result.data;
     },
     async store({ state }) {
-      const result = await categoryApi.post(
+      const result = await normalApi.post(
         `${RESOURCE_CATEGORY}`,
         state.category,
       );
