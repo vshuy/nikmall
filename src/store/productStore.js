@@ -15,7 +15,7 @@ const productStore = {
       content_post: '',
     },
     categories: [],
-    products: [],
+    products: {},
     file_img_to_upload: '',
   },
   mutations: {
@@ -64,9 +64,9 @@ const productStore = {
       const result = await axios.get(`${RESOURCE_PRODUCT}/${id}`);
       commit('setProduct', result.data);
     },
-    async update({ state }, id) {
+    async update({ state }) {
       const result = await normalApi.put(
-        `${RESOURCE_PRODUCT}/${id}`,
+        `${RESOURCE_PRODUCT}/${state.product.id}`,
         state.product,
       );
       router.go();

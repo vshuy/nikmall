@@ -7,6 +7,7 @@ import categoryStore from './categoryStore';
 import postCategoryStore from './postCategoryStore';
 import postStore from './postStore';
 import slideStore from './slideStore';
+import commentStore from './commentStore';
 
 Vue.use(Vuex);
 
@@ -19,6 +20,7 @@ const store = new Vuex.Store({
     postCategory: postCategoryStore,
     post: postStore,
     slide: slideStore,
+    comment: commentStore,
   },
 });
 export { store as default };

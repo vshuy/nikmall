@@ -1,11 +1,26 @@
 <template lang="">
   <div class="container">
     <h1>Upload slide page</h1>
-    <input type="text" :value="slide.nameslide"
-      @input="setName" class="form-control form"  placeholder="Enter slide name here">
-    <input type="file" @change="setFileImg($event)"/>
-     <pre></pre>
-      <button  v-on:click="store" class="w-20 btn btn-lg btn-primary">Upload slide</button>
+    <input
+      type="text"
+      :value="slide.nameslide"
+      @input="setName"
+      class="form-control form"
+      placeholder="Enter slide name here"
+    />
+    <input type="file" @change="setFileImg($event)" />
+    <pre></pre>
+    <button v-on:click="store" class="w-20 btn btn-lg btn-primary">
+      Upload slide
+    </button>
+    <pre></pre>
+    <img
+      style="border-radius: 12px"
+      v-bind:src="slide.urlimg"
+      alt="n"
+      width="auto"
+      height="320px"
+    />
   </div>
 </template>
 <script>
@@ -24,7 +39,7 @@ export default {
   },
   computed: {
     ...mapState('slide', {
-      slide: (state) => state.slide,
+      slide: state => state.slide,
     }),
   },
   mounted() {
@@ -32,5 +47,4 @@ export default {
   },
 };
 </script>
-<style>
-</style>
+<style></style>

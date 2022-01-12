@@ -7,6 +7,7 @@ const slideStore = {
   state: {
     slide: {
       nameslide: '',
+      urlimg: '',
       file_img: '',
     },
     slides: [],
@@ -23,6 +24,7 @@ const slideStore = {
     },
     setFileImg(state, event) {
       state.slide.file_img = event.target.files[0];
+      state.slide.urlimg = URL.createObjectURL(state.slide.file_img);
     },
     removeAnItem(state, id) {
       state.slides = state.slides.filter(item => item.id !== id);

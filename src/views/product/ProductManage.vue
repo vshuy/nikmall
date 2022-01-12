@@ -25,7 +25,7 @@
               >
             </td>
             <td>
-              <u v-on:click="deleteProductById(item.id)">Xóa danh mục này</u>
+              <u v-on:click="destroy(item.id)">Xóa danh mục này</u>
             </td>
           </tr>
         </tbody>
@@ -34,51 +34,27 @@
   </main>
 </template>
 <script>
-const axios = require('axios');
-import { RESOURCE_PRODUCT } from './../../api/api';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'ProductManage',
-  props: {
-    title: String,
-  },
-  data() {
-    return {
-      products: [],
-    };
-  },
   metaInfo: {
     title: 'products overview',
     script: [],
   },
-  methods: {
-    async getListImg() {
-      const result = await axios.get(`${RESOURCE_PRODUCT}`, {
-        headers: {
-          Authorization: this.$cookies.get('token'),
-        },
-      });
-      return result.data;
-    },
-    async deleteProductById(id) {
-      console.log('Info log: ~ id', id);
-      const result = await axios.delete(`${RESOURCE_PRODUCT}/${id}`, {
-        headers: {
-          Authorization: this.$cookies.get('token'),
-        },
-      });
-      this.products = this.products.filter((item) => item.id !== id);
-      return result.data;
-    },
-    async getData() {
-      this.products = await this.getListImg();
-    },
+  computed: {
+    ...mapState('product', {
+      products: state => state.products,
+    }),
   },
-  setup() {
-    console.log('runnning in setup method');
+  methods: {
+    ...mapActions('product', {
+      index: 'index',
+      destroy: 'destroy',
+    }),
   },
   mounted() {
-    this.getData();
+    this.index();
   },
 };
 </script>

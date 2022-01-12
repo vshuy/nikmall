@@ -1,5 +1,3 @@
-// import VueCookies from 'vue-cookies';
-// import axios from 'axios';
 import { normalApi } from '../api/apiService.js';
 import router from './../router/router';
 import { RESOURCE_CATEGORY } from './../api/api.js';

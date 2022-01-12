@@ -39,7 +39,7 @@
       @input="setContentPost"
       :config="editorConfig"
     ></ckeditor>
-    <button v-on:click="store()" class="w-20 btn btn-lg btn-primary">
+    <button v-on:click="update()" class="w-20 btn btn-lg btn-primary">
       Upload product
     </button>
   </div>
