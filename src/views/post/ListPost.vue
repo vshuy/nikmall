@@ -18,8 +18,8 @@
               <div class="col-md-8">
                 <div>{{ item.name }}</div>
                 <div>{{ item.created_at }}</div>
-                <div>{{ item.views }} views</div>
-                <div>{{ item.likes }} likes</div>
+                <div>{{ item.views }} <i class="fas fa-eye"></i></div>
+                <div>{{ item.likes }} <i class="fas fa-heart"></i></div>
               </div>
             </div>
           </div>

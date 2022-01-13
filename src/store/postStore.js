@@ -31,6 +31,7 @@ const postStore = {
     },
     setFileImg(state, event) {
       state.file_img_to_upload = event.target.files[0];
+      state.post.link_thumbnail = URL.createObjectURL(state.file_img_to_upload);
     },
     setCategories(state, categories) {
       state.categories = categories;
@@ -44,6 +45,10 @@ const postStore = {
     removeAnItem(state, id) {
       state.posts = state.post.filter(item => item.id !== id);
     },
+    setLinkThumbnail(state) {
+      state.post.link_thumbnail = "@/assets/set_img.png";
+      console.log('Log ~ setLinkThumbnail ~ state.post.link_thumbnail', state.post.link_thumbnail);
+    },
   },
   actions: {
     async index({ commit }) {
@@ -55,7 +60,10 @@ const postStore = {
       commit('setPost', result.data);
     },
     async update({ state }, id) {
-      const result = await normalApi.put(`${RESOURCE_POST}/${id}`, state.category);
+      const result = await normalApi.put(
+        `${RESOURCE_POST}/${id}`,
+        state.category,
+      );
       router.go();
       return result.data;
     },
@@ -74,6 +82,7 @@ const postStore = {
     async initStore({ commit }) {
       const result = await normalApi.get(`${RESOURCE_POST_CATEGORY}`);
       commit('setCategories', result.data);
+      commit('setLinkThumbnail');
     },
   },
 };

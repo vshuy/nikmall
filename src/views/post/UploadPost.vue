@@ -1,26 +1,40 @@
 <template lang="">
   <div class="container">
-    <h1>Upload post page</h1>
-    <input
-      type="text"
-      :value="post.name"
-      @input="setName"
-      class="form-control form"
-      placeholder="Enter post name here"
-    />
-    <select :value="post.category_id" @input="setCategoryId">
-      <option disabled value="">Please select a category</option>
-      <option
-        v-for="(option, index) in categories"
-        v-bind:value="option.id"
-        :key="index"
-      >
-        {{ option.name }}
-      </option>
-    </select>
-    <pre></pre>
-    <label for="avatar">Choose a thumbnail img</label>
-    <input type="file" @change="setFileImg($event)" />
+    <div class="row">
+      <div class="col-md-6">
+        <h5>Upload post page</h5>
+        <input
+          type="text"
+          :value="post.name"
+          @input="setName"
+          class="form-control form"
+          placeholder="Enter post name here"
+        />
+        <select :value="post.category_id" @input="setCategoryId">
+          <option disabled value="">Please select a category</option>
+          <option
+            v-for="(option, index) in categories"
+            v-bind:value="option.id"
+            :key="index"
+          >
+            {{ option.name }}
+          </option>
+        </select>
+        <pre></pre>
+        <label for="avatar">Choose a thumbnail img</label>
+        <input type="file" @change="setFileImg($event)" />
+        <pre></pre>
+      </div>
+      <div class="col-md-6">
+        <img
+          style="border-radius: 12px"
+          v-bind:src="post.link_thumbnail"
+          alt="n"
+          width="auto"
+          height="128px"
+        />
+      </div>
+    </div>
     <ckeditor
       :value="post.content_post"
       @input="setContentPost"
@@ -32,7 +46,6 @@
   </div>
 </template>
 <script>
-// const axios = require('axios');
 import { mapMutations, mapActions, mapState } from 'vuex';
 
 export default {
@@ -52,6 +65,7 @@ export default {
     ...mapState('post', {
       post: state => state.post,
       categories: state => state.categories,
+      link_thumbnail: state => state.link_thumbnail,
       file_img_to_upload: state => state.file_img_to_upload,
     }),
   },
