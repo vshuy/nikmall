@@ -1,22 +1,37 @@
 <template lang="">
-  <div>
-      <h4>{{post.name}}</h4>
-        <span style="font-style: italic;color :black;">{{post.views}} views</span>
-        <span style="color :red;"> {{post.created_at}}</span>
-      <div v-html="post.content_post"></div>
+  <div class="container">
+    <div class="row">
+      <Header></Header>
+      <div class="col-md-12">
+        <p>{{ post.name }}</p>
+        <img v-bind:src="post.link_thumbnail" alt="not found" />
+        <div style="font-style: italic;color :black;">
+          {{ post.views }} views
+        </div>
+        <div style="color :red;">{{ post.created_at }}</div>
+        <div v-html="post.content_post"></div>
+        <CommentPost v-bind:post_id_pr="post.id"></CommentPost>
+      </div>
+    </div>
   </div>
 </template>
 <script>
+import Header from '../../components/Header.vue';
+import CommentPost from '../../components/CommentPost.vue';
 import { mapState, mapActions } from 'vuex';
 export default {
   name: 'PostDetail',
+  components: {
+    Header,
+    CommentPost,
+  },
   metaInfo: {
     title: 'Detail Post',
     script: [],
   },
   computed: {
     ...mapState('post', {
-      post: (state) => state.post,
+      post: state => state.post,
     }),
   },
   methods: {
@@ -29,5 +44,4 @@ export default {
   },
 };
 </script>
-<style>
-</style>
+<style></style>

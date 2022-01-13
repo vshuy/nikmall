@@ -97,7 +97,6 @@ const commentStore = {
       return result.data;
     },
     async openCommentEditForm({ commit }, item) {
-      console.log('Log ~ openCommentEditForm ~ item', item);
       commit('setIdCommentEdit', item.id);
       commit('setValueCommentEdit', item.contents);
       commit('setEditCommentStatus', true);
@@ -106,16 +105,14 @@ const commentStore = {
       commit('setEditCommentStatus', false);
     },
     async initStore({ state, commit, dispatch }, product_id) {
-      console.log('Log ~ initStore ~ product_id', product_id);
       let user_id = await parseInt(VueCookies.get('user_id'));
       let user_name = await VueCookies.get('user_name');
-      console.log('Log ~ initStore ~ user_name', user_name);
-      await commit('setProductId', product_id);
-      await commit('setUserId', user_id);
-      await commit('setUserName', user_name);
-      await commit('setEditCommentStatus', false);
-      await dispatch('show');
-      await console.log(state);
+      commit('setProductId', product_id);
+      commit('setUserId', user_id);
+      commit('setUserName', user_name);
+      commit('setEditCommentStatus', false);
+      dispatch('show');
+      console.log(state);
     },
   },
 };

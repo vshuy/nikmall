@@ -12,14 +12,13 @@
             <input
               class="form form-control"
               type="text"
-              v-model="comment_edit_data"
+              :value="edit_comment.contents"
+              @input="setValueFormEditComment"
               placeholder="Edit your comment here"
               name="exam_name"
               required
             />
-            <button v-on:click="updateComment()" class="btn btn-info">
-              Update
-            </button>
+            <button v-on:click="update()" class="btn btn-info">Update</button>
             <button
               type="button"
               class="btn btn-danger"
@@ -35,13 +34,14 @@
       <div class="col-md-10">
         <input
           type="text"
-          v-model="comment_data"
+          :value="new_comment.contents"
+          @input="setValueFormNewComment"
           class="form-control form h-100"
           placeholder="Enter your comment"
         />
       </div>
       <div class="col-md-2">
-        <button class="btn btn-lg btn-primary" v-on:click="upLoadComment">
+        <button class="btn btn-lg btn-primary" v-on:click="store()">
           <i class="far fa-paper-plane"></i>
         </button>
       </div>
@@ -51,16 +51,17 @@
         class="col-sm-12 mt-1 bg-light"
         style="position: relative"
       >
-        <div v-if="item.name === name" style="position: absolute; right: 5px">
+        <div
+          v-if="item.user_id === user_id"
+          style="position: absolute; right: 5px"
+        >
           <span
             class="mr-2"
             style="color: blue"
             v-on:click="openCommentEditForm(item)"
             >Edit</span
           >
-          <span style="color: red" v-on:click="deleteCommnetById(item.id)"
-            >Delete</span
-          >
+          <span style="color: red" v-on:click="destroy(item.id)">Delete</span>
         </div>
         <div style="font-weight: 900">{{ item.name }}</div>
         <div>{{ item.contents }}</div>
@@ -69,93 +70,38 @@
   </div>
 </template>
 <script>
-import { RESOURCE_COMMENT } from '../api/api';
-import axios from 'axios';
+import { mapActions, mapState, mapMutations } from 'vuex';
 export default {
   name: 'CommentPost',
   props: {
-    product_id_pr: Number,
-    comments_pr: Array,
+    post_id_pr: Number,
   },
-  data() {
-    return {
-      comments: this.comments_pr,
-      comment_data: '',
-      product_id: this.product_id_pr,
-      user_id: this.$cookies.get('user_id'),
-      name: this.$cookies.get('user_name'),
-      edit_status: false,
-      comment_edit_data: '',
-      id_comment_edit: '',
-    };
+  computed: {
+    ...mapState('commentPost', {
+      user_id: (state) => state.user_id,
+      new_comment: (state) => state.new_comment,
+      edit_comment: (state) => state.edit_comment,
+      comments: (state) => state.comments,
+      edit_status: (state) => state.edit_status,
+    }),
   },
   methods: {
-    openCommentEditForm(item) {
-      this.edit_status = true;
-      this.comment_edit_data = item.contents;
-      this.id_comment_edit = item.id;
-    },
-    closeCommentEditForm() {
-      this.edit_status = false;
-    },
-    async upLoadComment() {
-      const result = await axios.post(
-        `${RESOURCE_COMMENT}`,
-        {
-          product_id: this.product_id,
-          data_comment: this.comment_data,
-        },
-        {
-          headers: {
-            Authorization: this.$cookies.get('token'),
-          },
-        },
-      );
-      this.refreshListComment(result.data);
-    },
-    async updateComment() {
-      const result = await axios.put(
-        `${RESOURCE_COMMENT}/${this.id_comment_edit}`,
-        {
-          data_comment: this.comment_edit_data,
-        },
-        {
-          headers: {
-            Authorization: this.$cookies.get('token'),
-          },
-        },
-      );
-      this.comments = this.comments.map((item) => {
-        if (item.id === this.id_comment_edit) {
-          item.contents = this.comment_edit_data;
-        }
-        return item;
-      });
-      this.edit_status = false;
-      return result.data;
-    },
-    async deleteCommnetById(id_comment) {
-      this.comments = this.comments.filter((item) => item.id !== id_comment);
-      const result = await axios.delete(`${RESOURCE_COMMENT}/${id_comment}`, {
-        headers: {
-          Authorization: this.$cookies.get('token'),
-        },
-      });
-      return result.data;
-    },
-    refreshListComment(id_comment) {
-      const item = {
-        id: id_comment,
-        user_id: this.$cookies.get('user_id'),
-        product_id: this.product_id,
-        contents: this.comment_data,
-        name: this.$cookies.get('user_name'),
-      };
-      this.comments.push(item);
-    },
+    ...mapMutations('commentPost', {
+      setValueFormEditComment: 'setValueFormEditComment',
+      setValueFormNewComment: 'setValueFormNewComment',
+    }),
+    ...mapActions('commentPost', {
+      show: 'show',
+      store: 'store',
+      update: 'update',
+      destroy: 'destroy',
+      initStore: 'initStore',
+      openCommentEditForm: 'openCommentEditForm',
+      closeCommentEditForm: 'closeCommentEditForm',
+    }),
   },
   mounted() {
-    console.log('running in mounted method');
+    this.initStore(this.post_id_pr);
   },
 };
 </script>

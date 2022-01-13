@@ -36,7 +36,7 @@
             >
           </li>
           <li class="nav-item">
-            <router-link to="/listpost" class="nav-link active">Post</router-link>
+            <router-link to="/listpost" class="nav-link active">Posts</router-link>
           </li>
           <li class="nav-item">
             <router-link to="/" class="nav-link active">About us</router-link>
