@@ -12,6 +12,7 @@ import { postCategoryRouter } from './postCategoryRouter.js';
 import { slideRouter } from './slideRouter.js';
 import { billRouter } from './billRouter';
 import { postRouter } from './postRouter';
+import { roleRouter } from './roleRouter';
 Vue.use(VueRouter);
 export default new VueRouter({
   // mode: 'history',
@@ -23,6 +24,7 @@ export default new VueRouter({
     ...slideRouter,
     ...billRouter,
     ...postRouter,
+    ...roleRouter,
     {
       path: '/',
       name: 'home',

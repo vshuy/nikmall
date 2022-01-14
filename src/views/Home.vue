@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <!-- <div class="testtext"> test what is going on</div> -->
     <div class="row">
       <Header></Header>
       <Slide></Slide>

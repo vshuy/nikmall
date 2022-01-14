@@ -6,6 +6,7 @@ import userStore from './userStore';
 import categoryStore from './categoryStore';
 import postCategoryStore from './postCategoryStore';
 import postStore from './postStore';
+import roleStore from './roleStore';
 import slideStore from './slideStore';
 import commentStore from './commentStore';
 import commentPostStore from './commentPostStore';
@@ -20,6 +21,7 @@ const store = new Vuex.Store({
     category: categoryStore,
     postCategory: postCategoryStore,
     post: postStore,
+    role: roleStore,
     slide: slideStore,
     comment: commentStore,
     commentPost: commentPostStore,
