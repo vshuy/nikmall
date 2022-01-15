@@ -6,7 +6,9 @@
           <h2>Role Management</h2>
         </div>
         <div class="pull-right">
-          <a class="btn btn-success mb-1" href="#"> Create New Role</a>
+          <router-link class="btn btn-success mb-1" to="/role-create"
+            >Create New Role</router-link
+          >
         </div>
       </div>
     </div>
@@ -20,9 +22,17 @@
         <td>{{ item.id }}</td>
         <td>{{ item.name }}</td>
         <td>
-          <a class="btn btn-info mr-1" href="#">Show</a>
-          <a class="btn btn-primary mr-1" href="#">Edit</a>
-          <a class="btn btn-danger" href="#">Edit</a>
+          <router-link
+            class="btn btn-info mr-1"
+            :to="{ name: 'role-show', params: { id: item.id } }"
+            >Show</router-link
+          >
+          <router-link
+            class="btn btn-primary mr-1"
+            :to="{ name: 'role-edit', params: { id: item.id } }"
+            >Edit</router-link
+          >
+          <a class="btn btn-danger" v-on:click="destroy(item.id)" >Delete</a>
         </td>
       </tr>
     </table>

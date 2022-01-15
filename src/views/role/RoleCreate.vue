@@ -31,7 +31,7 @@
           <div v-for="(item, index) in permissions" :key="index">
             <input
               type="checkbox"
-              :value="`${item.id}`"
+              :value="item.id"
               :id="item.id"
               v-model="checkedIds"
             />
