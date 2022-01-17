@@ -13,6 +13,7 @@ import { slideRouter } from './slideRouter.js';
 import { billRouter } from './billRouter';
 import { postRouter } from './postRouter';
 import { roleRouter } from './roleRouter';
+import { permissionRouter } from './permissionRouter';
 Vue.use(VueRouter);
 export default new VueRouter({
   // mode: 'history',
@@ -25,6 +26,7 @@ export default new VueRouter({
     ...billRouter,
     ...postRouter,
     ...roleRouter,
+    ...permissionRouter,
     {
       path: '/',
       name: 'home',

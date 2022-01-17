@@ -9,6 +9,7 @@ import postStore from './postStore';
 import roleStore from './roleStore';
 import slideStore from './slideStore';
 import commentStore from './commentStore';
+import permissionStore from './permissionStore';
 import commentPostStore from './commentPostStore';
 
 Vue.use(Vuex);
@@ -25,6 +26,7 @@ const store = new Vuex.Store({
     slide: slideStore,
     comment: commentStore,
     commentPost: commentPostStore,
+    permission: permissionStore,
   },
 });
 export { store as default };
