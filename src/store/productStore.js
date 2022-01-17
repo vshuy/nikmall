@@ -1,7 +1,13 @@
 const axios = require('axios');
 const FormData = require('form-data');
 import router from './../router/router';
-import { RESOURCE_PRODUCT, RESOURCE_CATEGORY } from './../api/api.js';
+import {
+  RESOURCE_PRODUCT,
+  RESOURCE_CATEGORY,
+  RESOURCE_BRAND,
+  RESOURCE_RAM,
+  RESOURCE_MEMORY,
+} from './../api/api.js';
 import { normalApi, formDataApi } from '../api/apiService.js';
 const productStore = {
   namespaced: true,
@@ -10,17 +16,33 @@ const productStore = {
       id: '',
       name: '',
       category_id: '',
+      brand_id: '',
+      memory_id: '',
+      ram_id: '',
       link_thumbnail: '',
       cost: '',
+      old_cost: '',
       content_post: '',
     },
     categories: [],
+    brands: [],
+    memories: [],
+    rams: [],
     products: {},
     file_img_to_upload: '',
   },
   mutations: {
     setCategoryId(state, e) {
       state.product.category_id = e.target.value;
+    },
+    setBrandId(state, e) {
+      state.brand_id = e.target.value;
+    },
+    setMemoryId(state, e) {
+      state.memory_id = e.target.value;
+    },
+    setRamId(state, e) {
+      state.ram_id = e.target.value;
     },
     setName(state, e) {
       state.product.name = e.target.value;
@@ -40,9 +62,20 @@ const productStore = {
     setCategories(state, categories) {
       state.categories = categories;
     },
+    setBrands(state, brands) {
+      state.brands = brands;
+    },
+    setRams(state, rams) {
+      state.rams = rams;
+    },
+    setMemories(state, memories) {
+      state.memories = memories;
+    },
     setFileImg(state, event) {
       state.file_img_to_upload = event.target.files[0];
-      state.product.link_thumbnail = URL.createObjectURL(state.file_img_to_upload);
+      state.product.link_thumbnail = URL.createObjectURL(
+        state.file_img_to_upload,
+      );
     },
     removeAnItem(state, id) {
       state.products = state.products.filter(item => item.id !== id);
@@ -86,8 +119,14 @@ const productStore = {
       return result.data;
     },
     async initStore({ commit }) {
-      const result = await normalApi.get(`${RESOURCE_CATEGORY}`);
-      commit('setCategories', result.data);
+      const resultCategory = await normalApi.get(`${RESOURCE_CATEGORY}`);
+      const resultRam = await normalApi.get(`${RESOURCE_RAM}`);
+      const resultBrand = await normalApi.get(`${RESOURCE_BRAND}`);
+      const resultMemory = await normalApi.get(`${RESOURCE_MEMORY}`);
+      commit('setCategories', resultCategory.data);
+      commit('setBrands', resultBrand.data);
+      commit('setMemories', resultMemory.data);
+      commit('setRams', resultRam.data);
     },
   },
 };
