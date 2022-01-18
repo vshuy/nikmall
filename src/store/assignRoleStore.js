@@ -1,6 +1,6 @@
 import { normalApi } from '../api/apiService.js';
 import router from './../router/router';
-import { RESOURCE_CATEGORY } from './../api/api.js';
+import { RESOURCE_ASSIGN_ROLE } from './../api/api.js';
 const assignRoleStore = {
   namespaced: true,
   state: {
@@ -9,11 +9,11 @@ const assignRoleStore = {
     roles: [],
   },
   mutations: {
-    setCategory(state, category) {
-      state.category = category;
+    setUsers(state, users) {
+      state.users = users;
     },
-    setCategories(state, categories) {
-      state.categories = categories;
+    setRoles(state, roles) {
+      state.roles = roles;
     },
     setName(state, e) {
       state.category.type_product = e.target.value;
@@ -27,29 +27,29 @@ const assignRoleStore = {
   },
   actions: {
     async index({ commit }) {
-      const result = await normalApi.get(`${RESOURCE_CATEGORY}`);
-      commit('setCategories', result.data);
+      const result = await normalApi.get(`${RESOURCE_ASSIGN_ROLE}`);
+      commit('setUsers', result.data);
     },
     async show({ commit }, id) {
-      const result = await normalApi.get(`${RESOURCE_CATEGORY}/${id}`);
+      const result = await normalApi.get(`${RESOURCE_ASSIGN_ROLE}/${id}`);
       commit('setCategory', result.data[0]);
     },
     async update({ state }, id) {
       const result = await normalApi.put(
-        `${RESOURCE_CATEGORY}/${id}`,
+        `${RESOURCE_ASSIGN_ROLE}/${id}`,
         state.category,
       );
       router.go();
       return result.data;
     },
     async destroy({ commit }, id) {
-      const result = await normalApi.delete(`${RESOURCE_CATEGORY}/${id}`);
+      const result = await normalApi.delete(`${RESOURCE_ASSIGN_ROLE}/${id}`);
       commit('removeAnItem', id);
       return result.data;
     },
     async store({ state }) {
       const result = await normalApi.post(
-        `${RESOURCE_CATEGORY}`,
+        `${RESOURCE_ASSIGN_ROLE}`,
         state.category,
       );
       router.go();

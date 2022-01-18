@@ -12,6 +12,7 @@ const RESOURCE_USER = `${BASE_URL}/api/user`;
 const RESOURCE_POST = `${BASE_URL}/api/post`;
 const RESOURCE_ROLE = `${BASE_URL}/api/role`;
 const RESOURCE_PERMISSION = `${BASE_URL}/api/permission`;
+const RESOURCE_ASSIGN_ROLE = `${BASE_URL}/api/role-assign`;
 const RESOURCE_POST_CATEGORY = `${BASE_URL}/api/category-post`;
 export {
   BASE_URL,
@@ -29,4 +30,5 @@ export {
   RESOURCE_POST_CATEGORY,
   RESOURCE_PERMISSION,
   RESOURCE_ROLE,
+  RESOURCE_ASSIGN_ROLE,
 };

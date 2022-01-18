@@ -53,6 +53,9 @@ const productStore = {
     setCost(state, e) {
       state.product.cost = e.target.value;
     },
+    setOldCost(state, e) {
+      state.product.old_cost = e.target.value;
+    },
     setProduct(state, product) {
       state.product = product;
     },

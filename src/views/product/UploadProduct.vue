@@ -20,7 +20,7 @@
         <input
           type="number"
           :value="product.old_cost"
-          @input="setCost"
+          @input="setOldCost"
           class="form-control cost-form"
           placeholder="Enter old cost product"
         />
@@ -123,6 +123,7 @@ export default {
       setContentPost: 'setContentPost',
       setFileImg: 'setFileImg',
       setCost: 'setCost',
+      setOldCost: 'setOldCost',
     }),
     ...mapActions('product', {
       store: 'store',
