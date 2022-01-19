@@ -36,13 +36,13 @@ const productStore = {
       state.product.category_id = e.target.value;
     },
     setBrandId(state, e) {
-      state.brand_id = e.target.value;
+      state.product.brand_id = e.target.value;
     },
     setMemoryId(state, e) {
-      state.memory_id = e.target.value;
+      state.product.memory_id = e.target.value;
     },
     setRamId(state, e) {
-      state.ram_id = e.target.value;
+      state.product.ram_id = e.target.value;
     },
     setName(state, e) {
       state.product.name = e.target.value;

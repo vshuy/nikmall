@@ -6,7 +6,7 @@ const slideStore = {
   namespaced: true,
   state: {
     slide: {
-      nameslide: '',
+      title: '',
       urlimg: '',
       file_img: '',
     },
@@ -20,7 +20,7 @@ const slideStore = {
       state.slides = slides;
     },
     setName(state, e) {
-      state.slide.nameslide = e.target.value;
+      state.slide.title = e.target.value;
     },
     setFileImg(state, event) {
       state.slide.file_img = event.target.files[0];
@@ -42,7 +42,7 @@ const slideStore = {
     },
     async store({ state }) {
       const form = new FormData();
-      form.append('nameSlide', state.slide.nameslide);
+      form.append('nameSlide', state.slide.title);
       form.append('fileSlide', state.slide.file_img);
       const result = await formDataApi.post(`${RESOURCE_SLIDE}`, form);
       router.go();

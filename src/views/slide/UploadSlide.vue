@@ -3,7 +3,7 @@
     <h1>Upload slide page</h1>
     <input
       type="text"
-      :value="slide.nameslide"
+      :value="slide.title"
       @input="setName"
       class="form-control form"
       placeholder="Enter slide name here"
