@@ -11,6 +11,7 @@ import slideStore from './slideStore';
 import commentStore from './commentStore';
 import permissionStore from './permissionStore';
 import commentPostStore from './commentPostStore';
+import assignRoleStore from './assignRoleStore';
 
 Vue.use(Vuex);
 
@@ -27,6 +28,7 @@ const store = new Vuex.Store({
     comment: commentStore,
     commentPost: commentPostStore,
     permission: permissionStore,
+    assign_role: assignRoleStore,
   },
 });
 export { store as default };

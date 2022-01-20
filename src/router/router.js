@@ -3,7 +3,7 @@ import Vue from 'vue';
 import Home from '../views/Home.vue';
 import CartDetail from '../views/CartDetail.vue';
 import ListOrdered from '../views/historyorder/ListOrdered.vue';
-import Dashboard from '../components/Dashboard.vue'
+import Dashboard from '../components/Dashboard.vue';
 import paypal from '../views/Paypal.vue';
 import { productRouter } from './productRouter.js';
 import { authRouter } from './authRouter.js';
@@ -14,6 +14,7 @@ import { billRouter } from './billRouter';
 import { postRouter } from './postRouter';
 import { roleRouter } from './roleRouter';
 import { permissionRouter } from './permissionRouter';
+import { assignRoleRouter } from './assignRoleRouter';
 Vue.use(VueRouter);
 export default new VueRouter({
   // mode: 'history',
@@ -27,6 +28,7 @@ export default new VueRouter({
     ...postRouter,
     ...roleRouter,
     ...permissionRouter,
+    ...assignRoleRouter,
     {
       path: '/',
       name: 'home',

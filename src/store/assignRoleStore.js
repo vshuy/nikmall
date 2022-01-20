@@ -4,7 +4,12 @@ import { RESOURCE_ASSIGN_ROLE } from './../api/api.js';
 const assignRoleStore = {
   namespaced: true,
   state: {
-    assignRole: {},
+    user: {
+      id: '',
+      name: '',
+      email: '',
+      role_name: [],
+    },
     users: [],
     roles: [],
   },
@@ -15,14 +20,14 @@ const assignRoleStore = {
     setRoles(state, roles) {
       state.roles = roles;
     },
-    setName(state, e) {
-      state.category.type_product = e.target.value;
+    setRoleName(state, e) {
+      state.user.role_name = e.target.value;
     },
-    setDescribe(state, e) {
-      state.category.descripe = e.target.value;
-    },
-    removeAnItem(state, id) {
-      state.categories = state.categories.filter(item => item.id !== id);
+    setUser(state, user) {
+      state.user.id = user.id;
+      state.user.name = user.name;
+      state.user.email = user.email;
+      state.user.role_name[0] = user.roles[0].name;
     },
   },
   actions: {
@@ -34,13 +39,19 @@ const assignRoleStore = {
       const result = await normalApi.get(`${RESOURCE_ASSIGN_ROLE}/${id}`);
       commit('setCategory', result.data[0]);
     },
-    async update({ state }, id) {
+    async update({ state }) {
       const result = await normalApi.put(
-        `${RESOURCE_ASSIGN_ROLE}/${id}`,
-        state.category,
+        `${RESOURCE_ASSIGN_ROLE}/${state.user.id}`,
+        state.user,
       );
-      router.go();
+      router.push('/assign-role-index');
       return result.data;
+    },
+    async edit({ commit, state }, id) {
+      const result = await normalApi.get(`${RESOURCE_ASSIGN_ROLE}/${id}/edit`);
+      commit('setRoles', result.data.roles);
+      commit('setUser', result.data.user);
+      console.log(state);
     },
     async destroy({ commit }, id) {
       const result = await normalApi.delete(`${RESOURCE_ASSIGN_ROLE}/${id}`);
@@ -50,7 +61,7 @@ const assignRoleStore = {
     async store({ state }) {
       const result = await normalApi.post(
         `${RESOURCE_ASSIGN_ROLE}`,
-        state.category,
+        state.user,
       );
       router.go();
       return result.data;

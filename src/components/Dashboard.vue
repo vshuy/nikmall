@@ -42,6 +42,15 @@
                                <li class="nav-item">                                  
                                   <router-link class="nav-link active" to="/uploadpost">Upload post</router-link>
                               </li>
+                              <li class="nav-item">                                  
+                                  <router-link class="nav-link active" to="/role-index">Role dashboard</router-link>
+                              </li>
+                               <li class="nav-item">                                  
+                                  <router-link class="nav-link active" to="/permission-index">Permission dashboard</router-link>
+                              </li>
+                              <li class="nav-item">                                  
+                                  <router-link class="nav-link active" to="/assign-role-index">Assign role dashboard</router-link>
+                              </li>
                               <li class="nav-item">
                                   <a class="nav-link active" v-on:click="change('UploadCategory')">Upload category</a>
                               </li>
