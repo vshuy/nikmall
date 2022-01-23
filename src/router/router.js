@@ -1,7 +1,7 @@
 import VueRouter from 'vue-router';
 import Vue from 'vue';
 import Home from '../views/Home.vue';
-import CartDetail from '../views/CartDetail.vue';
+import Checkout from '../components/Checkout.vue';
 import ListOrdered from '../views/historyorder/ListOrdered.vue';
 import Dashboard from '../components/Dashboard.vue';
 import paypal from '../views/Paypal.vue';
@@ -37,7 +37,7 @@ export default new VueRouter({
     {
       path: '/detailcart',
       name: 'detailcart',
-      component: CartDetail,
+      component: Checkout,
       beforeEnter: (to, from, next) => {
         const isLogin = localStorage.status_login;
         if (isLogin === 'true') {

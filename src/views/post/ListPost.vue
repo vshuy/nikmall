@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
+      <Header></Header>
       <h4>List posts</h4>
       <div v-for="(item, index) in posts" :key="index" class="col-md-12 mt-3">
         <router-link :to="{ name: 'detailpost', params: { id: item.id } }">
@@ -30,12 +31,16 @@
 </template>
 
 <script>
+import Header from '../../components/Header.vue';
 import { mapState, mapActions } from 'vuex';
 export default {
   name: 'ListPost',
   metaInfo: {
     title: 'List Post page',
     script: [],
+  },
+   components: {
+    Header,
   },
   computed: {
     ...mapState('post', {

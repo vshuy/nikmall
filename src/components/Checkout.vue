@@ -12,7 +12,7 @@
         <div class="row">
           <div class="col-sm-3">
             <img
-              v-bind:src="item.urlimg"
+              v-bind:src="item.link_thumbnail"
               alt="n"
               width="100px"
               height="100px"
@@ -53,12 +53,12 @@
 </template>
 <script>
 const axios = require('axios');
-import Footer from '../components/Footer.vue';
-import Header from '../components/Header.vue';
-import Paypal from './Paypal.vue';
-import { RESOURCE_BILL } from './../api/api';
+import Footer from './Footer.vue';
+import Header from './Header.vue';
+import Paypal from '../views/Paypal.vue';
+import { RESOURCE_BILL } from '../api/api';
 export default {
-  name: 'CartDetail',
+  name: 'Checkout',
   data() {
     return {
       carts: [],

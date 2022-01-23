@@ -1,5 +1,22 @@
 <template>
   <div class="col-sm-12 rounded-3">
+    <div class="navbar bg-light">
+      <div>
+        <i class="fas fa-home" style="color: red"></i>
+        <span class="ml-1 robotofont">22 Tan Thinh, Thai Nguyen, TN 250000, VN</span>
+      </div>
+      <div>
+        <i class="fas fa-phone-square-alt" style="color: rgb(33, 226, 33)"></i>
+        <span> + 03 325 917 76</span>
+      </div>
+      <div>
+        <i
+          class="fab fa-facebook-messenger mr-2"
+          style="color: rgb(46, 46, 230)"
+        ></i>
+        <i class="fab fa-facebook-f" style="color: rgb(57, 47, 202)"></i>
+      </div>
+    </div>
     <nav
       class="navbar navbar-expand-lg navbar-light"
       style="background-color: #e1e1e1"
@@ -36,7 +53,9 @@
             >
           </li>
           <li class="nav-item">
-            <router-link to="/listpost" class="nav-link active">Posts</router-link>
+            <router-link to="/listpost" class="nav-link active"
+              >Posts</router-link
+            >
           </li>
           <li class="nav-item">
             <router-link to="/" class="nav-link active">About us</router-link>
@@ -107,9 +126,7 @@
             to="/dashboard"
             >Dashboard</router-link
           >
-          <router-link class="dropdown-item" to="/profile"
-            >Profile</router-link
-          >
+          <router-link class="dropdown-item" to="/profile">Profile</router-link>
           <a class="dropdown-item" v-on:click="logout">Logout</a>
         </div>
       </div>
@@ -126,7 +143,9 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <router-link class="dropdown-item" to="/login">Login</router-link>
-          <router-link class="dropdown-item" to="/register">Register</router-link>
+          <router-link class="dropdown-item" to="/register"
+            >Register</router-link
+          >
           <!-- <a class="dropdown-item" v-bind:href="url_register"> Register </a> -->
         </div>
       </div>
@@ -194,7 +213,10 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
+@import url('https://fonts.gstatic.com');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 .cart_icon {
   position: relative;
 }
@@ -218,5 +240,8 @@ export default {
 }
 dt:hover {
   background-color: rgb(58, 150, 180);
+}
+.robotofont {
+  font-family: 'Roboto', sans-serif;
 }
 </style>

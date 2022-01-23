@@ -1,20 +1,58 @@
 <template>
-  <div class="mt-1">
+  <div class="mt-0">
     <!-- Footer -->
     <footer class="text-center text-lg-start bg-light text-muted">
+      <section class="">
+        <!-- Facebook -->
+        <a
+          class="btn btn-outline-dark btn-floating m-1 rounded-circle"
+          href="#!"
+          role="button"
+          ><i class="fab fa-facebook-f"></i
+        ></a>
+
+        <!-- Twitter -->
+        <a
+          class="btn btn-outline-dark btn-floating m-1 rounded-circle"
+          href="#!"
+          role="button"
+          ><i class="fab fa-twitter"></i
+        ></a>
+
+        <!-- Google -->
+        <a
+          class="btn btn-outline-dark btn-floating m-1 rounded-circle"
+          href="#!"
+          role="button"
+          ><i class="fab fa-google"></i
+        ></a>
+
+        <!-- Instagram -->
+        <a
+          class="btn btn-outline-dark btn-floating m-1 rounded-circle"
+          href="#!"
+          role="button"
+          ><i class="fab fa-instagram"></i
+        ></a>
+
+        <!-- Linkedin -->
+        <a
+          class="btn btn-outline-dark btn-floating m-1 rounded-circle"
+          href="#!"
+          role="button"
+          ><i class="fab fa-linkedin-in"></i
+        ></a>
+
+      </section>
       <section>
-        <div class="container text-center text-md-start mt-5">
+        <div class="container text-center text-md-start mt-0">
           <!-- Grid row -->
           <div class="row mt-3">
             <!-- Grid column -->
             <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4 mt-3">
               <!-- Content -->
-              <h6 class="text-uppercase fw-bold mb-4">
-                NIK
-              </h6>
-              <p>
-                Here you can buy any products available from store
-              </p>
+              <h6 class="text-uppercase fw-bold mb-4">NIK</h6>
+              <p>Here you can buy any products available from store</p>
             </div>
             <!-- Grid column -->
 
