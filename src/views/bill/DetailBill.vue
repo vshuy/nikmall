@@ -12,7 +12,7 @@
       >
         <div class="row">
           <div class="col-sm-3">
-            <img v-bind:src="item.urlimg" alt="n" width="80px" height="80px" />
+            <img v-bind:src="item.link_thumbnail" alt="n" width="80px" height="80px" />
           </div>
           <div class="col-sm-9">
             <div style="display: inline-block; font-weight: 900">
@@ -27,8 +27,8 @@
   </div>
 </template>
 <script>
-import axios from 'axios';
 import { RESOURCE_BILL } from './../../api/api';
+import { normalApi } from '../../api/apiService';
 
 export default {
   name: 'DetailBill',
@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     async getDetailBill() {
-      const result = await axios.get(
+      const result = await normalApi.get(
         `${RESOURCE_BILL}/${this.$route.params.id}`,
         {
           user_id: localStorage.user_id,

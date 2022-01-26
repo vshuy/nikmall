@@ -5,7 +5,11 @@ const RESOURCE_CATEGORY = `${BASE_URL}/api/category`;
 const RESOURCE_BRAND = `${BASE_URL}/api/brands`;
 const RESOURCE_RAM = `${BASE_URL}/api/rams`;
 const RESOURCE_MEMORY = `${BASE_URL}/api/memories`;
+const RESOURCE_DISPLAY = `${BASE_URL}/api/displays`;
+const RESOURCE_BATTERY = `${BASE_URL}/api/batteries`;
+const RESOURCE_OS = `${BASE_URL}/api/os`;
 const RESOURCE_BILL = `${BASE_URL}/api/bill`;
+const RESOURCE_BILL_STATUS = `${BASE_URL}/api/bill-status`;
 const RESOURCE_COMMENT = `${BASE_URL}/api/comment`;
 const RESOURCE_COMMENT_POST = `${BASE_URL}/api/comment-post`;
 const RESOURCE_USER = `${BASE_URL}/api/user`;
@@ -18,6 +22,7 @@ export {
   BASE_URL,
   RESOURCE_SLIDE,
   RESOURCE_BILL,
+  RESOURCE_BILL_STATUS,
   RESOURCE_PRODUCT,
   RESOURCE_CATEGORY,
   RESOURCE_BRAND,
@@ -31,4 +36,7 @@ export {
   RESOURCE_PERMISSION,
   RESOURCE_ROLE,
   RESOURCE_ASSIGN_ROLE,
+  RESOURCE_BATTERY,
+  RESOURCE_OS,
+  RESOURCE_DISPLAY,
 };

@@ -8,6 +8,9 @@
         <h6>Brand {{ product.brand.name }}</h6>
         <h6>Storage {{ product.memory.size }}</h6>
         <h6>Ram {{ product.ram.size }}</h6>
+        <h6>Display {{ product.display.size }}</h6>
+        <h6>Battery {{ product.battery.size }}</h6>
+        <h6>Operating system {{ product.opera.name }}</h6>
         <div>
           <button type="button" class="btn btn-primary mr-3">
             Buy it now <i class="fas fa-shopping-cart"></i>

@@ -23,25 +23,26 @@
             <i
               class="fas fa-times"
               style="color: red; position: absolute; right: 20px; top: 2px"
-              v-on:click="deleteItemByItem(item)"
+              v-on:click="removeAnItem(item.id)"
             ></i>
             <div style="display: inline-block; font-weight: 900">
               {{ item.name }}
             </div>
             <p>{{ item.cost }}$</p>
+            <p>{{ item.quantity }} items</p>
           </div>
         </div>
       </div>
       <div class="col-md-6 mt-4 text-center">
         <span calss="text-center" style="color: blue"
-          >{{ carts.length }} Item, $ {{ sum }}
+          >{{ carts.length }} Item, $ {{ total_state }}
         </span>
       </div>
       <div class="col-md-6 text-center mt-3">
         <button
           type="button"
           class="btn btn-success mr-3"
-          v-on:click="payNow()"
+          v-on:click="store()"
         >
           payNow <i class="fab fa-cc-paypal"></i>
         </button>
@@ -52,68 +53,36 @@
   </div>
 </template>
 <script>
-const axios = require('axios');
 import Footer from './Footer.vue';
 import Header from './Header.vue';
 import Paypal from '../views/Paypal.vue';
-import { RESOURCE_BILL } from '../api/api';
+import { mapActions, mapGetters, mapState, mapMutations } from 'vuex';
 export default {
   name: 'Checkout',
-  data() {
-    return {
-      carts: [],
-      sum: 0.0,
-    };
-  },
   components: {
     Header,
     Footer,
     Paypal,
   },
   mounted() {
-    this.carts = JSON.parse(localStorage.getItem('carts'));
-    this.callSum();
+    this.index();
   },
   methods: {
-    deleteItemByItem(item_in) {
-      this.carts = this.carts.filter((item) => item !== item_in);
-      this.callSum();
-    },
-    callSum() {
-      this.sum = this.carts.reduce(
-        (previousValue, currentValue) => previousValue + currentValue.cost,
-        0.0,
-      );
-    },
-    async uploadCartBill() {
-      const list_id_products = this.carts.map((item) => {
-        const tmp = {
-          bill_id: '',
-          product_id: item.id,
-          amounts: 1,
-        };
-        return tmp;
-      });
-      const result = await axios.post(
-        `${RESOURCE_BILL}`,
-        {
-          user_id: this.$cookies.get('user_id'),
-          total: this.sum,
-          id_products: list_id_products,
-        },
-        {
-          headers: {
-            Authorization: this.$cookies.get('token'),
-          },
-        },
-      );
-      return result.data;
-    },
-    async payNow() {
-      const result = await this.uploadCartBill();
-      console.log('Info log bill: ~ result', result);
-      this.$router.push('listorder');
-    },
+    ...mapMutations('checkout', {
+      removeAnItem: 'removeAnItem',
+    }),
+    ...mapActions('checkout', {
+      store: 'store',
+      index: 'index',
+    }),
+  },
+  computed: {
+    ...mapState('checkout', {
+      carts: (state) => state.carts,
+    }),
+    ...mapGetters('checkout', {
+      total_state: 'total_state',
+    }),
   },
 };
 </script>

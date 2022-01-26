@@ -12,6 +12,9 @@ import commentStore from './commentStore';
 import permissionStore from './permissionStore';
 import commentPostStore from './commentPostStore';
 import assignRoleStore from './assignRoleStore';
+import checkoutStore from './checkoutStore';
+import historyOrderStore from './historyOrderStore';
+import billStore from './billStore';
 
 Vue.use(Vuex);
 
@@ -23,12 +26,15 @@ const store = new Vuex.Store({
     category: categoryStore,
     postCategory: postCategoryStore,
     post: postStore,
+    bill: billStore,
     role: roleStore,
     slide: slideStore,
     comment: commentStore,
     commentPost: commentPostStore,
     permission: permissionStore,
     assign_role: assignRoleStore,
+    checkout: checkoutStore,
+    historyOrder: historyOrderStore,
   },
 });
 export { store as default };

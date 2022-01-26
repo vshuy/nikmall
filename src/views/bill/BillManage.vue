@@ -23,33 +23,19 @@
                 >Chi tiết hóa đơn này
               </router-link>
             </td>
-            <td v-if="item.paid === 1">
-              <input
-                class="form-check-input"
-                v-on:click="unCheckPay(item.id)"
-                type="checkbox"
-                value="1"
-                id="flexCheckDefault"
-                checked
-              />
-              <label class="form-check-label" for="flexCheckDefault"
-                >đã thanh toán</label
-              >
-            </td>
-            <td v-else>
-              <input
-                class="form-check-input"
-                v-on:click="checkPay(item.id)"
-                type="checkbox"
-                value="0"
-                id="flexCheckDefault"
-              />
-              <label class="form-check-label" for="flexCheckDefault"
-                >đã thanh toán</label
-              >
+            <td>
+              <select :value="item.paid_status">
+                <option
+                  v-for="(option, index) in bill_status"
+                  v-bind:value="option.id"
+                  :key="index"
+                >
+                  {{ option.status }}
+                </option>
+              </select>
             </td>
             <td>
-              <u v-on:click="deleteBillById(item.id)">Delete this bill</u>
+              <u v-on:click="destroy(item.id)">Delete this bill</u>
             </td>
           </tr>
         </tbody>
@@ -58,72 +44,29 @@
   </main>
 </template>
 <script>
-const axios = require('axios');
-import { RESOURCE_BILL } from './../../api/api';
-
+import { mapActions, mapState } from 'vuex';
 export default {
   name: 'BillManage',
-  data() {
-    return {
-      bills: [],
-    };
-  },
   metaInfo: {
     title: 'Bills overview',
     script: [],
   },
   methods: {
-    async getListBill() {
-      const result = await axios.get(`${RESOURCE_BILL}`, {
-        headers: {
-          Authorization: this.$cookies.get('token'),
-        },
-      });
-      return result.data;
-    },
-    async deleteBillById(id) {
-      const result = await axios.delete(`${RESOURCE_BILL}/${id}`, {
-        headers: {
-          Authorization: this.$cookies.get('token'),
-        },
-      });
-      this.bills = this.bills.filter((item) => item.id !== id);
-      return result.data;
-    },
-    async checkPay(id_item) {
-      const result = await axios.put(
-        `${RESOURCE_BILL}/${id_item}`,
-        {
-          check_value: 1,
-        },
-        {
-          headers: {
-            Authorization: this.$cookies.get('token'),
-          },
-        },
-      );
-      return result.data;
-    },
-    async unCheckPay(id_item) {
-      const result = await axios.put(
-        `${RESOURCE_BILL}/${id_item}`,
-        {
-          check_value: 0,
-        },
-        {
-          headers: {
-            Authorization: this.$cookies.get('token'),
-          },
-        },
-      );
-      return result.data;
-    },
-    async getData() {
-      this.bills = await this.getListBill();
-    },
+    ...mapActions('bill', {
+      index: 'index',
+      initStore: 'initStore',
+      destroy: 'destroy',
+    }),
+  },
+  computed: {
+    ...mapState('bill', {
+      bills: (state) => state.bills,
+      bill_status: (state) => state.bill_status,
+    }),
   },
   mounted() {
-    this.getData();
+    this.index();
+    this.initStore();
   },
 };
 </script>

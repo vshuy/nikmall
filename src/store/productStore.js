@@ -7,6 +7,9 @@ import {
   RESOURCE_BRAND,
   RESOURCE_RAM,
   RESOURCE_MEMORY,
+  RESOURCE_BATTERY,
+  RESOURCE_DISPLAY,
+  RESOURCE_OS,
 } from './../api/api.js';
 import { normalApi, formDataApi } from '../api/apiService.js';
 const productStore = {
@@ -19,15 +22,22 @@ const productStore = {
       brand_id: '',
       memory_id: '',
       ram_id: '',
+      display_id: '',
+      battery_id: '',
+      operating_system_id: '',
       link_thumbnail: '',
       cost: '',
       old_cost: '',
+      quantity: 0,
       content_post: '',
     },
     categories: [],
     brands: [],
     memories: [],
     rams: [],
+    batteries: [],
+    display_sizes: [],
+    operating_systems: [],
     products: {},
     file_img_to_upload: '',
   },
@@ -44,6 +54,15 @@ const productStore = {
     setRamId(state, e) {
       state.product.ram_id = e.target.value;
     },
+    setBatteryId(state, e) {
+      state.product.battery_id = e.target.value;
+    },
+    setDisplayId(state, e) {
+      state.product.display_id = e.target.value;
+    },
+    setOperatingSystemId(state, e) {
+      state.product.operating_system_id = e.target.value;
+    },
     setName(state, e) {
       state.product.name = e.target.value;
     },
@@ -55,6 +74,9 @@ const productStore = {
     },
     setOldCost(state, e) {
       state.product.old_cost = e.target.value;
+    },
+    setQuantity(state, e) {
+      state.product.quantity = e.target.value;
     },
     setProduct(state, product) {
       state.product = product;
@@ -73,6 +95,15 @@ const productStore = {
     },
     setMemories(state, memories) {
       state.memories = memories;
+    },
+    setBatteries(state, batteries) {
+      state.batteries = batteries;
+    },
+    setDisplays(state, displays) {
+      state.display_sizes = displays;
+    },
+    setOperaSystems(state, operaSystems) {
+      state.operating_systems = operaSystems;
     },
     setFileImg(state, event) {
       state.file_img_to_upload = event.target.files[0];
@@ -126,10 +157,16 @@ const productStore = {
       const resultRam = await normalApi.get(`${RESOURCE_RAM}`);
       const resultBrand = await normalApi.get(`${RESOURCE_BRAND}`);
       const resultMemory = await normalApi.get(`${RESOURCE_MEMORY}`);
+      const resultBattery = await normalApi.get(`${RESOURCE_BATTERY}`);
+      const resultDisplay = await normalApi.get(`${RESOURCE_DISPLAY}`);
+      const resultOs = await normalApi.get(`${RESOURCE_OS}`);
       commit('setCategories', resultCategory.data);
       commit('setBrands', resultBrand.data);
       commit('setMemories', resultMemory.data);
       commit('setRams', resultRam.data);
+      commit('setBatteries', resultBattery.data);
+      commit('setDisplays', resultDisplay.data);
+      commit('setOperaSystems', resultOs.data);
     },
   },
 };
