@@ -27,11 +27,11 @@
   </div>
 </template>
 <script>
-import { RESOURCE_BILL } from './../../api/api';
+import { RESOURCE_BILL } from '../../api/api';
 import { normalApi } from '../../api/apiService';
 
 export default {
-  name: 'DetailBill',
+  name: 'BillShow',
   data() {
     return {
       bill_data: {},

@@ -54,7 +54,7 @@
 import Header from '../../components/Header.vue';
 import { mapState, mapActions } from 'vuex';
 export default {
-  name: 'ListOrder',
+  name: 'OrderIndex',
   metaInfo: {
     title: 'History order',
     script: [],

@@ -1,8 +1,8 @@
-import UploadSlide from '../views/slide/UploadSlide.vue';
+import SlideCreate from '../views/slide/SlideCreate.vue';
 export const slideRouter = [
   {
     path: '/uploadslide',
     name: 'uploadslide',
-    component: UploadSlide,
+    component: SlideCreate,
   },
 ];

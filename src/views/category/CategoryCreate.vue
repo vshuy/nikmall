@@ -1,16 +1,16 @@
 <template>
   <div class="container">
-    <h1>Upload post category page</h1>
+    <h1>Upload category page</h1>
     <input
       type="text"
-      :value="category.name"
+      :value="category.type_product"
       @input="setName"
       class="form-control form"
       placeholder="Enter category name here"
     />
     <input
       type="text"
-      :value="category.describe"
+      :value="category.descripe"
       @input="setDescribe"
       class="form-control form"
       placeholder="Enter desctibe here"
@@ -27,18 +27,18 @@
 import { mapActions, mapState, mapMutations } from 'vuex';
 
 export default {
-  name: 'UploadCategory',
+  name: 'CategoryCreate',
   methods: {
-    ...mapMutations('postCategory', {
+    ...mapMutations('category', {
       setName: 'setName',
       setDescribe: 'setDescribe',
     }),
-    ...mapActions('postCategory', {
+    ...mapActions('category', {
       store: 'store',
     }),
   },
   computed: {
-    ...mapState('postCategory', {
+    ...mapState('category', {
       category: (state) => state.category,
     }),
   },

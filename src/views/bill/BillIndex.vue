@@ -46,7 +46,7 @@
 <script>
 import { mapActions, mapState } from 'vuex';
 export default {
-  name: 'BillManage',
+  name: 'BillIndex',
   metaInfo: {
     title: 'Bills overview',
     script: [],

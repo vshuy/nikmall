@@ -1,21 +1,21 @@
-import UpdateProduct from '../views/product/UpdateProduct.vue';
-import ProductDetail from '../views/product/ProductDetail.vue';
-import UploadProduct from '../views/product/UploadProduct.vue';
+import ProductEdit from '../views/product/ProductEdit.vue';
+import ProductShow from '../views/product/ProductShow.vue';
+import ProductCreate from '../views/product/ProductCreate.vue';
 
 export const productRouter = [
   {
     path: '/uploadproduct',
     name: 'uploadproduct',
-    component: UploadProduct,
+    component: ProductCreate,
   },
   {
     path: '/detailproduct/:id',
     name: 'detailproduct',
-    component: ProductDetail,
+    component: ProductShow,
   },
   {
     path: '/updateproduct',
     name: 'updateproduct',
-    component: UpdateProduct,
+    component: ProductEdit,
   },
 ];

@@ -10,7 +10,7 @@
 import { mapActions, mapState, mapMutations } from 'vuex';
 
 export default {
-  name: 'EditCategory',
+  name: 'PostCategoryEdit',
   methods: {
     ...mapMutations('postCategory', {
       setName: 'setName',

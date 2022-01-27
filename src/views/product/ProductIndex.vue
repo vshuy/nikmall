@@ -37,7 +37,7 @@
 import { mapState, mapActions } from 'vuex';
 
 export default {
-  name: 'ProductManage',
+  name: 'ProductIndex',
   metaInfo: {
     title: 'products overview',
     script: [],

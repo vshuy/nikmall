@@ -34,7 +34,7 @@
 import Header from '../../components/Header.vue';
 import { mapState, mapActions } from 'vuex';
 export default {
-  name: 'ListPost',
+  name: 'PostIndex',
   metaInfo: {
     title: 'List Post page',
     script: [],

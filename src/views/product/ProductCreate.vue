@@ -139,7 +139,7 @@
 import { mapActions, mapMutations, mapState } from 'vuex';
 
 export default {
-  name: 'UploadProduct',
+  name: 'ProductCreate',
   data() {
     return {
       editorConfig: {

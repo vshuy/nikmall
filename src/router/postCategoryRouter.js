@@ -1,14 +1,14 @@
-import UploadCategory from '../views/postcategory/UploadCategory.vue';
-import EditCategory from '../views/postcategory/EditCategory.vue';
+import PostCategoryCreate from '../views/postcategory/PostCategoryCreate.vue';
+import PostCategoryEdit from '../views/postcategory/PostCategoryEdit.vue';
 export const postCategoryRouter = [
   {
     path: '/upload_post_category',
     name: 'upload_post_category',
-    component: UploadCategory,
+    component: PostCategoryCreate,
   },
   {
     path: '/update_post_category',
     name: 'update_post_category',
-    component: EditCategory,
+    component: PostCategoryEdit,
   },
 ];

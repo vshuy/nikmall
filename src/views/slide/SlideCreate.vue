@@ -27,7 +27,7 @@
 import { mapActions, mapState, mapMutations } from 'vuex';
 
 export default {
-  name: 'UploadSlide',
+  name: 'SlideCreate',
   methods: {
     ...mapMutations('slide', {
       setName: 'setName',

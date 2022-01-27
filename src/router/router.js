@@ -2,7 +2,7 @@ import VueRouter from 'vue-router';
 import Vue from 'vue';
 import Home from '../views/Home.vue';
 import Checkout from '../components/Checkout.vue';
-import ListOrdered from '../views/historyorder/ListOrdered.vue';
+import OrderIndex from '../views/historyOrder/OrderIndex.vue';
 import Dashboard from '../components/Dashboard.vue';
 import paypal from '../views/Paypal.vue';
 import { productRouter } from './productRouter.js';
@@ -55,7 +55,7 @@ export default new VueRouter({
     {
       path: '/listorder',
       name: 'listorder',
-      component: ListOrdered,
+      component: OrderIndex,
       beforeEnter: (to, from, next) => {
         const isLogin = localStorage.status_login;
         if (isLogin === 'true') {

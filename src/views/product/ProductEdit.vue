@@ -47,7 +47,7 @@
 <script>
 import { mapState, mapActions, mapMutations } from 'vuex';
 export default {
-  name: 'UpdateProduct',
+  name: 'ProductEdit',
   data() {
     return {
       editorConfig: {

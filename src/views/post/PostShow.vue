@@ -20,7 +20,7 @@ import Header from '../../components/Header.vue';
 import CommentPost from '../../components/CommentPost.vue';
 import { mapState, mapActions } from 'vuex';
 export default {
-  name: 'PostDetail',
+  name: 'PostShow',
   components: {
     Header,
     CommentPost,

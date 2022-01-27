@@ -1,8 +1,8 @@
-import DetailBill from '../views/bill/DetailBill.vue';
+import BillShow from '../views/bill/BillShow.vue';
 export const billRouter = [
   {
     path: '/detailbill/:id',
     name: 'detailbill',
-    component: DetailBill,
+    component: BillShow,
   },
 ];

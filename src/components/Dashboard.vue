@@ -19,22 +19,22 @@
                       <div class="position-sticky pt-3">
                           <ul class="nav flex-column">
                                <li class="nav-item">                                  
-                                  <a class="nav-link active" v-on:click="change('ProductManage')">Dashboard product</a>
+                                  <a class="nav-link active" v-on:click="change('ProductIndex')">Dashboard product</a>
                               </li>
                               <li class="nav-item">
-                                  <a class="nav-link active" v-on:click="change('BillManage')">Dashboard bill</a>
+                                  <a class="nav-link active" v-on:click="change('BillIndex')">Dashboard bill</a>
                               </li>
                                <li class="nav-item">                                  
-                                  <a class="nav-link active" v-on:click="change('SlideManage')">Dashboard slide</a>
+                                  <a class="nav-link active" v-on:click="change('SlideIndex')">Dashboard slide</a>
                               </li>
                               <li class="nav-item">
-                                  <a class="nav-link active" v-on:click="change('CategoryManage')">Dashboard Category</a>
+                                  <a class="nav-link active" v-on:click="change('CategoryIndex')">Dashboard Category</a>
                               </li>
                                <li class="nav-item">
-                                  <a class="nav-link active" v-on:click="change('PostCategoryManage')">Dashboard Post Category</a>
+                                  <a class="nav-link active" v-on:click="change('PostCategoryIndex')">Dashboard Post Category</a>
                               </li>
                               <li class="nav-item">
-                                  <a class="nav-link active" v-on:click="change('UploadSlide')">Upload slide</a>
+                                  <a class="nav-link active" v-on:click="change('SlideCreate')">Upload slide</a>
                               </li>
                                <li class="nav-item">                                  
                                   <router-link class="nav-link active" to="/uploadproduct">Upload product</router-link>
@@ -52,10 +52,10 @@
                                   <router-link class="nav-link active" to="/assign-role-index">Assign role dashboard</router-link>
                               </li>
                               <li class="nav-item">
-                                  <a class="nav-link active" v-on:click="change('UploadCategory')">Upload category</a>
+                                  <a class="nav-link active" v-on:click="change('CategoryCreate')">Upload category</a>
                               </li>
                                <li class="nav-item">
-                                  <a class="nav-link active" v-on:click="change('UploadPostCategory')">Upload post category</a>
+                                  <a class="nav-link active" v-on:click="change('PostCategoryCreate')">Upload post category</a>
                               </li>
                           </ul>
                       </div>
@@ -66,14 +66,14 @@
   </div>
 </template>
 <script>
-import ProductManage from '../views/product/ProductManage.vue';
-import SlideManage from '../views/slide/SlideMange.vue';
-import BillManage from '../views/bill/BillManage.vue';
-import CategoryManage from '../views/category/CategoryManage.vue';
-import PostCategoryManage from '../views/postcategory/CategoryManage.vue';
-import UploadPostCategory from '../views/postcategory/UploadCategory.vue';
-import UploadCategory from '../views/category/UploadCategory.vue';
-import UploadSlide from '../views/slide/UploadSlide.vue';
+import ProductIndex from '../views/product/ProductIndex.vue';
+import SlideIndex from '../views/slide/SlideIndex.vue';
+import BillIndex from '../views/bill/BillIndex.vue';
+import CategoryIndex from '../views/category/CategoryIndex.vue';
+import PostCategoryIndex from '../views/postcategory/PostCategoryIndex.vue';
+import PostCategoryCreate from '../views/postcategory/PostCategoryCreate.vue';
+import CategoryCreate from '../views/category/CategoryCreate.vue';
+import SlideCreate from '../views/slide/SlideCreate.vue';
 export default {
   name: 'Dashboard',
   data() {
@@ -87,14 +87,14 @@ export default {
     },
   },
   components: {
-    ProductManage,
-    SlideManage,
-    BillManage,
-    CategoryManage,
-    PostCategoryManage,
-    UploadCategory,
-    UploadPostCategory,
-    UploadSlide,
+    ProductIndex,
+    SlideIndex,
+    BillIndex,
+    CategoryIndex,
+    PostCategoryIndex,
+    CategoryCreate,
+    PostCategoryCreate,
+    SlideCreate,
   },
 };
 </script>

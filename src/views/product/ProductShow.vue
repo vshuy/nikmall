@@ -31,7 +31,7 @@ import Comment from '../../components/Comment.vue';
 import { mapActions, mapState } from 'vuex';
 
 export default {
-  name: 'ProductDetail',
+  name: 'ProductShow',
   components: {
     Header,
     Comment,

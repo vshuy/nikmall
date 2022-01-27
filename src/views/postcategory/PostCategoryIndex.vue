@@ -7,7 +7,7 @@
           <tr>
             <th>Id</th>
             <th>Name</th>
-            <th>Describe</th>
+            <th>Descripe</th>
             <th>Edit</th>
             <th>Xóa danh mục</th>
           </tr>
@@ -15,11 +15,11 @@
         <tbody>
           <tr v-for="(item, index) in categories" :key="index">
             <td>{{ item.id }}</td>
-            <td>{{ item.type_product }}</td>
-            <td>{{ item.descripe }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.describe }}</td>
             <td>
               <router-link
-                :to="{ name: 'updatecategory', params: { id: item.id } }"
+                :to="{ name: 'update_post_category', params: { id: item.id } }"
               >
                 Edit this category</router-link
               >
@@ -36,19 +36,19 @@
 <script>
 import { mapActions, mapState } from 'vuex';
 export default {
-  name: 'CategoryManage',
+  name: 'PostCategoryIndex',
   metaInfo: {
     title: 'Categories overview',
     script: [],
   },
   methods: {
-    ...mapActions('category', {
+    ...mapActions('postCategory', {
       index: 'index',
       destroy: 'destroy',
     }),
   },
   computed: {
-    ...mapState('category', {
+    ...mapState('postCategory', {
       categories: (state) => state.categories,
     }),
   },

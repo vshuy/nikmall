@@ -49,7 +49,7 @@
 import { mapMutations, mapActions, mapState } from 'vuex';
 
 export default {
-  name: 'UploadPost',
+  name: 'PostCreate',
   metaInfo: {
     title: 'UploadPost Page',
     script: [],
