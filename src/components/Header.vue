@@ -3,7 +3,9 @@
     <div class="navbar bg-light">
       <div>
         <i class="fas fa-home" style="color: red"></i>
-        <span class="ml-1 robotofont">22 Tan Thinh, Thai Nguyen, TN 250000, VN</span>
+        <span class="ml-1 robotofont"
+          >22 Tan Thinh, Thai Nguyen, TN 250000, VN</span
+        >
       </div>
       <div>
         <i class="fas fa-phone-square-alt" style="color: rgb(33, 226, 33)"></i>
@@ -48,7 +50,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <router-link to="/listorder" class="nav-link active"
+            <router-link to="/history-order-index" class="nav-link active"
               >Order history</router-link
             >
           </li>

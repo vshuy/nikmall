@@ -36,7 +36,7 @@
               </th>
               <th>
                 <router-link
-                  :to="{ name: 'detailbill', params: { id: item.id } }"
+                  :to="{ name: 'history-order-show', params: { id: item.id } }"
                   >Chi tiết hóa đơn này
                 </router-link>
               </th>

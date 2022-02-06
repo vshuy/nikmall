@@ -1,4 +1,5 @@
 const axios = require('axios');
+import Vue from 'vue';
 import VueCookies from 'vue-cookies';
 import router from './../router/router';
 import { RESOURCE_USER } from './../api/api.js';
@@ -52,6 +53,13 @@ const userStore = {
       } else {
         state.information_process = 'Login failse';
         state.errors = result.data.error;
+        Vue.notify({
+          group: 'notify-group',
+          title: 'Login messenger',
+          text: 'Login fail',
+          type: 'error',
+          closeOnClick: true,
+        })
         AppCookie.destroyCookie();
       }
     },

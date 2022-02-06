@@ -78,7 +78,7 @@ export default {
   name: 'Dashboard',
   data() {
     return {
-      currentComponent: 'ProductManage',
+      currentComponent: 'ProductIndex',
     };
   },
   methods: {

@@ -12,6 +12,7 @@ import {
   RESOURCE_OS,
 } from './../api/api.js';
 import { normalApi, formDataApi } from '../api/apiService.js';
+import Vue from 'vue';
 const productStore = {
   namespaced: true,
   state: {
@@ -144,7 +145,12 @@ const productStore = {
       form.append('file_img_product', state.file_img_to_upload);
       form.append('product_data', JSON.stringify(state.product));
       const result = await formDataApi.post(`${RESOURCE_PRODUCT}`, form);
-      router.go();
+      Vue.notify({
+        group: 'notify-group',
+        title: 'Upload Message',
+        text: 'Upload successful an product',
+      })
+      // router.go();
       return result.data;
     },
     async destroy({ commit }, id) {

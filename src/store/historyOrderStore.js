@@ -3,6 +3,7 @@ import { RESOURCE_BILL } from './../api/api.js';
 const historyOrderStore = {
   namespaced: true,
   state: {
+    bill: {},
     bills: [],
   },
   mutations: {

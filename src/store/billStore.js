@@ -4,12 +4,19 @@ import { RESOURCE_BILL, RESOURCE_BILL_STATUS } from './../api/api.js';
 const billStore = {
   namespaced: true,
   state: {
+    bill: [],
     bills: [],
     bill_status: [],
   },
   mutations: {
+    setBill(state, bill) {
+      state.bill = bill;
+    },
     setBills(state, bills) {
       state.bills = bills;
+    },
+    setBillStatusForAnBill(state, e) {
+      state.bill.bill.paid_status = e.target.value;
     },
     setBillStatus(state, bill_status) {
       state.bill_status = bill_status;
@@ -25,30 +32,20 @@ const billStore = {
     },
     async show({ commit }, id) {
       const result = await normalApi.get(`${RESOURCE_BILL}/${id}`);
-      commit('setCategory', result.data[0]);
+      commit('setBill', result.data);
     },
-    async update({ state }, id) {
+    async update({ state }) {
       const result = await normalApi.put(
-        `${RESOURCE_BILL}/${id}`,
-        state.category,
+        `${RESOURCE_BILL}/${state.bill.bill.id}`,
+        state.bill.bill,
       );
-      router.go();
-      return result.data;
-    },
-    async destroy({ commit }, id) {
-      const result = await normalApi.delete(`${RESOURCE_BILL}/${id}`);
-      commit('removeAnItem', id);
-      return result.data;
-    },
-    async store({ state }) {
-      const result = await normalApi.post(`${RESOURCE_BILL}`, state.category);
       router.go();
       return result.data;
     },
     async initStore({ commit }) {
       const result = await normalApi.get(`${RESOURCE_BILL_STATUS}`);
       commit('setBillStatus', result.data);
-      console.log('Log ~ initStore ~ result.data', result.data);
+      // console.log('Log ~ initStore ~ result.data', result.data);
     },
   },
 };

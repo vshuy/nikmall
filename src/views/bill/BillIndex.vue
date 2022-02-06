@@ -9,6 +9,7 @@
             <th>Customer</th>
             <th>Total</th>
             <th>Detail bill</th>
+            <th>Edit this bill</th>
             <th>Pay status</th>
             <th>Delete bill</th>
           </tr>
@@ -19,20 +20,14 @@
             <td>{{ item.name }}</td>
             <td>{{ item.total }}</td>
             <td>
-              <router-link :to="{ name: 'detailbill', params: { id: item.id } }"
+              <router-link :to="{ name: 'bill-show', params: { id: item.id } }"
                 >Chi tiết hóa đơn này
               </router-link>
             </td>
             <td>
-              <select :value="item.paid_status">
-                <option
-                  v-for="(option, index) in bill_status"
-                  v-bind:value="option.id"
-                  :key="index"
-                >
-                  {{ option.status }}
-                </option>
-              </select>
+              <router-link :to="{ name: 'bill-edit', params: { id: item.id } }"
+                >Chỉnh sửa hóa đơn này
+              </router-link>
             </td>
             <td>
               <u v-on:click="destroy(item.id)">Delete this bill</u>
@@ -54,19 +49,16 @@ export default {
   methods: {
     ...mapActions('bill', {
       index: 'index',
-      initStore: 'initStore',
       destroy: 'destroy',
     }),
   },
   computed: {
     ...mapState('bill', {
       bills: (state) => state.bills,
-      bill_status: (state) => state.bill_status,
     }),
   },
   mounted() {
     this.index();
-    this.initStore();
   },
 };
 </script>

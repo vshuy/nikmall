@@ -3,6 +3,7 @@ import VueCookies from 'vue-cookies';
 import CKEditor from 'ckeditor4-vue';
 import EasySlider from 'vue-easy-slider';
 import Meta from 'vue-meta';
+import Notifications from 'vue-notification';
 
 import App from './App.vue';
 import router from './router/router';
@@ -12,6 +13,7 @@ Vue.config.productionTip = false;
 Vue.use(VueCookies);
 Vue.use(CKEditor);
 Vue.use(EasySlider);
+Vue.use(Notifications);
 Vue.use(Meta);
 
 new Vue({

@@ -2,7 +2,6 @@ import VueRouter from 'vue-router';
 import Vue from 'vue';
 import Home from '../views/Home.vue';
 import Checkout from '../components/Checkout.vue';
-import OrderIndex from '../views/historyOrder/OrderIndex.vue';
 import Dashboard from '../components/Dashboard.vue';
 import paypal from '../views/Paypal.vue';
 import { productRouter } from './productRouter.js';
@@ -15,6 +14,7 @@ import { postRouter } from './postRouter';
 import { roleRouter } from './roleRouter';
 import { permissionRouter } from './permissionRouter';
 import { assignRoleRouter } from './assignRoleRouter';
+import { historyOrderRouter } from './historyOrderRouter';
 Vue.use(VueRouter);
 export default new VueRouter({
   // mode: 'history',
@@ -29,6 +29,7 @@ export default new VueRouter({
     ...roleRouter,
     ...permissionRouter,
     ...assignRoleRouter,
+    ...historyOrderRouter,
     {
       path: '/',
       name: 'home',
@@ -52,19 +53,7 @@ export default new VueRouter({
       name: 'dashboard',
       component: Dashboard,
     },
-    {
-      path: '/listorder',
-      name: 'listorder',
-      component: OrderIndex,
-      beforeEnter: (to, from, next) => {
-        const isLogin = localStorage.status_login;
-        if (isLogin === 'true') {
-          next();
-        } else {
-          next({ name: 'login' });
-        }
-      },
-    },
+    
     {
       path: '/paypal',
       name: 'paypal',
