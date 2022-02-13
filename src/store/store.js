@@ -15,6 +15,7 @@ import assignRoleStore from './assignRoleStore';
 import checkoutStore from './checkoutStore';
 import historyOrderStore from './historyOrderStore';
 import billStore from './billStore';
+import addressStore from './addressStore';
 
 Vue.use(Vuex);
 
@@ -35,6 +36,7 @@ const store = new Vuex.Store({
     assign_role: assignRoleStore,
     checkout: checkoutStore,
     historyOrder: historyOrderStore,
+    address: addressStore,
   },
 });
 export { store as default };

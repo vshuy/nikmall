@@ -10,6 +10,7 @@ const userStore = {
     name: '',
     email: '',
     password: '',
+    phone: '',
     user_id: '',
     errors: [],
     information_process: '',
@@ -28,6 +29,9 @@ const userStore = {
     setName(state, e) {
       state.name = e.target.value;
     },
+    setPhone(state, e) {
+      state.phone = e.target.value;
+    },
     reFreshStatus(state) {
       state.errors = [];
       state.information_process = '';
@@ -38,10 +42,7 @@ const userStore = {
   },
   actions: {
     async login({ state }) {
-      const result = await axios.post(`${RESOURCE_USER}/login`, {
-        email: state.email,
-        password: state.password,
-      });
+      const result = await axios.post(`${RESOURCE_USER}/login`, state);
       if (result.data.status === true) {
         AppCookie.setLoginCookie(result.data, state.email);
         state.information_process = 'Login success';
@@ -64,11 +65,7 @@ const userStore = {
       }
     },
     async register({ state }) {
-      const result = await axios.post(`${RESOURCE_USER}/register`, {
-        name: state.name,
-        email: state.email,
-        password: state.password,
-      });
+      const result = await axios.post(`${RESOURCE_USER}/register`, state);
       console.log('Log ~ register ~ result.data', result.data);
       if (result.data.success === true) {
         state.information_process = 'Register success';

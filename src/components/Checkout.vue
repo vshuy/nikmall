@@ -48,7 +48,7 @@
         </button>
       </div>
     </div>
-    <Paypal></Paypal>
+    <Paypal class="mt-2"></Paypal>
     <Footer></Footer>
   </div>
 </template>

@@ -2,17 +2,17 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-          <h2>Users Management</h2>
+        <div>
+          <h2>Assign Role Management</h2>
         </div>
-        <div class="pull-right">
+        <div>
           <router-link class="btn btn-primary" to="/dashboard"
             >Back</router-link
           >
         </div>
       </div>
     </div>
-    <table class="table table-bordered">
+    <table class="table table-bordered mt-3">
       <tr>
         <th>No</th>
         <th>Name</th>

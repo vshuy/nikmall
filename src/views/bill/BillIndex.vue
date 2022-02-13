@@ -7,6 +7,7 @@
           <tr>
             <th>Id</th>
             <th>Customer</th>
+            <th>Date</th>
             <th>Total</th>
             <th>Detail bill</th>
             <th>Edit this bill</th>
@@ -17,7 +18,8 @@
         <tbody>
           <tr v-for="(item, index) in bills" :key="index">
             <td>{{ item.id }}</td>
-            <td>{{ item.name }}</td>
+            <td>{{ item.user.name }}</td>
+            <td>{{ item.created_at }}</td>
             <td>{{ item.total }}</td>
             <td>
               <router-link :to="{ name: 'bill-show', params: { id: item.id } }"
@@ -28,6 +30,23 @@
               <router-link :to="{ name: 'bill-edit', params: { id: item.id } }"
                 >Chỉnh sửa hóa đơn này
               </router-link>
+            </td>
+            <td>
+             <th v-if="item.paid_status === 1" class="text-warning">
+                {{ item.bill_status.status }}
+              </th>
+              <th v-else-if="item.paid_status === 2" class="text-info">
+                {{ item.bill_status.status }}
+              </th>
+              <th v-else-if="item.paid_status === 3" class="text-primary">
+                {{ item.bill_status.status }}
+              </th>
+              <th v-else-if="item.paid_status === 4" class="text-success">
+                {{ item.bill_status.status }}
+              </th>
+              <th v-else-if="item.paid_status === 5" class="text-danger">
+                {{ item.bill_status.status }}
+              </th>
             </td>
             <td>
               <u v-on:click="destroy(item.id)">Delete this bill</u>

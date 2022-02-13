@@ -15,6 +15,7 @@ import { roleRouter } from './roleRouter';
 import { permissionRouter } from './permissionRouter';
 import { assignRoleRouter } from './assignRoleRouter';
 import { historyOrderRouter } from './historyOrderRouter';
+import { addressRouter } from './addressRouter';
 Vue.use(VueRouter);
 export default new VueRouter({
   // mode: 'history',
@@ -30,6 +31,7 @@ export default new VueRouter({
     ...permissionRouter,
     ...assignRoleRouter,
     ...historyOrderRouter,
+    ...addressRouter,
     {
       path: '/',
       name: 'home',
@@ -53,7 +55,7 @@ export default new VueRouter({
       name: 'dashboard',
       component: Dashboard,
     },
-    
+
     {
       path: '/paypal',
       name: 'paypal',

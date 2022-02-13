@@ -110,6 +110,11 @@
           carts.length
         }}</span>
       </div>
+      <div class="navbar">
+        <router-link to="/address-index" class="nav-link active">
+        <i class="fas fa-solid fa-address-book nav_icon"></i>
+        </router-link>
+      </div>
       <div v-if="status_login === 'true'" class="dropdown navbar">
         <button
           class="btn btn-secondary dropdown-toggle"
@@ -216,7 +221,8 @@ export default {
 };
 </script>
 <style scoped>
-@import url('https://fonts.gstatic.com');
+/* @import url('https://fonts.gstatic.com'); */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 .cart_icon {

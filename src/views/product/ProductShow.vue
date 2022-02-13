@@ -3,18 +3,20 @@
     <div class="row">
       <Header></Header>
       <div class="col-md-6">
-        <h1>{{ product.name }}</h1>
-        <h6>Cost {{ product.cost }}</h6>
-        <h6>Brand {{ product.brand.name }}</h6>
-        <h6>Storage {{ product.memory.size }}</h6>
-        <h6>Ram {{ product.ram.size }}</h6>
-        <h6>Display {{ product.display.size }}</h6>
-        <h6>Battery {{ product.battery.size }}</h6>
-        <h6>Operating system {{ product.opera.name }}</h6>
-        <div>
-          <button type="button" class="btn btn-primary mr-3">
-            Buy it now <i class="fas fa-shopping-cart"></i>
-          </button>
+        <div class="ml-5">
+          <h1>{{ product.name }}</h1>
+          <h2>Cost $ {{ product.cost }}</h2>
+          <h6 class="mt-4">Brand {{ product.brand.name }}</h6>
+          <h6 class="mt-4">Storage {{ product.memory.size }}</h6>
+          <h6 class="mt-4">Ram {{ product.ram.size }}</h6>
+          <h6 class="mt-4">Display {{ product.display.size }}</h6>
+          <h6 class="mt-4">Battery {{ product.battery.size }}</h6>
+          <h6 class="mt-4">Operating system {{ product.opera.name }}</h6>
+          <div>
+            <button type="button" class="btn btn-primary mr-3 mt-5">
+              Buy it now <i class="fas fa-shopping-cart"></i>
+            </button>
+          </div>
         </div>
       </div>
       <div class="col-md-6">

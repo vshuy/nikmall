@@ -3,6 +3,8 @@
     <h2>UPDATE STATUS THIS BILL</h2>
     <h3>Customer name: {{ bill.bill.user.name }}</h3>
     <h4>Email address: {{ bill.bill.user.email }}</h4>
+    <h4>Phone: {{ bill.bill.user.phone_number }}</h4>
+    <h4>Date order: {{ bill.bill.created_at }}</h4>
     <h5>
       Total cost $: {{ bill.bill.total }} || {{ bill.detailBill.length }} items
     </h5>

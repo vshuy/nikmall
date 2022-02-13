@@ -7,7 +7,10 @@
           <tr>
             <th>Id</th>
             <th>Name</th>
+            <th>Image</th>
+            <th>Quantity</th>
             <th>Cost</th>
+            <th>Old cost</th>
             <th>Update</th>
             <th>Xóa product</th>
           </tr>
@@ -16,7 +19,17 @@
           <tr v-for="(item, index) in products" :key="index">
             <td>{{ item.id }}</td>
             <td>{{ item.name }}</td>
-            <td>{{ item.cost }}</td>
+            <td>
+              <img
+                v-bind:src="item.link_thumbnail"
+                alt="not found"
+                height="50px"
+                width="auto"
+              />
+            </td>
+            <td>{{ item.quantity }} Units</td>
+            <td>${{ item.cost }}</td>
+            <td>${{ item.old_cost }}</td>
             <td>
               <router-link
                 :to="{ name: 'updateproduct', params: { id: item.id } }"
@@ -44,7 +57,7 @@ export default {
   },
   computed: {
     ...mapState('product', {
-      products: state => state.products,
+      products: (state) => state.products,
     }),
   },
   methods: {

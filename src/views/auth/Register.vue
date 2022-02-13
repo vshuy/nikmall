@@ -49,13 +49,35 @@
                   </div>
                 </div>
                 <div class="form-group">
+                  <label for="phone" class="cols-sm-2 control-label"
+                    >Your Phone</label
+                  >
+                  <div class="cols-sm-10">
+                    <div class="input-group">
+                      <span class="input-group-addon"
+                        ><i
+                          class="fa fa-phone fa mt-2"
+                          aria-hidden="true"
+                        ></i
+                      ></span>
+                      <input
+                        type="number"
+                        :value="phone"
+                        @input="setPhone"
+                        class="form-control ml-3"
+                        placeholder="Enter your phone"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
                   <label for="password" class="cols-sm-2 control-label"
                     >Password</label
                   >
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"
-                        ><i class="fa fa-lock fa-lg mt-2" aria-hidden="true"></i
+                        ><i class="fa fa-lock fa mt-2" aria-hidden="true"></i
                       ></span>
                       <input
                         type="password"
@@ -107,6 +129,7 @@ export default {
       setEmail: 'setEmail',
       setPassword: 'setPassword',
       setName: 'setName',
+      setPhone: 'setPhone',
       reFreshStatus: 'reFreshStatus',
     }),
   },
@@ -114,6 +137,7 @@ export default {
     ...mapState('user', {
       name: (state) => state.name,
       email: (state) => state.email,
+      phone: (state) => state.phone,
       password: (state) => state.password,
       errors: (state) => state.errors,
       information_process: (state) => state.information_process,

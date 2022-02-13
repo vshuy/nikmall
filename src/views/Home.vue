@@ -3,10 +3,41 @@
     <div class="row">
       <Header></Header>
       <Slide></Slide>
+      <div class="col-md-12" style="position: relative">
+        <div class="ml-3 mt-3 d-inline-block">
+          <label for="sort">Sort by </label>
+          <select name="sort">
+            <option>Date added</option>
+            <option>Price: Low to high</option>
+            <option>Price: High to Low</option>
+          </select>
+        </div>
+        <div class="d-inline-block ml-3">
+          <i class="fas fa-filter" style="font-size: 20px"></i>
+        </div>
+        <div class="left-banner">
+          <img
+            class="mb-4"
+            src="../assets/left-banner.jpg"
+            alt=""
+            height="auto"
+            width="180px"
+          />
+        </div>
+        <div class="right-banner">
+          <img
+            class="mb-4"
+            src="../assets/right-banner.jpg"
+            alt=""
+            height="auto"
+            width="180"
+          />
+        </div>
+      </div>
       <div
         v-for="(item, index) in products.data"
         :key="index"
-        class="col-sm-3 mt-3"
+        class="col-sm-3 mt-2"
       >
         <router-link :to="{ name: 'detailproduct', params: { id: item.id } }">
           <img
@@ -86,5 +117,17 @@ export default {
 .item-product {
   font-weight: 900;
   font-size: 20px;
+}
+
+.left-banner {
+  position: absolute;
+  left: -190px;
+  top: -430px;
+}
+
+.right-banner {
+  position: absolute;
+  right: -190px;
+  top: -430px;
 }
 </style>

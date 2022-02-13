@@ -1,23 +1,24 @@
 <template>
   <div class="container">
     <div class="row">
+      <Header></Header>
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-          <strong>Name:</strong>
+          <strong>Name address:</strong>
           <input
             type="text"
-            :value="permission.name"
-            @input="setName"
-            placeholder="Name"
+            :value="address.name_address"
+            @input="setAddressName"
+            placeholder="Enter your new address here"
             class="form-control"
           />
           <button v-on:click="store()" class="btn btn-primary mt-3">
-            Create new
+            Create new address
           </button>
         </div>
       </div>
       <div class="col-md-12">
-        <h2>Manage permissions</h2>
+        <h2>Manage addresses</h2>
         <table class="table table-striped table-sm">
           <thead>
             <tr>
@@ -27,14 +28,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item, index) in permissions" :key="index">
+            <tr v-for="(item, index) in addresses" :key="index">
               <td>{{ item.id }}</td>
-              <td>{{ item.name }}</td>
+              <td>{{ item.name_address }}</td>
               <td>
                 <router-link
-                  :to="{ name: 'permission-edit', params: { id: item.id } }"
+                  :to="{ name: 'address-edit', params: { id: item.id } }"
                 >
-                  Edit this permission</router-link
+                  Edit this address</router-link
                 >
               </td>
             </tr>
@@ -45,27 +46,31 @@
   </div>
 </template>
 <script>
+import Header from '../../components/Header.vue';
 import { mapActions, mapState, mapMutations } from 'vuex';
 export default {
-  name: 'PermissionIndex',
+  name: 'AddressIndex',
   metaInfo: {
-    title: 'Permission overview',
+    title: 'Address overview',
     script: [],
   },
   methods: {
-    ...mapMutations('permission', {
-      setName: 'setName',
+    ...mapMutations('address', {
+      setAddressName: 'setAddressName',
     }),
-    ...mapActions('permission', {
+    ...mapActions('address', {
       index: 'index',
       store: 'store',
     }),
   },
   computed: {
-    ...mapState('permission', {
-      permissions: (state) => state.permissions,
-      permission: (state) => state.permission,
+    ...mapState('address', {
+      addresses: (state) => state.addresses,
+      address: (state) => state.address,
     }),
+  },
+   components: {
+    Header,
   },
   mounted() {
     this.index();

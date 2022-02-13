@@ -18,6 +18,7 @@ const RESOURCE_ROLE = `${BASE_URL}/api/role`;
 const RESOURCE_PERMISSION = `${BASE_URL}/api/permission`;
 const RESOURCE_ASSIGN_ROLE = `${BASE_URL}/api/role-assign`;
 const RESOURCE_POST_CATEGORY = `${BASE_URL}/api/category-post`;
+const RESOURCE_ADDRESS = `${BASE_URL}/api/address`;
 export {
   BASE_URL,
   RESOURCE_SLIDE,
@@ -39,4 +40,5 @@ export {
   RESOURCE_BATTERY,
   RESOURCE_OS,
   RESOURCE_DISPLAY,
+  RESOURCE_ADDRESS,
 };

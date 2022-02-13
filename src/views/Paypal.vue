@@ -1,43 +1,72 @@
 <template>
   <div>
-    <div id="idpay"></div>
+    <div ref="paypal"></div>
   </div>
 </template>
 <script>
-import { loadScript } from '@paypal/paypal-js';
-loadScript({
-  'client-id':
-    'ARu5sadBS-usEEW9An48j9qavPC9ayFyt40zmsShm-CsNnKxI3wrffO17OPRfPl_8z5DgjCx-pwNYAuF',
-  currency: 'USD',
-});
+import { mapActions, mapMutations, mapState } from 'vuex';
 export default {
   name: 'Paypal',
   data() {
     return {
-      email: 'vshbmt@gmail.com',
+      amount: 10,
     };
   },
   metaInfo: {
-    title: 'pay page',
+    title: 'Checkout page',
   },
-  methods: {},
+  computed: {
+    ...mapState('checkout', {
+      total: (state) => state.bill.total,
+    }),
+  },
+  methods: {
+    ...mapMutations('checkout', {
+      setBillStatus: 'setBillStatus',
+    }),
+    ...mapActions('checkout', {
+      store: 'store',
+    }),
+    saveBillToServe() {
+      this.setBillStatus(2);
+      this.store();
+    },
+    setLoaded() {
+      this.loaded = true;
+      window.paypal
+        .Buttons({
+          createOrder: (data, actions) => {
+            return actions.order.create({
+              purchase_units: [
+                {
+                  description: 'Paypal checkout',
+                  amount: {
+                    currency_code: 'USD',
+                    value: this.total,
+                  },
+                },
+              ],
+            });
+          },
+          onApprove: async (data, actions) => {
+            this.saveBillToServe();
+            const order = await actions.order.capture();
+            this.data;
+            this.paidFor = true;
+            console.log(order);
+          },
+          onError: (err) => {
+            console.log(err);
+          },
+        })
+        .render(this.$refs.paypal);
+    },
+  },
   mounted() {
-    async function testPaypal() {
-      let paypal;
-      try {
-        paypal = await loadScript({ 'client-id': 'test' });
-      } catch (error) {
-        console.error('failed to load the PayPal JS SDK script', error);
-      }
-      if (paypal) {
-        try {
-          await paypal.Buttons().render('#idpay');
-        } catch (error) {
-          console.error('failed to render the PayPal Buttons', error);
-        }
-      }
-    }
-    testPaypal();
+    const script = document.createElement('script');
+    script.src = `https://www.paypal.com/sdk/js?client-id=ARu5sadBS-usEEW9An48j9qavPC9ayFyt40zmsShm-CsNnKxI3wrffO17OPRfPl_8z5DgjCx-pwNYAuF`;
+    script.addEventListener('load', this.setLoaded);
+    document.body.appendChild(script);
   },
 };
 </script>

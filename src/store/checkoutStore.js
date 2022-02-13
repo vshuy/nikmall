@@ -1,12 +1,14 @@
 import { normalApi } from '../api/apiService.js';
-import router from './../router/router';
 import { RESOURCE_BILL } from './../api/api.js';
+import router from './../router/router';
+
 const checkoutStore = {
   namespaced: true,
   state: {
     carts: [],
     bill: {
       total: 0,
+      paid_status: 1,
       items: [],
     },
   },
@@ -23,6 +25,9 @@ const checkoutStore = {
   mutations: {
     setCarts(state, carts) {
       state.carts = carts;
+    },
+    setBillStatus(state, paid_status) {
+      state.bill.paid_status = paid_status;
     },
     removeAnItem(state, id) {
       state.carts = state.carts.filter(item => item.id !== id);
@@ -47,7 +52,7 @@ const checkoutStore = {
       commit('createBill');
       console.log(state.bill);
       const result = await normalApi.post(`${RESOURCE_BILL}`, state.bill);
-      router.push('listorder');
+      router.push('history-order-index');
       return result.data;
     },
   },
