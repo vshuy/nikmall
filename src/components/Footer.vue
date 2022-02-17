@@ -1,7 +1,7 @@
 <template>
   <div class="mt-0">
     <!-- Footer -->
-    <footer class="text-center text-lg-start bg-light text-muted">
+    <footer class="text-center text-lg-start bg-light text-muted" style="border-radius: 12px;">
       <section class="">
         <!-- Facebook -->
         <a

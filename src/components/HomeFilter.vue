@@ -61,6 +61,7 @@
                 />
                 <label class="ml-1"> {{ option.name }}</label>
               </div>
+            <div></div>
             </div>
             <div class="col-md-3">
               <span> Memory </span>

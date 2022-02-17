@@ -64,11 +64,13 @@
         :data="products"
         @pagination-change-page="indexPage"
         align="center"
+        class="mt-3"
       >
         <span slot="prev-nav">&lt; Previous</span>
         <span slot="next-nav">Next &gt;</span>
       </Pagination>
     </div>
+    <Contact class="mt-3"></Contact>
     <Footer></Footer>
   </div>
 </template>
@@ -76,6 +78,7 @@
 import { mapMutations, mapActions, mapState } from 'vuex';
 import Header from '../components/Header.vue';
 import Footer from '../components/Footer.vue';
+import Contact from '../components/Contact.vue';
 import Slide from '../components/Slide.vue';
 import HomeFilter from '../components/HomeFilter.vue';
 const Pagination = require('laravel-vue-pagination');
@@ -103,6 +106,7 @@ export default {
     Slide,
     Footer,
     HomeFilter,
+    Contact,
     Pagination,
   },
 };
