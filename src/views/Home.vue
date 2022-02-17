@@ -4,17 +4,8 @@
       <Header></Header>
       <Slide></Slide>
       <div class="col-md-12" style="position: relative">
-        <div class="ml-3 mt-3 d-inline-block">
-          <label for="sort">Sort by </label>
-          <select name="sort">
-            <option>Date added</option>
-            <option>Price: Low to high</option>
-            <option>Price: High to Low</option>
-          </select>
-        </div>
-        <div class="d-inline-block ml-3">
-          <i class="fas fa-filter" style="font-size: 20px"></i>
-        </div>
+        <HomeFilter></HomeFilter>
+       
         <div class="left-banner">
           <img
             class="mb-4"
@@ -51,8 +42,9 @@
         <div class="item-product ml-3 mt-2">{{ item.name }}</div>
         <div class="container">
           <div>
-            <div class="mt-2">
-              <span>Price $ {{ item.cost }}</span>
+            <div>
+              <span style="font-size: 10px;">$ {{ item.old_cost }}</span>
+              <span class="ml-1">$ {{ item.cost }}</span>
             </div>
             <div>
               <button
@@ -85,6 +77,7 @@ import { mapMutations, mapActions, mapState } from 'vuex';
 import Header from '../components/Header.vue';
 import Footer from '../components/Footer.vue';
 import Slide from '../components/Slide.vue';
+import HomeFilter from '../components/HomeFilter.vue';
 const Pagination = require('laravel-vue-pagination');
 
 export default {
@@ -109,6 +102,7 @@ export default {
     Header,
     Slide,
     Footer,
+    HomeFilter,
     Pagination,
   },
 };

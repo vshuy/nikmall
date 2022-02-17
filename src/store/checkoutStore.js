@@ -1,6 +1,7 @@
 import { normalApi } from '../api/apiService.js';
 import { RESOURCE_BILL } from './../api/api.js';
 import router from './../router/router';
+import { RESOURCE_ADDRESS } from './../api/api.js';
 
 const checkoutStore = {
   namespaced: true,
@@ -10,7 +11,9 @@ const checkoutStore = {
       total: 0,
       paid_status: 1,
       items: [],
+      address_id: '',
     },
+    addresses: [],
   },
   getters: {
     total_state(state) {
@@ -25,6 +28,12 @@ const checkoutStore = {
   mutations: {
     setCarts(state, carts) {
       state.carts = carts;
+    },
+    setAddresses(state, addresses) {
+      state.addresses = addresses;
+    },
+    setAddressId(state, e) {
+      state.bill.address_id = e.target.value;
     },
     setBillStatus(state, paid_status) {
       state.bill.paid_status = paid_status;
@@ -45,6 +54,8 @@ const checkoutStore = {
   },
   actions: {
     async index({ commit }) {
+      const result = await normalApi.get(`${RESOURCE_ADDRESS}`);
+      commit('setAddresses', result.data[0].addresses);
       const carts = JSON.parse(localStorage.getItem('carts'));
       commit('setCarts', carts);
     },

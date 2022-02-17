@@ -69,7 +69,7 @@ export default {
       address: (state) => state.address,
     }),
   },
-   components: {
+  components: {
     Header,
   },
   mounted() {

@@ -59,7 +59,7 @@
             </div>
           </div>
           <div class="col-md-6 mt-4 text-center">
-            <span calss="text-center" style="color: blue"
+            <span class="text-center" style="color: blue"
               >{{ carts.length }} Item, $ {{ total_state }}
             </span>
           </div>

@@ -8,7 +8,8 @@
     <h5>
       Total cost $: {{ bill.bill.total }} || {{ bill.detailBill.length }} items
     </h5>
-    <span>Status: {{ bill.bill.bill_status.status }}</span>
+    <h6>Status: {{ bill.bill.bill_status.status }}</h6>
+    <h6>Address: {{ bill.bill.address.name_address }}</h6>
     <div class="row">
       <div
         v-for="(item, index) in bill.detailBill"

@@ -33,17 +33,25 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6 mt-4 text-center">
+      <div class="col-md-12 mt-4 text-center">
         <span calss="text-center" style="color: blue"
           >{{ carts.length }} Item, $ {{ total_state }}
         </span>
       </div>
-      <div class="col-md-6 text-center mt-3">
-        <button
-          type="button"
-          class="btn btn-success mr-3"
-          v-on:click="store()"
-        >
+      <div class="col-md-12">
+        <span>Please select an address to deliver :</span>
+        <select :value="bill.address_id" @input="setAddressId">
+          <option
+            v-for="(option, index) in addresses"
+            v-bind:value="option.id"
+            :key="index"
+          >
+            {{ option.name_address }}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-12 text-center mt-3">
+        <button type="button" class="btn btn-success mr-3" v-on:click="store()">
           payNow <i class="fab fa-cc-paypal"></i>
         </button>
       </div>
@@ -70,6 +78,7 @@ export default {
   methods: {
     ...mapMutations('checkout', {
       removeAnItem: 'removeAnItem',
+      setAddressId: 'setAddressId',
     }),
     ...mapActions('checkout', {
       store: 'store',
@@ -79,6 +88,8 @@ export default {
   computed: {
     ...mapState('checkout', {
       carts: (state) => state.carts,
+      addresses: (state) => state.addresses,
+      bill: (state) => state.bill,
     }),
     ...mapGetters('checkout', {
       total_state: 'total_state',

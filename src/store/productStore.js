@@ -16,6 +16,7 @@ import Vue from 'vue';
 const productStore = {
   namespaced: true,
   state: {
+    filters: {},
     product: {
       id: '',
       name: '',
@@ -43,6 +44,9 @@ const productStore = {
     file_img_to_upload: '',
   },
   mutations: {
+    setFilters(state, filters) {
+      state.filters = filters;
+    },
     setCategoryId(state, e) {
       state.product.category_id = e.target.value;
     },
@@ -117,11 +121,14 @@ const productStore = {
     },
   },
   actions: {
-    async indexPage({ commit }, page) {
+    async indexPage({ state, commit }, page) {
       if (typeof page === 'undefined') {
         page = 1;
       }
-      const result = await normalApi.get(`${RESOURCE_PRODUCT}/pg?page=${page}`);
+      const result = await normalApi.get(
+        `${RESOURCE_PRODUCT}/pg?page=${page}`,
+        { params: state.filters },
+      );
       commit('setProducts', result.data);
     },
     async index({ commit }) {
@@ -149,7 +156,7 @@ const productStore = {
         group: 'notify-group',
         title: 'Upload Message',
         text: 'Upload successful an product',
-      })
+      });
       // router.go();
       return result.data;
     },
