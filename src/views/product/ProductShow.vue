@@ -13,7 +13,11 @@
           <h6 class="mt-4">Battery {{ product.battery.size }}</h6>
           <h6 class="mt-4">Operating system {{ product.opera.name }}</h6>
           <div>
-            <button type="button" class="btn btn-primary mr-3 mt-5">
+            <button
+              type="button"
+              class="btn btn-primary mr-3 mt-5"
+              v-on:click="addToCart(product)"
+            >
               Buy it now <i class="fas fa-shopping-cart"></i>
             </button>
           </div>
@@ -30,7 +34,7 @@
 <script>
 import Header from '../../components/Header.vue';
 import Comment from '../../components/Comment.vue';
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState, mapMutations } from 'vuex';
 
 export default {
   name: 'ProductShow',
@@ -42,6 +46,9 @@ export default {
     title: 'Detail product page',
   },
   methods: {
+    ...mapMutations('cart', {
+      addToCart: 'addToCart',
+    }),
     ...mapActions('product', {
       show: 'show',
     }),
