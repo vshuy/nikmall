@@ -43,13 +43,16 @@
                                   <router-link class="nav-link active" to="/uploadpost">Upload post</router-link>
                               </li>
                               <li class="nav-item">                                  
-                                  <router-link class="nav-link active" to="/role-index">Role dashboard</router-link>
+                                  <!-- <router-link class="nav-link active" to="/role-index">Role dashboard</router-link> -->
+                                  <a class="nav-link active" v-on:click="change('RoleIndex')">Role dashboard</a>
                               </li>
                                <li class="nav-item">                                  
-                                  <router-link class="nav-link active" to="/permission-index">Permission dashboard</router-link>
+                                  <!-- <router-link class="nav-link active" to="/permission-index">Permission dashboard</router-link> -->
+                                  <a class="nav-link active" v-on:click="change('PermissionIndex')">Permission dashboard</a>
                               </li>
                               <li class="nav-item">                                  
-                                  <router-link class="nav-link active" to="/assign-role-index">Assign role dashboard</router-link>
+                                  <!-- <router-link class="nav-link active" to="/assign-role-index">Assign role dashboard</router-link> -->
+                                  <a class="nav-link active" v-on:click="change('AssignRoleIndex')">Assign role dashboard</a>
                               </li>
                               <li class="nav-item">
                                   <a class="nav-link active" v-on:click="change('CategoryCreate')">Upload category</a>
@@ -74,6 +77,9 @@ import PostCategoryIndex from '../views/postcategory/PostCategoryIndex.vue';
 import PostCategoryCreate from '../views/postcategory/PostCategoryCreate.vue';
 import CategoryCreate from '../views/category/CategoryCreate.vue';
 import SlideCreate from '../views/slide/SlideCreate.vue';
+import RoleIndex from '../views/role/RoleIndex.vue';
+import PermissionIndex from '../views/permission/PermissionIndex.vue';
+import AssignRoleIndex from '../views/assignrole/AssignRoleIndex.vue';
 export default {
   name: 'Dashboard',
   data() {
@@ -95,6 +101,9 @@ export default {
     CategoryCreate,
     PostCategoryCreate,
     SlideCreate,
+    RoleIndex,
+    PermissionIndex,
+    AssignRoleIndex,
   },
 };
 </script>

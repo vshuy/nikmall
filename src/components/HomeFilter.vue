@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="ml-3 mt-3 d-inline-block">
-      <label for="sort">Sort by </label>
-      <select name="sort">
-        <option>Date added</option>
-        <option>Price: Low to high</option>
-        <option>Price: High to Low</option>
+      <label for="sort" class="mr-3">Sort by </label>
+      <select name="sort" v-model="filters.order">
+        <option value="default">Date added</option>
+        <option value="asc">Price: Low to high</option>
+        <option value="desc">Price: High to Low</option>
       </select>
     </div>
     <div class="d-inline-block ml-3">
@@ -61,7 +61,6 @@
                 />
                 <label class="ml-1"> {{ option.name }}</label>
               </div>
-            <div></div>
             </div>
             <div class="col-md-3">
               <span> Memory </span>
@@ -106,6 +105,7 @@ export default {
   data() {
     return {
       filters: {
+        order: 'default',
         ram_ids: [],
         brand_ids: [],
         memory_ids: [],
@@ -142,6 +142,17 @@ export default {
       this.setFilters(this.filters);
       this.indexPage();
       this.filter_status = false;
+    },
+  },
+  computed: {
+    afterOrderChange() {
+      return this.filters.order;
+    },
+  },
+  watch: {
+    afterOrderChange() {
+      console.log(this.filters.order);
+      this.indexPage();
     },
   },
   mounted() {

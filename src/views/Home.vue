@@ -5,7 +5,7 @@
       <Slide></Slide>
       <div class="col-md-12" style="position: relative">
         <HomeFilter></HomeFilter>
-       
+
         <div class="left-banner">
           <img
             class="mb-4"
@@ -29,7 +29,15 @@
         v-for="(item, index) in products.data"
         :key="index"
         class="col-sm-3 mt-2"
+        style="position: relative"
       >
+        <div
+          class="bg-info rounded-pill"
+          style="position: absolute; right: 1px; padding: 8px"
+          v-if="item.old_cost !== item.cost"
+        >
+          -{{ parseInt(((item.old_cost - item.cost) * 100) / item.old_cost) }}%
+        </div>
         <router-link :to="{ name: 'detailproduct', params: { id: item.id } }">
           <img
             style="border-radius: 12px"
@@ -43,8 +51,17 @@
         <div class="container">
           <div>
             <div>
-              <span style="font-size: 10px;">$ {{ item.old_cost }}</span>
-              <span class="ml-1">$ {{ item.cost }}</span>
+              <span v-if="item.old_cost !== item.cost" style="font-size: 10px">
+                ${{ item.old_cost }}
+              </span>
+              <span class="ml-1">${{ item.cost }}</span>
+            </div>
+            <div>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
             </div>
             <div>
               <button
@@ -98,6 +115,11 @@ export default {
       products: (state) => state.products,
     }),
   },
+  watch: {
+    calDiscount(cost, old_cost) {
+      return ((old_cost - cost) * 100) / old_cost;
+    },
+  },
   mounted() {
     this.indexPage();
   },
@@ -127,5 +149,9 @@ export default {
   position: absolute;
   right: -190px;
   top: -430px;
+}
+
+.checked {
+  color: orange;
 }
 </style>
