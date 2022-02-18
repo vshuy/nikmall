@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="container">
+      <div class="row"><Header></Header></div>
       <div class="row justify-content-center">
         <div class="col-md-8">
           <div class="card">
@@ -55,10 +56,7 @@
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"
-                        ><i
-                          class="fa fa-phone fa mt-2"
-                          aria-hidden="true"
-                        ></i
+                        ><i class="fa fa-phone fa mt-2" aria-hidden="true"></i
                       ></span>
                       <input
                         type="number"
@@ -114,6 +112,7 @@
   </div>
 </template>
 <script>
+import Header from './../../components/Header.vue';
 import { mapActions, mapState, mapMutations } from 'vuex';
 
 export default {
@@ -145,6 +144,9 @@ export default {
   },
   mounted() {
     this.reFreshStatus();
+  },
+  components: {
+    Header,
   },
 };
 </script>
