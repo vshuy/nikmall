@@ -1,6 +1,22 @@
 <template>
-  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-    <div class="table-responsive">
+  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">    
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 bg-info" style="height: 100px;">
+            <i class="fas fa-file-invoice" style="font-size: 50px;padding: 30px;"></i>
+            <span>{{bill_statistic.new_bills}} New orders today</span>
+          </div>
+          <div class="col-md-4 bg-success" style="height: 100px;">
+            <i class="fas fa-file-invoice-dollar" style="font-size: 50px;padding: 30px;"></i>
+            <span>${{bill_statistic.purchases_today}} Total income today</span>
+          </div>
+          <div class="col-md-4 bg-warning" style="height: 100px;">
+            <i class="fas fa-users" style="font-size: 50px;padding: 30px;"></i>
+            <span>{{bill_statistic.new_customers}} New customers today</span>
+          </div>
+        </div>
+      </div>
+    <div class="table-responsive">      
       <h2>Quản lý bills</h2>
       <table class="table table-striped table-sm">
         <thead>
@@ -69,18 +85,22 @@ export default {
     ...mapActions('bill', {
       index: 'index',
       destroy: 'destroy',
+      getBillStatistic: 'getBillStatistic',
     }),
   },
   computed: {
     ...mapState('bill', {
       bills: (state) => state.bills,
+      bill_statistic: (state) => state.bill_statistic,
     }),
   },
   mounted() {
     this.index();
+    this.getBillStatistic();
   },
 };
 </script>
 <style>
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 /* @import './../assets/css/dashboard.css'; */
 </style>

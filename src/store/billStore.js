@@ -1,14 +1,18 @@
 import { normalApi } from '../api/apiService.js';
 import router from './../router/router';
-import { RESOURCE_BILL, RESOURCE_BILL_STATUS } from './../api/api.js';
+import { RESOURCE_BILL, RESOURCE_BILL_STATUS, BASE_URL } from './../api/api.js';
 const billStore = {
   namespaced: true,
   state: {
+    bill_statistic: {},
     bill: [],
     bills: [],
     bill_status: [],
   },
   mutations: {
+    setBillStatistic(state, statistic) {
+      state.bill_statistic = statistic;
+    },
     setBill(state, bill) {
       state.bill = bill;
     },
@@ -26,6 +30,10 @@ const billStore = {
     },
   },
   actions: {
+    async getBillStatistic({ commit }) {
+      const result = await normalApi.get(`${BASE_URL}/api/get-bill-statistic`);
+      commit('setBillStatistic', result.data);
+    },
     async index({ commit }) {
       const result = await normalApi.get(`${RESOURCE_BILL}`);
       commit('setBills', result.data);
