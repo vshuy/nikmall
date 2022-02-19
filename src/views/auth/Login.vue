@@ -17,20 +17,30 @@
         <div class="form-floating">
           <input
             type="email"
-            :value="email"
-            class="form-control"
+            name="email"
+            :class="{ 'form-control input': true,'border border-danger': errors.has('email') }"
+            v-validate="'required|email'"
+            :value="email"            
             @input="setEmail"
             placeholder="name@ex.com"
           />
         </div>
+        <div v-show="errors.has('email')" class="text-danger">
+          {{ errors.first('email') }}
+        </div>
         <div class="form-floating mt-3">
           <input
             type="password"
+            name="password"
             :value="password"
-            class="form-control"
+            v-validate="'required|min:8'"
+            :class="{ 'form-control input': true,'border border-danger': errors.has('password') }"
             @input="setPassword"
             placeholder="Password"
           />
+        </div>
+        <div v-show="errors.has('password')" class="text-danger">
+          {{ errors.first('password') }}
         </div>
         <div class="checkbox mb-3">
           <label>

@@ -2,7 +2,7 @@
   <div>
     <div class="container">
       <div class="row"><Header></Header></div>
-      <div class="row justify-content-center">
+      <div class="row justify-content-center mt-5">
         <div class="col-md-8">
           <div class="card">
             <div class="card-header">Register</div>
@@ -21,9 +21,17 @@
                         type="text"
                         :value="name"
                         @input="setName"
-                        class="form-control ml-3"
+                        name="name"
+                        :class="{
+                          'form-control ml-3': true,
+                          'border border-danger': errors.has('name'),
+                        }"
+                        v-validate="'required'"
                         placeholder="Enter your Name"
                       />
+                    </div>
+                    <div v-show="errors.has('name')" class="text-danger">
+                      {{ errors.first('name') }}
                     </div>
                   </div>
                 </div>
@@ -43,9 +51,17 @@
                         type="email"
                         :value="email"
                         @input="setEmail"
-                        class="form-control ml-3"
+                        name="email"
+                        :class="{
+                          'form-control ml-3': true,
+                          'border border-danger': errors.has('email'),
+                        }"
+                        v-validate="'required|email'"
                         placeholder="Enter your Email"
                       />
+                    </div>
+                    <div v-show="errors.has('email')" class="text-danger">
+                      {{ errors.first('email') }}
                     </div>
                   </div>
                 </div>
@@ -62,9 +78,17 @@
                         type="number"
                         :value="phone"
                         @input="setPhone"
-                        class="form-control ml-3"
+                        name="phone"
+                        :class="{
+                          'form-control ml-3': true,
+                          'border border-danger': errors.has('phone'),
+                        }"
+                        v-validate="'digits:10'"
                         placeholder="Enter your phone"
                       />
+                    </div>
+                    <div v-show="errors.has('phone')" class="text-danger">
+                      {{ errors.first('phone') }}
                     </div>
                   </div>
                 </div>
@@ -79,11 +103,19 @@
                       ></span>
                       <input
                         type="password"
+                        name="password"
                         :value="password"
-                        class="form-control ml-3"
+                        v-validate="'required|min:8'"
+                        :class="{
+                          'form-control ml-3': true,
+                          'border border-danger': errors.has('password'),
+                        }"
                         @input="setPassword"
                         placeholder="Enter your password"
                       />
+                    </div>
+                    <div v-show="errors.has('password')" class="text-danger">
+                      {{ errors.first('password') }}
                     </div>
                   </div>
                 </div>
@@ -96,7 +128,11 @@
                     Register
                   </button>
                 </div>
-                <span v-for="(value, name) in errors" :key="name">
+                <span
+                  v-for="(value, name) in errors"
+                  :key="name"
+                  style="color: red"
+                >
                   {{ value[0] }}
                 </span>
                 <div class="login-register">
