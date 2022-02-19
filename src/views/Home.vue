@@ -5,7 +5,6 @@
       <Slide></Slide>
       <div class="col-md-12" style="position: relative">
         <HomeFilter></HomeFilter>
-
         <div class="left-banner">
           <img
             class="mb-4"

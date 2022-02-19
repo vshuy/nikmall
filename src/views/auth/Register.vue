@@ -129,8 +129,8 @@
                   </button>
                 </div>
                 <span
-                  v-for="(value, name) in errors"
-                  :key="name"
+                  v-for="(value, index) in errors_response"
+                  :key="index"
                   style="color: red"
                 >
                   {{ value[0] }}
@@ -174,7 +174,7 @@ export default {
       email: (state) => state.email,
       phone: (state) => state.phone,
       password: (state) => state.password,
-      errors: (state) => state.errors,
+      errors_response: (state) => state.errors_response,
       information_process: (state) => state.information_process,
     }),
   },

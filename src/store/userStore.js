@@ -12,7 +12,7 @@ const userStore = {
     password: '',
     phone: '',
     user_id: '',
-    errors: [],
+    errors_response: [],
     information_process: '',
     status_login: '',
   },
@@ -33,7 +33,7 @@ const userStore = {
       state.phone = e.target.value;
     },
     reFreshStatus(state) {
-      state.errors = [];
+      state.errors_response = [];
       state.information_process = '';
       state.name = '';
       state.email = '';
@@ -53,7 +53,8 @@ const userStore = {
         }
       } else {
         state.information_process = 'Login failse';
-        state.errors = result.data.error;
+        state.errors_response = result.data.error;
+        console.log('Log ~ login ~ state.errors_response', state.errors_response);
         Vue.notify({
           group: 'notify-group',
           title: 'Login messenger',
@@ -72,7 +73,7 @@ const userStore = {
         router.push('/login');
       } else {
         state.information_process = 'Register failse';
-        state.errors = result.data.error;
+        state.errors_response = result.data.error;
       }
     },
     async logout({ state }) {

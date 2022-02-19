@@ -53,7 +53,7 @@
         </div>
         <span style="color: red">{{ information_process }}</span>
       </form>
-      <span v-for="(value, name) in errors" :key="name" style="color: red">
+      <span v-for="(value, index) in errors_response" :key="index" style="color: red">
         {{ value[0] }}
       </span>
     </main>
@@ -83,7 +83,7 @@ export default {
       email: (state) => state.email,
       password: (state) => state.password,
       information_process: (state) => state.information_process,
-      errors: (state) => state.errors,
+      errors_response: (state) => state.errors_response,
     }),
   },
   components: {
