@@ -55,7 +55,7 @@
             >
           </li>
           <li class="nav-item">
-            <router-link to="/listpost" class="nav-link active"
+            <router-link to="/post-index" class="nav-link active"
               >Posts</router-link
             >
           </li>
@@ -93,7 +93,7 @@
             class="item-suggestion"
           >
             <router-link
-              :to="{ name: 'detailproduct', params: { id: item.id } }"
+              :to="{ name: 'product-show', params: { id: item.id } }"
             >
               {{ item.name }}
             </router-link>
