@@ -38,8 +38,8 @@ export default new VueRouter({
       component: Home,
     },
     {
-      path: '/detailcart',
-      name: 'detailcart',
+      path: '/cart-show',
+      name: 'cart-show',
       component: Checkout,
       beforeEnter: (to, from, next) => {
         const isLogin = localStorage.status_login;

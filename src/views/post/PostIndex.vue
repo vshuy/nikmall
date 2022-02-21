@@ -4,7 +4,7 @@
       <Header></Header>
       <div class="col-md-12">List posts</div>
       <div v-for="(item, index) in posts" :key="index" class="col-md-12 mt-3">
-        <router-link :to="{ name: 'detailpost', params: { id: item.id } }">
+        <router-link :to="{ name: 'post-show', params: { id: item.id } }">
           <div class="container">
             <div class="row">
               <div class="col-md-4">

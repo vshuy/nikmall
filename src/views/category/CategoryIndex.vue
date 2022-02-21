@@ -19,7 +19,7 @@
             <td>{{ item.descripe }}</td>
             <td>
               <router-link
-                :to="{ name: 'updatecategory', params: { id: item.id } }"
+                :to="{ name: 'category-edit', params: { id: item.id } }"
               >
                 Edit this category</router-link
               >

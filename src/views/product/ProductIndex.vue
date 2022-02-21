@@ -32,7 +32,7 @@
             <td>${{ item.old_cost }}</td>
             <td>
               <router-link
-                :to="{ name: 'updateproduct', params: { id: item.id } }"
+                :to="{ name: 'product-edit', params: { id: item.id } }"
               >
                 Edit this product</router-link
               >

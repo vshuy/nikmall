@@ -4,18 +4,18 @@ import ProductCreate from '../views/product/ProductCreate.vue';
 
 export const productRouter = [
   {
-    path: '/uploadproduct',
-    name: 'uploadproduct',
+    path: '/product-create',
+    name: 'product-create',
     component: ProductCreate,
   },
   {
-    path: '/detailproduct/:id',
-    name: 'detailproduct',
+    path: '/product-show/:id',
+    name: 'product-show',
     component: ProductShow,
   },
   {
-    path: '/updateproduct',
-    name: 'updateproduct',
+    path: '/product-edit',
+    name: 'product-edit',
     component: ProductEdit,
   },
 ];

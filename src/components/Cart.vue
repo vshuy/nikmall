@@ -85,7 +85,7 @@ export default {
     async gotToDetailPayPage() {
       const parsed = await JSON.stringify(this.carts);
       await localStorage.setItem('carts', parsed);
-      this.$router.push('/detailcart');
+      this.$router.push('/cart-show');
     },
     ...mapMutations('cart', {
       removeFromCart: 'removeAnItemFromCart',

@@ -37,10 +37,10 @@
                                   <a class="nav-link active" v-on:click="change('SlideCreate')">Upload slide</a>
                               </li>
                                <li class="nav-item">                                  
-                                  <router-link class="nav-link active" to="/uploadproduct">Upload product</router-link>
+                                  <router-link class="nav-link active" to="/product-create">Upload product</router-link>
                               </li>
                                <li class="nav-item">                                  
-                                  <router-link class="nav-link active" to="/uploadpost">Upload post</router-link>
+                                  <router-link class="nav-link active" to="/post-create">Upload post</router-link>
                               </li>
                               <li class="nav-item">                                  
                                   <!-- <router-link class="nav-link active" to="/role-index">Role dashboard</router-link> -->

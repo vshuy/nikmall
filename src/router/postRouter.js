@@ -4,18 +4,18 @@ import PostIndex from '../views/post/PostIndex.vue';
 
 export const postRouter = [
   {
-    path: '/uploadpost',
-    name: 'uploadpost',
+    path: '/post-create',
+    name: 'post-create',
     component: PostCreate,
   },
   {
-    path: '/listpost',
-    name: 'listpost',
+    path: '/post-index',
+    name: 'post-index',
     component: PostIndex,
   },
   {
-    path: '/detailpost/:id',
-    name: 'detailpost',
+    path: '/post-show/:id',
+    name: 'post-show',
     component: PostShow,
   },
 ];

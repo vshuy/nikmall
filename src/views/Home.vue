@@ -37,7 +37,7 @@
         >
           -{{ parseInt(((item.old_cost - item.cost) * 100) / item.old_cost) }}%
         </div>
-        <router-link :to="{ name: 'detailproduct', params: { id: item.id } }">
+        <router-link :to="{ name: 'product-show', params: { id: item.id } }">
           <img
             style="border-radius: 12px"
             v-bind:src="item.link_thumbnail"
