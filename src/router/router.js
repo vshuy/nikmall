@@ -4,6 +4,7 @@ import Home from '../views/Home.vue';
 import Checkout from '../components/Checkout.vue';
 import Dashboard from '../components/Dashboard.vue';
 import paypal from '../views/Paypal.vue';
+import AppCookie from '../helpers/AppCookie';
 import { productRouter } from './productRouter.js';
 import { authRouter } from './authRouter.js';
 import { categoryRouter } from './categoryRouter.js';
@@ -42,12 +43,8 @@ export default new VueRouter({
       name: 'cart-show',
       component: Checkout,
       beforeEnter: (to, from, next) => {
-        const isLogin = localStorage.status_login;
-        if (isLogin === 'true') {
-          next();
-        } else {
-          next({ name: 'login' });
-        }
+        AppCookie.redirectIfNotLogin();
+        next();
       },
     },
     {

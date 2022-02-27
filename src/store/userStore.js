@@ -1,9 +1,9 @@
 const axios = require('axios');
-import Vue from 'vue';
 import router from './../router/router';
 import { RESOURCE_USER } from './../api/api.js';
 import AppCookie from './../helpers/AppCookie.js';
 import { normalApi } from '../api/apiService';
+import AppNotification from '../helpers/AppNotification';
 const userStore = {
   namespaced: true,
   state: {
@@ -47,26 +47,12 @@ const userStore = {
         AppCookie.setLoginCookie(result.data, state.email);
         state.information_process = 'Login success';
         if (result.data.user_if.id === 1) {
-          Vue.notify({
-            group: 'notify-group',
-            title: 'Notification login',
-            text:
-              'Login success,Welcome admin you will be redirect to dashboard page after two seconds',
-            type: 'success',
-            closeOnClick: true,
-          });
+          AppNotification.notifyAdminLoginSuccess();
           setTimeout(function() {
             router.push('/dashboard');
           }, 2000);
         } else {
-          Vue.notify({
-            group: 'notify-group',
-            title: 'Notification login',
-            text:
-              'Login success, you will be redirect to home page after two seconds',
-            type: 'success',
-            closeOnClick: true,
-          });
+          AppNotification.notifyLoginSuccess();
           setTimeout(function() {
             router.push('/');
           }, 2000);
@@ -74,17 +60,7 @@ const userStore = {
       } else {
         state.information_process = 'Login failed';
         state.errors_response = result.data.error;
-        console.log(
-          'Log ~ login ~ state.errors_response',
-          state.errors_response,
-        );
-        Vue.notify({
-          group: 'notify-group',
-          title: 'Login messenger',
-          text: 'Login fail',
-          type: 'error',
-          closeOnClick: true,
-        });
+        AppNotification.notifyLoginFail();
         AppCookie.destroyCookie();
       }
     },
@@ -93,26 +69,13 @@ const userStore = {
       console.log('Log ~ register ~ result.data', result.data);
       if (result.data.success === true) {
         state.information_process = 'Register success';
-        Vue.notify({
-          group: 'notify-group',
-          title: 'Notification login',
-          text:
-            'Register success, you will be redirect to login page after two seconds',
-          type: 'success',
-          closeOnClick: true,
-        });
+        AppNotification.notifyRegisterSuccess();
         setTimeout(function() {
           router.push('/login');
         }, 2000);
       } else {
         state.information_process = 'Register fail';
-        Vue.notify({
-          group: 'notify-group',
-          title: 'Register notification',
-          text: 'Register fail please check again',
-          type: 'error',
-          closeOnClick: true,
-        });
+        AppNotification.notifyRegisterFail();
         state.errors_response = result.data.error;
       }
     },
@@ -120,16 +83,9 @@ const userStore = {
       const result = await normalApi.post(`${RESOURCE_USER}/logout`);
       AppCookie.destroyCookie();
       state.status_login = false;
-      Vue.notify({
-        group: 'notify-group',
-        title: 'Logout notification',
-        text: 'Logout successful',
-        type: 'success',
-        closeOnClick: true,
-      });
+      AppNotification.notifyLogoutSuccess();
       return result.data;
     },
-    async profile() {},
   },
 };
 export default userStore;

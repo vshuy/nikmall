@@ -1,17 +1,14 @@
 import AddressIndex from '../views/address/AddressIndex.vue';
 import AddressEdit from '../views/address/AddressEdit.vue';
+import AppCookie from '../helpers/AppCookie';
 export const addressRouter = [
   {
     path: '/address-index',
     name: 'address-index',
     component: AddressIndex,
     beforeEnter: (to, from, next) => {
-      const isLogin = localStorage.status_login;
-      if (isLogin === 'true') {
-        next();
-      } else {
-        next({ name: 'login' });
-      }
+      AppCookie.redirectIfNotLogin();
+      next();
     },
   },
   {
@@ -19,12 +16,8 @@ export const addressRouter = [
     name: 'address-edit',
     component: AddressEdit,
     beforeEnter: (to, from, next) => {
-      const isLogin = localStorage.status_login;
-      if (isLogin === 'true') {
-        next();
-      } else {
-        next({ name: 'login' });
-      }
+      AppCookie.redirectIfNotLogin();
+      next();
     },
   },
 ];

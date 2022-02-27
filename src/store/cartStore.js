@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import AppNotification from '../helpers/AppNotification';
 const cartStore = {
   namespaced: true,
   state: {
@@ -23,12 +24,14 @@ const cartStore = {
         item['quantity'] = 1;
         state.carts.push(item);
       }
+      AppNotification.notifyAddAnItemToCartSuccess();
     },
     removeAnItemFromCart(state, item_in) {
       state.carts = state.carts.filter(item => item !== item_in);
       state.id_items_exist = state.id_items_exist.filter(
         item => item !== item_in.id,
       );
+      AppNotification.notifyRemoveAnItemFromCartSuccess();
     },
     plusItem(state, item) {
       let index = state.carts.indexOf(item);

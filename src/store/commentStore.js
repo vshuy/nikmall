@@ -1,5 +1,6 @@
 import { normalApi } from '../api/apiService.js';
 import VueCookies from 'vue-cookies';
+import AppNotification from '../helpers/AppNotification.js';
 import AppCookie from '../helpers/AppCookie.js';
 import { RESOURCE_COMMENT } from './../api/api.js';
 const commentStore = {
@@ -79,6 +80,7 @@ const commentStore = {
     },
     async store({ commit, state }) {
       AppCookie.redirectIfNotLogin();
+      AppNotification.notifyAddCommentSuccess();
       const result = await normalApi.post(
         `${RESOURCE_COMMENT}`,
         state.new_comment,
@@ -87,6 +89,7 @@ const commentStore = {
     },
     async update({ commit, state }) {
       commit('updateAComment');
+      AppNotification.notifyUpdateCommentSuccess();
       const result = await normalApi.put(
         `${RESOURCE_COMMENT}/${state.edit_comment.id}`,
         state.edit_comment,
@@ -94,6 +97,7 @@ const commentStore = {
       return result.data;
     },
     async destroy({ commit }, id) {
+      AppNotification.notifyDeleteCommentSuccess();
       const result = await normalApi.delete(`${RESOURCE_COMMENT}/${id}`);
       commit('removeAnItem', id);
       return result.data;

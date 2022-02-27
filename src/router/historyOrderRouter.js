@@ -1,5 +1,6 @@
 import OrderShow from '../views/historyOrder/OrderShow.vue';
 import OrderIndex from '../views/historyOrder/OrderIndex.vue';
+import AppCookie from '../helpers/AppCookie';
 export const historyOrderRouter = [
   {
     path: '/history-order-show/:id',
@@ -11,12 +12,8 @@ export const historyOrderRouter = [
     name: 'history-order-index',
     component: OrderIndex,
     beforeEnter: (to, from, next) => {
-      const isLogin = localStorage.status_login;
-      if (isLogin === 'true') {
-        next();
-      } else {
-        next({ name: 'login' });
-      }
+      AppCookie.redirectIfNotLogin();
+      next();
     },
   },
 ];
