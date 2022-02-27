@@ -1,3 +1,4 @@
+import router from './../router/router';
 import VueCookies from 'vue-cookies';
 class AppCookie {
   setLoginCookie(token, email) {
@@ -20,6 +21,14 @@ class AppCookie {
   }
   isLogin() {
     return localStorage.status_login;
+  }
+  redirectIfNotLogin() {
+    // const status = await localStorage.status_login;
+    if (localStorage.status_login === 'false') {
+      router.push('/login');
+    } else {
+      return true;
+    }
   }
   getUserId() {}
 }

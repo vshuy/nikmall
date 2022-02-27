@@ -1,5 +1,6 @@
 import { normalApi } from '../api/apiService.js';
 import VueCookies from 'vue-cookies';
+import AppCookie from '../helpers/AppCookie.js';
 import { RESOURCE_COMMENT } from './../api/api.js';
 const commentStore = {
   namespaced: true,
@@ -77,6 +78,7 @@ const commentStore = {
       commit('setComments', result.data);
     },
     async store({ commit, state }) {
+      AppCookie.redirectIfNotLogin();
       const result = await normalApi.post(
         `${RESOURCE_COMMENT}`,
         state.new_comment,

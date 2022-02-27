@@ -158,7 +158,9 @@ const productStore = {
         text: 'Upload successful an product',
       });
       // router.go();
+      console.log('Log ~ store ~ result.data', result.data);
       return result.data;
+
     },
     async destroy({ commit }, id) {
       const result = await normalApi.delete(`${RESOURCE_PRODUCT}/${id}`);
