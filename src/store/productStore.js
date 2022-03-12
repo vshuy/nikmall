@@ -12,7 +12,7 @@ import {
   RESOURCE_OS,
 } from './../api/api.js';
 import { normalApi, formDataApi } from '../api/apiService.js';
-import Vue from 'vue';
+import AppNotification from '../helpers/AppNotification';
 const productStore = {
   namespaced: true,
   state: {
@@ -129,11 +129,11 @@ const productStore = {
         `${RESOURCE_PRODUCT}/pg?page=${page}`,
         { params: state.filters },
       );
-      commit('setProducts', result.data);
+      commit('setProducts', result.data.data);
     },
     async index({ commit }) {
       const result = await normalApi.get(`${RESOURCE_PRODUCT}`);
-      commit('setProducts', result.data);
+      commit('setProducts', result.data.data);
     },
     async show({ commit }, id) {
       const result = await axios.get(`${RESOURCE_PRODUCT}/${id}`);
@@ -152,15 +152,9 @@ const productStore = {
       form.append('file_img_product', state.file_img_to_upload);
       form.append('product_data', JSON.stringify(state.product));
       const result = await formDataApi.post(`${RESOURCE_PRODUCT}`, form);
-      Vue.notify({
-        group: 'notify-group',
-        title: 'Upload Message',
-        text: 'Upload successful an product',
-      });
-      // router.go();
+      AppNotification.notifyUploadProductSuccess();
       console.log('Log ~ store ~ result.data', result.data);
       return result.data;
-
     },
     async destroy({ commit }, id) {
       const result = await normalApi.delete(`${RESOURCE_PRODUCT}/${id}`);

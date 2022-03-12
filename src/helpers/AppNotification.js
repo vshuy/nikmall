@@ -29,6 +29,13 @@ class AppNotification {
       closeOnClick: true,
     });
   }
+  notifyUploadProductSuccess() {
+    Vue.notify({
+      group: 'notify-group',
+      title: 'Upload Message',
+      text: 'Upload successful an product',
+    });
+  }
   notifyLoginSuccess() {
     Vue.notify({
       group: 'notify-group',
