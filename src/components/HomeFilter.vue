@@ -123,7 +123,7 @@ export default {
       setFilters: 'setFilters',
     }),
     ...mapActions('product', {
-      indexPage: 'indexPage',
+      index: 'index',
     }),
     async initStore() {
       const resultRam = await normalApi.get(`${RESOURCE_RAM}`);
@@ -140,7 +140,7 @@ export default {
     },
     apply() {
       this.setFilters(this.filters);
-      this.indexPage();
+      this.index();
       this.filter_status = false;
     },
   },
@@ -151,8 +151,7 @@ export default {
   },
   watch: {
     afterOrderChange() {
-      console.log(this.filters.order);
-      this.indexPage();
+      this.apply();
     },
   },
   mounted() {

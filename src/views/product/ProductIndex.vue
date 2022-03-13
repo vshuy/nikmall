@@ -16,7 +16,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(item, index) in products" :key="index">
+          <tr v-for="(item, index) in products.data" :key="index">
             <td>{{ item.id }}</td>
             <td>{{ item.name }}</td>
             <td>
@@ -43,12 +43,23 @@
           </tr>
         </tbody>
       </table>
+      <div class="mx-auto">
+        <Pagination
+          :data="products"
+          @pagination-change-page="index"
+          align="center"
+          class="mt-3"
+        >
+          <span slot="prev-nav">&lt; Previous</span>
+          <span slot="next-nav">Next &gt;</span>
+        </Pagination>
+      </div>
     </div>
   </main>
 </template>
 <script>
 import { mapState, mapActions } from 'vuex';
-
+const Pagination = require('laravel-vue-pagination');
 export default {
   name: 'ProductIndex',
   metaInfo: {
@@ -65,6 +76,9 @@ export default {
       index: 'index',
       destroy: 'destroy',
     }),
+  },
+  components: {
+    Pagination,
   },
   mounted() {
     this.index();

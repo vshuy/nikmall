@@ -78,7 +78,7 @@
     <div class="mx-auto">
       <Pagination
         :data="products"
-        @pagination-change-page="indexPage"
+        @pagination-change-page="index"
         align="center"
         class="mt-3"
       >
@@ -106,7 +106,7 @@ export default {
       addToCart: 'addToCart',
     }),
     ...mapActions('product', {
-      indexPage: 'indexPage',
+      index: 'index',
     }),
   },
   computed: {
@@ -120,7 +120,7 @@ export default {
     },
   },
   mounted() {
-    this.indexPage();
+    this.index();
   },
   components: {
     Header,

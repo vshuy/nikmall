@@ -17,6 +17,7 @@ const productStore = {
   namespaced: true,
   state: {
     filters: {},
+    page: 1,
     product: {
       id: '',
       name: '',
@@ -46,6 +47,12 @@ const productStore = {
   mutations: {
     setFilters(state, filters) {
       state.filters = filters;
+    },
+    setPage(state, page) {
+      if (typeof page === 'undefined') {
+        page = 1;
+      }
+      state.page = page;
     },
     setCategoryId(state, e) {
       state.product.category_id = e.target.value;
@@ -121,18 +128,12 @@ const productStore = {
     },
   },
   actions: {
-    async indexPage({ state, commit }, page) {
-      if (typeof page === 'undefined') {
-        page = 1;
-      }
+    async index({ state, commit }, page) {
+      commit('setPage', page);
       const result = await normalApi.get(
-        `${RESOURCE_PRODUCT}/pg?page=${page}`,
+        `${RESOURCE_PRODUCT}?page=${state.page}`,
         { params: state.filters },
       );
-      commit('setProducts', result.data.data);
-    },
-    async index({ commit }) {
-      const result = await normalApi.get(`${RESOURCE_PRODUCT}`);
       commit('setProducts', result.data.data);
     },
     async show({ commit }, id) {
