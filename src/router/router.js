@@ -20,7 +20,7 @@ import { addressRouter } from './addressRouter';
 Vue.use(VueRouter);
 export default new VueRouter({
   mode: 'history',
-  base: process.env.BASE_URL,
+  base: process.env.VUE_APP_BASE_ROUTER_URL,
   routes: [
     ...productRouter,
     ...authRouter,

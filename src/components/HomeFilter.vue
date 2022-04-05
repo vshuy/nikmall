@@ -94,10 +94,6 @@
 <script>
 import {
   RESOURCE_FILTERS,
-  // RESOURCE_BRAND,
-  // RESOURCE_RAM,
-  // RESOURCE_MEMORY,
-  // RESOURCE_BATTERY,
 } from './../api/api.js';
 import { normalApi } from './../api/apiService.js';
 import { mapMutations, mapActions } from 'vuex';
@@ -128,11 +124,6 @@ export default {
     }),
     async initStore() {
       const resourceFilter = await normalApi.get(`${RESOURCE_FILTERS}`);
-      console.log('Log ~ initStore ~ resourceFilter', resourceFilter.data);
-      // const resultRam = await normalApi.get(`${RESOURCE_RAM}`);
-      // const resultBrand = await normalApi.get(`${RESOURCE_BRAND}`);
-      // const resultMemory = await normalApi.get(`${RESOURCE_MEMORY}`);
-      // const resultBattery = await normalApi.get(`${RESOURCE_BATTERY}`);
       this.rams = resourceFilter.data.rams;
       this.brands = resourceFilter.data.brands;
       this.memories = resourceFilter.data.memories;
