@@ -97,6 +97,7 @@ import Footer from '../components/Footer.vue';
 import Contact from '../components/Contact.vue';
 import Slide from '../components/Slide.vue';
 import HomeFilter from '../components/HomeFilter.vue';
+import IPService from '../services/IPService';
 const Pagination = require('laravel-vue-pagination');
 
 export default {
@@ -121,6 +122,7 @@ export default {
   },
   mounted() {
     this.index();
+    IPService.saveUserInfo();
   },
   components: {
     Header,
