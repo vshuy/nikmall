@@ -8,6 +8,7 @@ const RESOURCE_MEMORY = `${BASE_URL}/api/memories`;
 const RESOURCE_DISPLAY = `${BASE_URL}/api/displays`;
 const RESOURCE_BATTERY = `${BASE_URL}/api/batteries`;
 const RESOURCE_OS = `${BASE_URL}/api/os`;
+const RESOURCE_FILTERS = `${BASE_URL}/api/filters`;
 const RESOURCE_BILL = `${BASE_URL}/api/bill`;
 const RESOURCE_BILL_STATUS = `${BASE_URL}/api/bill-status`;
 const RESOURCE_COMMENT = `${BASE_URL}/api/comment`;
@@ -41,4 +42,5 @@ export {
   RESOURCE_OS,
   RESOURCE_DISPLAY,
   RESOURCE_ADDRESS,
+  RESOURCE_FILTERS,
 };
