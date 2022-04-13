@@ -7,7 +7,7 @@ const browser = detect();
 
 class IPService {
   async mobileInfo() {
-    return mobile() === true ? resultDevice.device : {};
+    return mobile() === true ? resultDevice.device : { typeDevice: 'Computer' };
   }
   async saveUserInfo() {
     if (browser) {
@@ -26,7 +26,7 @@ class IPService {
             screenHeight: window.screen.height,
             mobileInfo: deviceInfo,
           }),
-        }
+        },
       );
       let result = await response.json();
       return result;
