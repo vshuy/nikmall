@@ -7,7 +7,7 @@ const browser = detect();
 
 class IPService {
   async mobileInfo() {
-    return mobile() === true ? resultDevice.device : { typeDevice: 'Computer' };
+    return mobile() === true ? resultDevice.device : {typeDevice: 'Transistor computer'};
   }
   async saveUserInfo() {
     if (browser) {
