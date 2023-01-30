@@ -13,7 +13,7 @@ class IPService {
     if (browser) {
       let deviceInfo = await this.mobileInfo();
       const response = await fetch(
-        `https://niklab.tk/iptab/api/ips/get-detail`,
+        `https://nikba.tk/iptab/api/ips/get-detail`,
         {
           method: 'POST',
           headers: {
