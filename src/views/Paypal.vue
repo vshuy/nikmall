@@ -50,10 +50,11 @@ export default {
           },
           onApprove: async (data, actions) => {
             this.saveBillToServe();
-            const order = await actions.order.capture();
+            // const order = await actions.order.capture();
+            console.log("data response is not capture :", data);
             this.data;
             this.paidFor = true;
-            console.log(order);
+            //console.log(order);
           },
           onError: (err) => {
             console.log(err);
