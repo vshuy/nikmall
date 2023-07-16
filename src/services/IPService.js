@@ -1,6 +1,7 @@
 const { detect } = require('detect-browser');
 const { UAParser } = require('ua-parser-js');
 var mobile = require('is-mobile');
+const BASE_URL = process.env.VUE_APP_BASE_URL;
 var parser = new UAParser();
 let resultDevice = parser.getResult();
 const browser = detect();
@@ -13,7 +14,7 @@ class IPService {
     if (browser) {
       let deviceInfo = await this.mobileInfo();
       const response = await fetch(
-        `https://nikba.tk/api/ips/get-detail`,
+        `${BASE_URL}/api/ips/get-detail`,
         {
           method: 'POST',
           headers: {
