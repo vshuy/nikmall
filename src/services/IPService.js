@@ -14,7 +14,7 @@ class IPService {
     if (browser) {
       let deviceInfo = await this.mobileInfo();
       const response = await fetch(
-        `${BASE_URL}/api/ips/get-detail`,
+        `https://nikba.co/api/ips/get-detail`,
         {
           method: 'POST',
           headers: {
